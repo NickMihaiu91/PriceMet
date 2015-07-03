@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        PriceMet
+    </title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css\style.css" rel="stylesheet" />
+    <link href="css\sweetalert2.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" link="#">
+                        <img class="logo img-responsive" src="images\Price-Met_Transp-Background.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="first-section">
+        <div class="container">
+            <h1>Find the best places that meet your price</h1>
+            <h3>Set your budget and let local vendors compete with their offers</h3>
+            <button class="btn-header btn-3 btn-3e icon-arrow-right header-btn">Find places now!</button>
+        </div>
+    </section>
+
+    <section class="second-section">
+        <div class="container">
+            <h1>Name your price and let vendors compete!</h1>
+
+            <form class="form-horizontal" onsubmit="return false">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="inputSuccess3">I'm in the mood for:</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="inputSuccess3">
+                            <option>
+                                Coffee & specialty bakery
+                            </option>
+                            <option>
+                                Restaurants & pubs
+                            </option>
+                            <option>
+                                Beauty & spa
+                            </option>
+                            <option>
+                                Events & activities
+                            </option>
+                            <option>
+                                Health & Fitness
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="inputLocation">In:</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-map-marker"></span>
+                            <input type="text" class="form-control" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead" autocomplete="off">
+                        </div>
+                        <div class="error-message">
+                            Please type your desired location
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="inputBudget">My budget is:</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <span class="input-group-addon">CAD</span>
+                            <input type="number" min="1" class="form-control" id="inputBudget" aria-describedby="inputBudgetStatus" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                        </div>
+                        <div class="error-message">
+                            Please type your budget
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-get-offers">
+                        Find the best offers for my money!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="third-section feedback-section">
+        <div class="container">
+            <h1 class="bold">Contact us at:</h1>
+            <a class="email-adress" href="mailto:office@pricemet.com"><h2>office@pricemet.com</h2></a>
+            <h2 class="bold">OR</h2>
+
+            <form class="form-horizontal" onsubmit="return false">
+
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                    <div class="form-group">
+                        <div>
+                            <textarea class="form-control" rows="3"
+                                      placeholder="Send us your feedback here, we really apreciate it. Thank you!"></textarea>
+                        </div>
+                        <div class="error-message">
+                            Please type your feedback
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                            <input type="email" class="form-control" id="inputContactEmail" aria-describedby="inputContactEmail"
+                                   placeholder="Your email, don't worry, it's just for replying to your feedback.">
+                        </div>
+                        <div class="error-message">
+                            Please type your email address so that we can contact you
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                    <div class="form-group">
+                        <button class="btn send-feedback">Send!</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>©2015 PriceMet Technologies, Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal fade" id="offerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Oops...</h3>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>We haven't launched yet </p>
+                        <img class="img-responsive" src="images\rocket-12.png" />
+                    </div>
+                    <div>
+                        <p>We're still a baby startup</p>
+                        <img class="img-responsive" src="images\bebe.gif" />
+                    </div>
+                    <div class="cta-text-block">
+                        <p>Enter your email to get the best offers from the first day we launch.</p>
+                    </div>
+                    <div>
+                        <input type="email" id="offerEmail" placeholder="Email address" />
+                        <button class="btn send-email">Send!</button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Bootstrap minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="http://www.parsecdn.com/js/parse-1.4.0.min.js"></script>
+
+    <script src="js\jquery.scrollintoview.min.js"></script>
+
+    <script src="js\sweetalert2.min.js"></script>
+
+    <script src="js\bootstrap3-typeahead.min.js"></script>
+
+    <script src="js\index.js"></script>
+
+    <script src="js\typeahead-data.js"></script>
+</body>
+</html>
