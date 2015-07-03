@@ -12,6 +12,8 @@
             var validInput = true,
                 elementsToValidate = [$('#inputLocation'), $('#inputBudget')];
 
+            clearErrorMessages();
+
             $.each(elementsToValidate, function (index, element) {
                 validInput = validateSingleElement(element) && validInput;
             });
@@ -20,7 +22,6 @@
                 return false;
 
             $('#offerModal').modal('show');
-            removeErrorMessages();
         });
 
         $('.feedback-section .btn').on('click', function () {
@@ -31,14 +32,14 @@
                 validInput = true,
                 elementsToValidate = [$('.feedback-section textarea'), $('.feedback-section #inputContactEmail')];
 
+            clearErrorMessages();
+
             $.each(elementsToValidate, function (index, element) {
                 validInput = validateSingleElement(element) && validInput;
             });
 
             if (!validInput)
                 return false;
-
-            removeErrorMessages();
 
             feedbackObject.save({ text: feedbackText, email: email }).then(function (object) {
                 swal({ title: 'Awesome!', text: 'Thank you for your feedback.', type: 'success', timer: 5000 });
@@ -77,7 +78,7 @@
             return true;
         }
 
-        function removeErrorMessages() {
+        function clearErrorMessages() {
             $('.has-error').removeClass('has-error');
             $('.error-message').hide();
         }
