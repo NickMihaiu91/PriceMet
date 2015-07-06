@@ -2,7 +2,7 @@
 
     $(document).ready(function () {
 
-        Parse.initialize("7DSSt7Mlrm1jEb2zPwSXhzxN1PP6BFVWW3CIEyZv", "6Ax8AZUf6EcRWFKk0Vyx9Q86A9ZkE9UliOrkwm6b");
+        Parse.initialize("rABaK3FXscnhAej5m3WNT8jQuaEHiFpwCAcGgEbv", "QkE1Q8Nsb6Fy8GkeKBJNmNidxzV2g8TIKprOEKOe");
 
         $('.header-btn').on('click', function () {
             $('.second-section').scrollintoview({ duration: 500 });
