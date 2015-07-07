@@ -9,6 +9,7 @@
 header .logo {
     width: 50%;
     margin-top: -20px;
+    cursor: pointer;
 }
 
 header .navbar {
