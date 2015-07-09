@@ -360,6 +360,10 @@ footer {
 /* Mobile */
 
 @media screen and (max-width: 767px) {
+    input[type="text"], input[type="number"], input[type="email"], textarea, select {
+        font-size: 16px !important;
+    }
+
     header .logo {
         margin-top: -10px;
     }
