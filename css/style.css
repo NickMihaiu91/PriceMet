@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 header .logo {
     width: 50%;
     margin-top: -20px;
@@ -18,7 +25,10 @@ header .navbar {
 }
 
 section {
-    height: 100vh;
+    /*height: 100vh;*/
+    height: 100%;
+    width: 100%;
+
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
