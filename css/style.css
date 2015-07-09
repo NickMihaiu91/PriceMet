@@ -42,7 +42,7 @@ section {
         bottom: 0;
         right: 0;
         z-index: -1;
-        opacity: 0.8;
+        opacity: 0.85;
         background-size: cover;
         background-repeat: no-repeat;
         background-image: url("../images/vancouver_skyline_281.jpg");
@@ -340,6 +340,13 @@ footer {
     content: "\e00d";
 }
 
+@media screen and (max-width: 1100px) {
+
+    section.first-section::after {
+        background-image: url("../images/vancouver_skyline_281_medium.jpg");
+    }
+}
+
 /* Mobile */
 
 @media screen and (max-width: 767px) {
@@ -350,6 +357,10 @@ footer {
     header .navbar {
         min-height: 60px;
         background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    section.first-section::after {
+        background-image: url("../images/vancouver_skyline_281_low.jpg"); 
     }
 
     section.first-section h1 {
