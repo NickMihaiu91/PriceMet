@@ -350,7 +350,7 @@ footer {
     content: "\e00d";
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 2000px) {
 
     section.first-section::after {
         background-image: url("../images/vancouver_skyline_281_medium.jpg");
