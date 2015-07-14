@@ -4,6 +4,17 @@
 
     $(document).ready(function () { 
         $("#inputLocation").typeahead({ source: canadaCitiesList });
+
+        addLocationOptionsToMobileDropdown();
     });
+
+    function addLocationOptionsToMobileDropdown() {
+        var select = $('#selectLocation');
+
+        $.each(canadaCitiesList, function (index, element) {
+            var option = new Option(element, index);
+            select.append($(option));
+        });
+    }
 
 })();

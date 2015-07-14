@@ -18,6 +18,12 @@
                 elementsToValidate = [$('#inputLocation'), $('#inputBudget')],
                 trackObj = { "Category": $('#selectOfferType option:selected').text() };
 
+            if ($(window).width() < 768) {
+                elementsToValidate = [];
+                trackObj.Location = $('#selectLocation option:selected').text();
+                trackObj.Budget = $('#selectBudget option:selected').text();
+            }
+
             if ($('#inputLocation').val())
                 trackObj.Location = $('#inputLocation').val();
 
