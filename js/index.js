@@ -99,6 +99,23 @@
             }
         });
 
+        $('.navbar-nav .nav-log-in').on('click', function () {
+            setTimeout(function () {
+                swal({ title: 'Ooops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
+            }, 2000);
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        $('.navbar-nav .nav-contact-us').on('click', function () {
+            $('.third-section').scrollintoview({ duration: 500 });
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        $('.navbar-nav .nav-help').on('click', function () {
+            $('footer').scrollintoview({ duration: 500 });
+            $('.navbar-collapse').collapse('hide');
+        });
+
         // element events for event tracking
         $('#inputLocation').focusout(function () {
             var trackObj = {},

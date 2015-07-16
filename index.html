@@ -13,8 +13,11 @@
 
     <!-- Bootstrap minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--Font awesome-->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css\style.css" rel="stylesheet" />
     <link href="css\sweetalert2.css" rel="stylesheet" />
+    <link href="css\social-buttons.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -22,9 +25,23 @@
         <div class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#">
                         <img class="logo img-responsive" src="images\Price-Met_Transp-Background.png" />
                     </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="nav-log-in">Log in</a></li>
+                        <li><a class="nav-contact-us">Get in touch</a></li>
+                        <li><a class="nav-help">Need help?</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -187,7 +204,42 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>©2015 PriceMet Technologies, Inc. All Rights Reserved.</p>
+            <div class="row link-container">
+                <div class="col-md-3 col-md-offset-4 col-xs-5 col-xs-offset-1">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a>About Us</a></li>
+                        <li><a>Team</a></li>
+                        <li><a>Blog</a></li>
+                        <li><a>Terms & Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <h4>Useful Info</h4>
+                    <ul>
+                        <li><a>Customer Support</a></li>
+                        <li><a>Merchant Center</a></li>
+                        <li><a>FAQ</a></li>
+                        <li><a>Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider"/>
+
+            <div class="row">
+                <div class="social">
+                    <h4>Join Us On</h4>
+                    <ul>
+                        <li><a href="https://www.facebook.com/pages/PriceMet/1605622183053988" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-lg fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-lg fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-lg fa-instagram"></i></a></li>
+                    </ul>
+                    <p>© PriceMet, Inc.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -219,7 +271,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
     <!-- start Mixpanel -->
     <script type="text/javascript">
         (function (f, b) {
@@ -233,7 +284,6 @@
         mixpanel.init("46abe9239629fcc58fabb0b1dfccd15a");
     </script>
     <!-- end Mixpanel -->
-
     <!-- Bootstrap minified JavaScript -->
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 

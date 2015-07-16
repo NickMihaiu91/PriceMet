@@ -8,9 +8,9 @@
 
 html,
 body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
 header .logo {
@@ -24,23 +24,34 @@ header .navbar {
     min-height: 70px;
 }
 
+    header .navbar ul.navbar-nav {
+        margin-top: 10px;
+    }
+
+        header .navbar ul.navbar-nav li a {
+            font-size: 16px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+            header .navbar ul.navbar-nav li a:hover, header .navbar ul.navbar-nav li a:focus {
+                background-color: rgba(96, 133, 181, 0.5);
+            }
+
 section {
     /*height: 100vh;*/
     height: 100%;
     width: 100%;
-
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-
     -webkit-box-align: center;
     -moz-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-
     text-align: center;
 }
 
@@ -130,10 +141,33 @@ footer {
     color: white;
 }
 
+    footer .link-container {
+        margin-top: 30px;
+    }
+
+        footer .link-container ul {
+            list-style: none outside none;
+            padding-left: 0;
+            color: white;
+        }
+
+            footer .link-container ul a {
+                color: white;
+                cursor: pointer;
+            }
+
+    footer .social h4 {
+        font-weight: 600;
+    }
+
     footer p {
         text-align: center;
-        font-size: 18px;
+        font-size: 17px;
         margin: 10px auto;
+    }
+
+    footer .footer-divider {
+        width: 50%;
     }
 
 /* Modal */
@@ -365,16 +399,31 @@ footer {
     }
 
     header .logo {
+        width: auto;
+        height: 45px;
         margin-top: -10px;
     }
 
     header .navbar {
         min-height: 60px;
-        background-color: rgba(0, 0, 0, 0.75);
+        background-color: rgba(0, 0, 0, 0.8);
     }
 
+        header .navbar .navbar-collapse {
+            background-color: rgba(0, 0, 0, 0.55);
+        }
+
+        header .navbar .navbar-toggle {
+            background-color: ActiveCaption;
+            margin-top: 10px;
+        }
+
+            header .navbar .navbar-toggle .icon-bar {
+                background-color: rgb(41, 84, 126);
+            }
+
     section.first-section::after {
-        background-image: url("../images/vancouver_skyline_281_low.jpg"); 
+        background-image: url("../images/vancouver_skyline_281_low.jpg");
     }
 
     section.first-section h1 {

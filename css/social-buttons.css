@@ -1,0 +1,85 @@
+.social {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+    .social ul {
+        margin: 0;
+        padding: 5px;
+    }
+
+        .social ul li {
+            margin: 5px;
+            list-style: none outside none;
+            display: inline-block;
+        }
+
+    .social i {
+        width: 40px;
+        height: 40px;
+        color: #FFF;
+        background-color: #909AA0;
+        font-size: 22px;
+        text-align: center;
+        padding-top: 12px;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        -moz-transition: all ease 0.3s;
+        -webkit-transition: all ease 0.3s;
+        -o-transition: all ease 0.3s;
+        -ms-transition: all ease 0.3s;
+        transition: all ease 0.3s;
+    }
+
+        .social i:hover {
+            color: #FFF;
+            text-decoration: none;
+            -moz-transition: all ease 0.3s;
+            -webkit-transition: all ease 0.3s;
+            -o-transition: all ease 0.3s;
+            -ms-transition: all ease 0.3s;
+            transition: all ease 0.3s;
+        }
+
+    .social .fa-facebook {
+        background: #3B5998;
+    }
+
+        .social .fa-facebook:hover {
+            background: #4060A5;
+        }
+
+    .social .fa-twitter {
+        background: #00ABE3;
+    }
+
+        .social .fa-twitter:hover {
+            background: #17BAF0;
+        }
+
+    .social .fa-google-plus {
+        background: #e64522;
+    }
+
+        .social .fa-google-plus:hover {
+            background: #F05736;
+        }
+
+    .social .fa-pinterest {
+        background: #cb2027;
+    }
+
+        .social .fa-pinterest:hover {
+            background: #DD2930;
+        }
+
+    .social .fa-instagram {
+        background: #3F729B;
+    }
+
+        .social .fa-instagram:hover {
+            background: #507AB5;
+        }
