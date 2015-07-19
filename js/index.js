@@ -101,7 +101,7 @@
 
         $('.navbar-nav .nav-log-in').on('click', function () {
             setTimeout(function () {
-                swal({ title: 'Ooops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
+                swal({ title: 'Oops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
             }, 2000);
             $('.navbar-collapse').collapse('hide');
         });
