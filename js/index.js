@@ -8,6 +8,10 @@
             mixpanel.track("Page viewed");
         }, 500);
 
+        bindEvents();
+    });
+
+    function bindEvents() {
         $('.header-btn').on('click', function () {
             $('.second-section').scrollintoview({ duration: 500 });
             mixpanel.track("Header button push");
@@ -199,27 +203,25 @@
 
             footerViewed = true;
         });
+    }
 
-        // auxiliar functions
-        function validateSingleElement($element) {
-            if (!$element)
-                return false;
+    // auxiliar functions
+    function validateSingleElement($element) {
+        if (!$element)
+            return false;
 
-            if ($element.val().trim() === '') {
-                $element.parent().addClass('has-error');
-                $element.parent().siblings(".error-message").show();
+        if ($element.val().trim() === '') {
+            $element.parent().addClass('has-error');
+            $element.parent().siblings(".error-message").show();
 
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
-        function clearErrorMessages() {
-            $('.has-error').removeClass('has-error');
-            $('.error-message').hide();
-        }
+        return true;
+    }
 
-    });
-
+    function clearErrorMessages() {
+        $('.has-error').removeClass('has-error');
+        $('.error-message').hide();
+    }
 })();
