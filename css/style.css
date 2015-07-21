@@ -66,7 +66,6 @@ section {
         opacity: 0.85;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: url("../images/vancouver_skyline_281.jpg");
     }
 
     section.first-section h1 {
@@ -384,10 +383,51 @@ footer {
     content: "\e00d";
 }
 
+/*Specific category classes*/
+section.first-section.default::after {
+    background-image: url("../images/vancouver_skyline_281.jpg");
+}
+
+section.restaurant::after {
+    background-image: url("../images/restaurant.jpg");
+}
+
+section.clubs-bars::after {
+    background-image: url("../images/clubs-bars.jpg");
+}
+
+section.beauty-spa::after {
+    background-image: url("../images/beauty-spa.jpg");
+}
+
+section.plumbing::after {
+    background-image: url("../images/plumbing.jpg");
+}
+
+section.air-conditioning::after {
+    background-image: url("../images/air-conditioning.jpg");
+}
+
+section.auto-repair::after {
+    background-image: url("../images/auto-repair.jpg");
+}
+
 @media screen and (max-width: 2000px) {
 
-    section.first-section::after {
+    section.first-section.default::after {
         background-image: url("../images/vancouver_skyline_281_medium.jpg");
+    }
+
+    section.clubs-bars::after {
+        background-image: url("../images/clubs-bars_medium.jpg");
+    }
+
+    section.beauty-spa::after {
+        background-image: url("../images/beauty-spa_medium.jpg");
+    }
+
+    section.auto-repair::after {
+        background-image: url("../images/auto-repair_medium.jpg");
     }
 }
 
@@ -422,7 +462,7 @@ footer {
                 background-color: rgb(41, 84, 126);
             }
 
-    section.first-section::after {
+    section.first-section.default::after {
         background-image: url("../images/vancouver_skyline_281_low.jpg");
     }
 
@@ -453,5 +493,29 @@ footer {
         padding-left: 10px;
         padding-right: 10px;
         white-space: normal;
+    }
+
+    /*Specific category classes*/
+    section.restaurant::after {
+        background-image: url("../images/restaurant_low.jpg");
+    }
+
+    section.clubs-bars::after {
+        background-image: url("../images/clubs-bars_low.jpg");
+    }
+
+    section.beauty-spa::after {
+        background-image: url("../images/beauty-spa_low.jpg");
+        background-position-x: 60%;
+    }
+
+    section.air-conditioning::after {
+        background-image: url("../images/air-conditioning_low.jpg");
+        background-position-x: 50%;
+    }
+
+    section.auto-repair::after {
+        background-image: url("../images/auto-repair_low.jpg");
+        background-position-x: 50%;
     }
 }

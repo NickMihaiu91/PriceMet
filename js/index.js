@@ -8,6 +8,7 @@
             mixpanel.track("Page viewed");
         }, 500);
 
+        displayContentBasedOnQueryParameter();
         bindEvents();
     });
 
@@ -205,6 +206,92 @@
         });
     }
 
+    function displayContentBasedOnQueryParameter() {
+        var category = getParameterByName('id'),
+            messages = {
+                'default': {
+                    firstSectionH1: 'Find the best places that meet your price',
+                    firstSectionH3: 'Set your budget and let local vendors compete with their offers',
+                    secondSectionH1: 'Name your price and let vendors compete!'
+                },
+                'r': {
+                    firstSectionH1: 'Amazing restaurants that meet your price',
+                    firstSectionH3: 'Set your budget and let local restaurants compete with their offers',
+                    secondSectionH1: 'Pick your own price and let restaurants show their offers!'
+                },
+                'cb': {
+                    firstSectionH1: 'Great fun at your own price',
+                    firstSectionH3: 'Set your budget and let clubs and bars compete with their offers',
+                    secondSectionH1: 'Pick your own price and let clubs and bars show their offers!'
+                },
+                'b': {
+                    firstSectionH1: 'Local health and beauty salons that meet your price',
+                    firstSectionH3: 'Set your budget and let salons compete with their offers',
+                    secondSectionH1: 'Pick your own price and let salons show their offers!'
+                },
+                'p': {
+                    firstSectionH1: 'Local plumbers ready to meet your price',
+                    firstSectionH3: 'Set your budget and let the plumbers bid in minutes',
+                    secondSectionH1: 'Pick your own price and let plumbers show their offers!'
+                },
+                'ac': {
+                    firstSectionH1: 'A/C professionals ready to meet your price',
+                    firstSectionH3: 'Set your budget and let them bid in minutes',
+                    secondSectionH1: 'Pick your own price and let A/C professional show their offers!'
+                },
+                'ar': {
+                    firstSectionH1: 'Trusted auto mechanics ready to meet your price',
+                    firstSectionH3: 'Set your budget and let them bid in minutes',
+                    secondSectionH1: 'Pick your own price and let auto mechanics show their offers!'
+                }
+            };
+
+        if (category && messages[category]) {
+            $('.first-section h1').text(messages[category].firstSectionH1);
+            $('.first-section h3').text(messages[category].firstSectionH3);
+            $('.second-section h1').text(messages[category].secondSectionH1);
+
+            $("#selectOfferType").val(category);
+
+            switch (category) {
+                case 'r': {
+                    $('section.first-section').addClass('restaurant');
+                    break;
+                }
+                case 'cb': {
+                    $('section.first-section').addClass('clubs-bars');
+                    break;
+                }
+                case 'b': {
+                    $('section.first-section').addClass('beauty-spa');
+                    break;
+                }
+                case 'p': {
+                    $('section.first-section').addClass('plumbing');
+                    break;
+                }
+                case 'ac': {
+                    $('section.first-section').addClass('air-conditioning');
+                    break;
+                }
+                case 'ar': {
+                    $('section.first-section').addClass('auto-repair');
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+        else {
+            $('.first-section h1').text(messages['default'].firstSectionH1);
+            $('.first-section h3').text(messages['default'].firstSectionH3);
+            $('.second-section h1').text(messages['default'].secondSectionH1);
+
+            $('section.first-section').addClass('default');
+        }
+    }
+
     // auxiliar functions
     function validateSingleElement($element) {
         if (!$element)
@@ -223,5 +310,12 @@
     function clearErrorMessages() {
         $('.has-error').removeClass('has-error');
         $('.error-message').hide();
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 })();
