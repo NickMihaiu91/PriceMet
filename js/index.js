@@ -46,7 +46,7 @@
             if (!validInput)
                 return false;
 
-            $('#offerModal').modal('show');
+            $('#offerModal').modal({ backdrop: 'static' });
         });
 
         $('.feedback-section .btn').on('click', function () {
@@ -84,8 +84,36 @@
 
         });
 
+        $('#navigateToGetEmailView').on('click', function () {
+            $('.initial-view').hide();
+            $('.get-email-view').show();
+        });
+
+        $('.closing-modal').on('click', function () {
+            $('.initial-view').hide();
+            $('.get-email-view').hide();
+            $('.closing-modal-view').show();
+        });
+
+        $('.yes-no-buttons .btn-yes').on('click', function () {
+            $('.closing-modal-view').hide();
+            $('.get-email-view').show();
+        });
+
+        $('.yes-no-buttons .btn-no').on('click', function () {
+            $('#offerModal').modal('hide');
+        });
+
+        $('#offerModal').on('hide.bs.modal', function () {
+            $('.closing-modal-view').hide();
+            $('.get-email-view').hide();
+            $('.initial-view').show();
+            $('.get-email-view .input-container .alert').hide();
+        });
+
         $('.send-email').on('click', function () {
             var email = $('#offerEmail').val(),
+                validEmail = validateEmail(email.trim()),
                 EmailObject = Parse.Object.extend("Email"),
                 emailObject = new EmailObject(),
                 trackObj = {};
@@ -95,13 +123,16 @@
 
             mixpanel.track("Send email", trackObj);
 
-            if (email.trim() !== '') {
-                emailObject.save({ email: email }).then(function (object) { });
-                $('#offerModal').modal('hide');
-                setTimeout(function () {
-                    swal({ title: 'Thank you!', text: "You'll get an email as soon as we launch.", type: 'success' });
-                }, 500);
+            if (!validEmail) {
+                $('.get-email-view .input-container .alert').show();
+                return false;
             }
+
+            emailObject.save({ email: email }).then(function (object) { });
+            $('#offerModal').modal('hide');
+            setTimeout(function () {
+                swal({ title: 'Awesome!', text: "You'll get an email from us as soon as possible.", type: 'success' });
+            }, 500);
         });
 
         $('.navbar-nav .nav-log-in').on('click', function () {
@@ -317,5 +348,10 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return re.test(email);
     }
 })();

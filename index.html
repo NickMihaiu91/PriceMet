@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-get-offers">
+                    <button class="btn-n btn-get-offers">
                         Find the best offers for my money!
                     </button>
                 </div>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
                     <div class="form-group">
-                        <button class="btn send-feedback">Send!</button>
+                        <button class="btn-n send-feedback">Send!</button>
                     </div>
                 </div>
             </form>
@@ -228,7 +228,7 @@
                 </div>
             </div>
 
-            <hr class="footer-divider"/>
+            <hr class="footer-divider" />
 
             <div class="row">
                 <div class="social">
@@ -250,25 +250,58 @@
     <div class="modal fade" id="offerModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title">Oops...</h3>
-                </div>
                 <div class="modal-body">
-                    <div>
-                        <p>We haven't launched yet </p>
-                        <img class="img-responsive" src="images\rocket-12.png" />
+                    <div class="initial-view">
+                        <div class="text-container">
+                            <p>
+                                Hi there. Sorry, I know you were expecting to see the offers right now, but the system isn't up yet.
+                                However, <b>we are happy to offer you a FREE cup of coffee & a FREE sandwich at your favorite place.</b>
+                                You'll meet with our CEO and talk about your experience on our site & help us build a better product to serve you.
+                            </p>
+                        </div>
+                        <div class="image-container">
+                            <img class="img-responsive" src="images/sandwich.jpg" />
+                        </div>
+                        <div class="get-offer-container">
+                            <button type="button" class="btn btn-success" id="navigateToGetEmailView">
+                                Yes, I want to help and get a FREE cup of coffee & sandwich
+                            </button>
+                        </div>
+                        <div class="dismiss-modal-message">
+                            <p class="closing-modal">No thanks, I don't want to help and don't want to get a FREE cup of coffee & sandwich.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>We're still a baby startup</p>
-                        <img class="img-responsive" src="images\bebe.gif" />
+                    <div class="get-email-view">
+                        <div class="text-container">
+                            <p>
+                                Please enter your email adress to get in touch and schedule when to meet at your favorite place.
+                            </p>
+                        </div>
+                        <div class="input-container">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please enter a valid email address.</strong>
+                            </div>
+                            <input type="email" id="offerEmail" placeholder="Email address" />
+                            <button class="btn btn-success send-email">Let's do this!</button>
+                        </div>
+                        <div class="image-container">
+                            <img class="img-responsive" src="images/thank-you.jpg" />
+                        </div>
+                        <div class="dismiss-modal-message">
+                            <p class="closing-modal">I really don't want to help and don't want to get a FREE cup of coffee & sandwich.</p>
+                        </div>
                     </div>
-                    <div class="cta-text-block">
-                        <p>Enter your email to get the best offers from the first day we launch.</p>
-                    </div>
-                    <div>
-                        <input type="email" id="offerEmail" placeholder="Email address" />
-                        <button class="btn send-email">Send!</button>
+                    <div class="closing-modal-view">
+                        <div class="text-container">
+                            <p>Are you sure you don't want to <b>help build a product that best serves you</b> and also get a FREE cup of coffee & sandwich at your favorite place?</p>
+                        </div>
+                        <div class="yes-no-buttons">
+                            <button class="btn btn-success btn-yes">Yes, I want to help and be part of the next big thing</button>
+                            <button class="btn btn-danger btn-no">No, I don't like to help and I don't like free coffee & sandwich</button>
+                        </div>
+                        <div class="image-container">
+                            <img class="img-responsive" src="images/sad-puppy.jpg" />
+                        </div>
                     </div>
                 </div>
             </div><!-- /.modal-content -->

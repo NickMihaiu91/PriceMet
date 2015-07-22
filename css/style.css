@@ -170,58 +170,70 @@ footer {
     }
 
 /* Modal */
-.modal-header {
-    background-color: #298DBA;
-    color: white;
+.modal-body .image-container img {
+    margin: 0 auto;
+    width: 70%;
 }
 
-    .modal-header button.close {
-        color: white;
-        font-size: 28px;
-        opacity: 0.5;
-        line-height: inherit;
+.modal-body .dismiss-modal-message {
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.modal-body .get-offer-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .modal-body .get-offer-container .btn {
+        font-size: 20px;
     }
 
-.modal-body {
+.modal-body .text-container {
+    font-size: 17px;
+}
+
+.modal-body .input-container {
     text-align: center;
 }
-
-    .modal-body img {
-        margin: 0 auto;
-        max-height: 180px;
-        display: inline-block;
-        max-width: 60px;
-    }
-
-    .modal-body p {
-        font-size: 18px;
-        display: inline;
-    }
-
-    .modal-body input {
-        font-size: 19px;
-        margin-top: 5px;
+    .modal-body .input-container input { 
         text-align: center;
+        font-size: 18px;
     }
 
-    .modal-body .cta-text-block {
-        margin-top: 10px;
-    }
-
-    .modal-body .btn {
+    .modal-body .input-container button { 
+        font-size: 17px;
         display: block;
-        margin: 10px auto;
-        color: #298DBA;
-        border-color: #298DBA;
-        padding: 10px 40px;
+        margin: 10px auto 20px auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
-        .modal-body .btn:after {
-            background-color: #298DBA;
-        }
+    .modal-body .input-container .alert {
+        display: none;
+    }
+
+.modal-body .yes-no-buttons {
+    margin-bottom: 15px;
+}
+    .modal-body .yes-no-buttons button {
+        width: 45%;
+        white-space: normal;
+        margin-left: 15px;
+    }
+
+.modal-body .get-email-view {
+    display: none;
+}
+
+.modal-body .closing-modal-view {
+    display: none;
+}
 
 /* Buttons */
-.btn {
+.btn-n {
     border: 3px solid #FBB43B;
     color: #FBB43B;
     font-family: inherit;
@@ -243,7 +255,7 @@ footer {
     z-index: 11;
 }
 
-    .btn:after {
+    .btn-n:after {
         content: '';
         position: absolute;
         z-index: -1;
@@ -264,11 +276,11 @@ footer {
         transform: translateX(-50%) translateY(-50%);
     }
 
-    .btn:hover, .btn:focus {
+    .btn-n:hover, .btn-n:focus {
         color: white;
     }
 
-        .btn:hover:after, .btn:active:after {
+        .btn-n:hover:after, .btn-n:active:after {
             width: 90%;
             opacity: 1;
         }
@@ -488,12 +500,28 @@ section.auto-repair::after {
         width: 90%;
     }
 
-    section.second-section .btn {
+    section.second-section .btn-n {
         margin: 5px auto;
         padding-left: 10px;
         padding-right: 10px;
         white-space: normal;
     }
+
+    .modal-body .initial-view .text-container {
+        font-size: 16px;
+    }
+
+    .modal-body .get-offer-container .btn {
+        white-space: normal;
+    }
+
+    .modal-body .yes-no-buttons button {
+        margin-left: 5px;
+    }
+
+        .modal-body .yes-no-buttons .btn-yes {
+            font-size: 17px;
+        }
 
     /*Specific category classes*/
     section.restaurant::after {
