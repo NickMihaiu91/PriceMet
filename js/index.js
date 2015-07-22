@@ -87,6 +87,7 @@
         $('#navigateToGetEmailView').on('click', function () {
             $('.initial-view').hide();
             $('.get-email-view').show();
+            mixpanel.track("Modal", {'initial view': 'yes'});
         });
 
         $('.closing-modal').on('click', function () {
@@ -98,10 +99,12 @@
         $('.yes-no-buttons .btn-yes').on('click', function () {
             $('.closing-modal-view').hide();
             $('.get-email-view').show();
+            mixpanel.track("Modal", { 'dog view': 'yes' });
         });
 
         $('.yes-no-buttons .btn-no').on('click', function () {
             $('#offerModal').modal('hide');
+            mixpanel.track("Modal", { 'dog view': 'no' });
         });
 
         $('#offerModal').on('hide.bs.modal', function () {
@@ -119,9 +122,9 @@
                 trackObj = {};
 
             if (email.trim() !== '')
-                trackObj.Email = email;
+                trackObj['send email'] = email;
 
-            mixpanel.track("Send email", trackObj);
+            mixpanel.track("Modal", trackObj);
 
             if (!validEmail) {
                 $('.get-email-view .input-container .alert').show();
@@ -140,16 +143,19 @@
                 swal({ title: 'Oops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
             }, 2000);
             $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", {'option': 'log in'});
         });
 
         $('.navbar-nav .nav-contact-us').on('click', function () {
             $('.third-section').scrollintoview({ duration: 500 });
             $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'contact us' });
         });
 
         $('.navbar-nav .nav-help').on('click', function () {
             $('footer').scrollintoview({ duration: 500 });
             $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'help' });
         });
 
         // element events for event tracking
@@ -184,13 +190,45 @@
                 email = $('#offerEmail').val();
 
             if (email)
-                trackObj.Email = email;
+                trackObj['email changed'] = email;
 
-            mixpanel.track("Email changed", trackObj);
+            mixpanel.track("Modal", trackObj);
         });
 
         $(".logo").on('click', function () {
             mixpanel.track("Logo clicked");
+        });
+
+        $(".navbar-toggle").on('click', function () {
+            mixpanel.track("Navbar toggle clicked");
+        });
+
+        $("footer .fa-facebook").on('click', function () {
+            mixpanel.track("Footer", { 'social button clicked': 'facebook'});
+        });
+
+        $("footer .fa-twitter").on('click', function () {
+            mixpanel.track("Footer", { 'social button clicked': 'twitter' });
+        });
+
+        $("footer .fa-google-plus").on('click', function () {
+            mixpanel.track("Footer", { 'social button clicked': 'google' });
+        });
+
+        $("footer .fa-pinterest").on('click', function () {
+            mixpanel.track("Footer", { 'social button clicked': 'pinterest' });
+        });
+
+        $("footer .fa-instagram").on('click', function () {
+            mixpanel.track("Footer", { 'social button clicked': 'instagram' });
+        });
+
+        $(".initial-view .closing-modal").on('click', function () {
+            mixpanel.track("Modal", {'initial view': 'no'});
+        });
+
+        $(".get-email-view .closing-modal").on('click', function () {
+            mixpanel.track("Modal", { 'email view': 'no' });
         });
 
         $(window).bind('beforeunload', function () {
