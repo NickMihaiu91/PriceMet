@@ -296,7 +296,7 @@ footer {
     background: none;
     cursor: pointer;
     padding: 25px 80px;
-    display: block;
+    display: inline-block;
     margin: 15px auto;
     text-transform: uppercase;
     letter-spacing: 1px;
