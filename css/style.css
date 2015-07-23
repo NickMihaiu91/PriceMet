@@ -600,3 +600,9 @@ section.auto-repair::after {
         font-size: 12px;
     }
 }
+
+@media screen and (max-height: 500px) {
+    section.second-section {
+        height: 130%;
+    }
+}
