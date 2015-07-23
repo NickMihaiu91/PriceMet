@@ -13,7 +13,7 @@
     });
 
     function bindEvents() {
-        $('.header-btn').on('click', function () {
+        $('.btn-header').on('click', function () {
             $('.second-section').scrollintoview({ duration: 500 });
             mixpanel.track("Header button push");
         });
