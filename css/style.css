@@ -449,6 +449,10 @@ section.auto-repair::after {
         font-size: 16px !important;
     }
 
+    .btn-3e:after {
+        width: 30%;
+    }
+
     header .logo {
         width: auto;
         height: 45px;
@@ -544,5 +548,55 @@ section.auto-repair::after {
     section.auto-repair::after {
         background-image: url("../images/auto-repair_low.jpg");
         background-position-x: 50%;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    section.first-section h1 {
+        font-size: 26px;
+    }
+
+    section.first-section h3 {
+        font-size: 16px;
+    }
+
+    section.first-section .btn-3e {
+        font-size: 12px;
+    }
+
+    section.second-section h1 {
+        font-size: 20px;
+        margin-top:20px;
+    }
+
+    section.second-section .btn-n {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    section.third-section h1 {
+        font-size: 24px;
+    }
+
+    section.third-section h2 {
+        font-size: 18px;;
+    }
+
+    section.third-section .btn-n {
+        font-size: 12px;
+        padding:10px 50px;
+    }
+
+    .modal-body .initial-view .text-container {
+        font-size: 14px;
+    }
+
+    .modal-body .get-offer-container .btn {
+        font-size: 16px;
+    }
+
+    .modal-body .dismiss-modal-message {
+        font-size: 12px;
     }
 }
