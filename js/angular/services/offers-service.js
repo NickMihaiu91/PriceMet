@@ -7,31 +7,26 @@
             var offers = [];
 
             var getOffers = function (budget, callback) {
-                if (!offers.length) {
-                    var lowerQuery = new Parse.Query('Offer');
-                    lowerQuery.equalTo("bidRequest", Math.floor(budget / 5) * 5);
+                var lowerQuery = new Parse.Query('Offer');
+                lowerQuery.equalTo("bidRequest", Math.floor(budget / 5) * 5);
 
-                    var higherQuery = new Parse.Query('Offer');
-                    higherQuery.equalTo("bidRequest", Math.floor(budget / 5 + 1) * 5);
+                var higherQuery = new Parse.Query('Offer');
+                higherQuery.equalTo("bidRequest", Math.floor(budget / 5 + 1) * 5);
 
-                    var mainQuery = Parse.Query.or(lowerQuery, higherQuery);
+                var mainQuery = Parse.Query.or(lowerQuery, higherQuery);
 
-                    mainQuery.find({
-                        success: function (results) {
-                            // results is an array of Parse.Object.
-                            offers = formatOffers(results);
-                            callback(offers);
-                        },
+                mainQuery.find({
+                    success: function (results) {
+                        // results is an array of Parse.Object.
+                        offers = formatOffers(results);
+                        callback(offers);
+                    },
 
-                        error: function (error) {
-                            // error is an instance of Parse.Error.
-                            console.log('Error', error);
-                        }
-                    });
-                }
-                else {
-                    callback(offers);
-                }
+                    error: function (error) {
+                        // error is an instance of Parse.Error.
+                        console.log('Error', error);
+                    }
+                });
             };
 
             var addOffer = function (offer) {
