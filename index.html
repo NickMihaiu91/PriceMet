@@ -19,6 +19,7 @@
     <link href="css/sweetalert2.css" rel="stylesheet" />
     <link href="css/social-buttons.css" rel="stylesheet" />
     <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="css/loaders.min.css" rel="stylesheet" />
 
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -271,7 +272,7 @@
                             <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" ng-repeat="offer in offerList">
                                 <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
                                 <h4>{{ offer.bidOfferTitle }}</h4>
-                                
+
                                 <div class="price-container">
                                     <!--<span class="price">{{offer.offerPrice}}C$</span>-->
                                     <span class="tags">
@@ -294,7 +295,7 @@
                             </div>
                             <div class="email-view" ng-show="formStep === 2">
                                 <div>Please enter your email address where you will receive the offers for your request</div>
-                                <input type="email" placeholder="Email address" ng-model="email"/>
+                                <input type="email" placeholder="Email address" ng-model="email" />
                                 <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
                                 <button class="btn btn-primary raised" ng-click="setEmail()">COOL!</button>
                             </div>
@@ -304,17 +305,13 @@
                                 <button class="btn btn-primary raised" ng-click="goBackToOffers()">Go back to current offers</button>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="row bid-looking">
-                        <div class="spinner">
-                            <div class="rect1"></div>
-                            <div class="rect2"></div>
-                            <div class="rect3"></div>
-                            <div class="rect4"></div>
-                            <div class="rect5"></div>
+                        <div class="loader-inner line-scale-party">
+                            <div></div><div></div><div></div><div></div>
                         </div>
                         <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking at your bid</span>
                     </div>
