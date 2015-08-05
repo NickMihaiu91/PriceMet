@@ -13,6 +13,8 @@
     });
 
     function bindEvents() {
+        var askedForLocationAccess = false;
+
         $('.btn-header').on('click', function () {
             $('.second-section').scrollintoview({ duration: 500 });
             mixpanel.track("Header button push");
@@ -84,58 +86,22 @@
 
         });
 
-        $('#navigateToGetEmailView').on('click', function () {
-            $('.initial-view').hide();
-            $('.get-email-view').show();
-            mixpanel.track("Modal", {'initial view': 'yes'});
-        });
+        $('#inputLocation').on('focus', function () {
+            if (navigator.geolocation && !askedForLocationAccess) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geolocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                        geocoder = new google.maps.Geocoder();
 
-        $('.closing-modal').on('click', function () {
-            $('.initial-view').hide();
-            $('.get-email-view').hide();
-            $('.closing-modal-view').show();
-        });
+                    geocoder.geocode({
+                        "latLng": geolocation
+                    }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK)
+                            $('#inputLocation').val(results[0].formatted_address);
+                    });
 
-        $('.yes-no-buttons .btn-yes').on('click', function () {
-            $('.closing-modal-view').hide();
-            $('.get-email-view').show();
-            mixpanel.track("Modal", { 'dog view': 'yes' });
-        });
-
-        $('.yes-no-buttons .btn-no').on('click', function () {
-            $('#offerModal').modal('hide');
-            mixpanel.track("Modal", { 'dog view': 'no' });
-        });
-
-        $('#offerModal').on('hide.bs.modal', function () {
-            $('.closing-modal-view').hide();
-            $('.get-email-view').hide();
-            $('.initial-view').show();
-            $('.get-email-view .input-container .alert').hide();
-        });
-
-        $('.send-email').on('click', function () {
-            var email = $('#offerEmail').val(),
-                validEmail = validateEmail(email.trim()),
-                EmailObject = Parse.Object.extend("Email"),
-                emailObject = new EmailObject(),
-                trackObj = {};
-
-            if (email.trim() !== '')
-                trackObj['send email'] = email;
-
-            mixpanel.track("Modal", trackObj);
-
-            if (!validEmail) {
-                $('.get-email-view .input-container .alert').show();
-                return false;
+                    askedForLocationAccess = true;
+                });
             }
-
-            emailObject.save({ email: email }).then(function (object) { });
-            $('#offerModal').modal('hide');
-            setTimeout(function () {
-                swal({ title: 'Awesome!', text: "You'll get an email from us as soon as possible.", type: 'success' });
-            }, 500);
         });
 
         $('.navbar-nav .nav-log-in').on('click', function () {
@@ -386,10 +352,5 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    function validateEmail(email) {
-        var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return re.test(email);
     }
 })();

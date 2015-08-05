@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="priceMetApp">
 <head>
     <title>
         PriceMet
@@ -18,6 +18,10 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/sweetalert2.css" rel="stylesheet" />
     <link href="css/social-buttons.css" rel="stylesheet" />
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -56,7 +60,7 @@
         </div>
     </section>
 
-    <section class="second-section">
+    <section class="second-section" ng-controller="FormOfferCtrl">
         <div class="container">
             <h1>Name your price and let vendors compete!</h1>
 
@@ -156,7 +160,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn-n btn-get-offers">
+                    <button class="btn-n btn-get-offers" ng-click="getOffers()">
                         Find the best offers for my money!
                     </button>
                 </div>
@@ -248,67 +252,73 @@
     </footer>
 
     <!-- Modals -->
-    <div class="modal fade" id="offerModal">
-        <div class="modal-dialog">
+    <div class="modal fade" id="offerModal" ng-controller="OfferListCtrl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Restaurant offers for two</h4>
+                </div>
                 <div class="modal-body">
-                    <div class="initial-view">
-                        <div class="text-container">
-                            <p>
-                                Hi there. Sorry, I know you were expecting to see the offers right now, but the system isn't up yet.
-                                However, <b>we are happy to offer you a FREE cup of coffee & a FREE sandwich at your favorite place.</b>
-                                You'll meet with our CEO and talk about your experience on our site & help us build a better product to serve you.
-                            </p>
+                    <div class="container-fluid">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" ng-model="showForm">
+                                I want to get more restaurant offers
+                            </label>
                         </div>
-                        <div class="image-container">
-                            <img class="img-responsive" src="images/sandwich.jpg" />
-                        </div>
-                        <div class="get-offer-container">
-                            <button type="button" class="btn btn-success" id="navigateToGetEmailView">
-                                Yes, I want to help and get a FREE cup of coffee & sandwich
-                            </button>
-                        </div>
-                        <div class="dismiss-modal-message">
-                            <p class="closing-modal">No thanks, I don't want to help and don't want to get a FREE cup of coffee & sandwich.</p>
-                        </div>
-                    </div>
-                    <div class="get-email-view">
-                        <div class="text-container">
-                            <p>
-                                Please enter your email adress to get in touch and schedule when to meet at your favorite place.
-                            </p>
-                        </div>
-                        <div class="input-container">
-                            <div class="alert alert-danger" role="alert">
-                                <strong>Please enter a valid email address.</strong>
+                        <div class="row" ng-hide="showForm">
+                            <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" ng-repeat="offer in offerList">
+                                <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
+                                <h4>{{ offer.bidOfferTitle }}</h4>
+                                <button class="btn btn-primary">Accept offer</button>
+                                <div class="price-container">
+                                    <span class="price">{{offer.offerPrice}}C$</span>
+                                    <span class="price-strikethrough">{{offer.originalPrice}}C$</span>
+                                </div>
+                                <p><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                             </div>
-                            <input type="email" id="offerEmail" placeholder="Email address" />
-                            <br />
-                            <button class="btn btn-success send-email">Let's do this!</button>
                         </div>
-                        <div class="image-container">
-                            <img class="img-responsive" src="images/thank-you.jpg" />
+                        <div ng-show="showForm" class="more-offers-section">
+                            <div class="date-view" ng-show="formStep === 1">
+                                <h4>Please select the date until you would like to receive offers</h4>
+                                <h5>(Restaurants will see your request until this date and send you offers)</h5>
+                                <div id="datepicker"></div>
+                                <div ng-show="showError"><p class="text-danger">Please select a date from the calendar above.</p></div>
+                                <div class="date-until">You will receive offers until: <span>{{dateUntil}}</span></div>
+                                <button class="btn btn-primary" ng-click="setDate()">Set date!</button>
+                            </div>
+                            <div class="email-view" ng-show="formStep === 2">
+                                <div>Please enter your email address where you will receive the offers for your request</div>
+                                <input type="email" placeholder="Email address" ng-model="email"/>
+                                <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
+                                <button class="btn btn-primary" ng-click="setEmail()">COOL!</button>
+                            </div>
+                            <div class="success-view" ng-show="formStep === 3">
+                                <h2>Awesome!</h2>
+                                <h5>More restaurants will send their best offers soon. Don't forget to check your inbox!</h5>
+                                <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
+                            </div>
                         </div>
-                        <div class="dismiss-modal-message">
-                            <p class="closing-modal">I really don't want to help and don't want to get a FREE cup of coffee & sandwich.</p>
-                        </div>
-                    </div>
-                    <div class="closing-modal-view">
-                        <div class="text-container">
-                            <p>Are you sure you don't want to <b>help build a product that best serves you</b> and also get a FREE cup of coffee & sandwich at your favorite place?</p>
-                        </div>
-                        <div class="yes-no-buttons">
-                            <button class="btn btn-success btn-yes">Yes, I want to help and be part of the next big thing</button>
-                            <button class="btn btn-danger btn-no">No, I don't like to help and I don't like free coffee & sandwich</button>
-                        </div>
-                        <div class="image-container">
-                            <img class="img-responsive" src="images/sad-puppy.jpg" />
-                        </div>
+                       
                     </div>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+                <div class="modal-footer">
+                    <div class="row bid-looking">
+                        <div class="spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                        <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking at your bid</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- start Mixpanel -->
     <script type="text/javascript">
         (function (f, b) {
@@ -330,17 +340,31 @@
 
     <script src="http://www.parsecdn.com/js/parse-1.4.0.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+
+    <!--Toastr-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+
     <script src="js/jquery.scrollintoview.min.js"></script>
 
     <script src="js/sweetalert2.min.js"></script>
 
-    <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
 
     <script src="js/jquery.appear.js"></script>
 
     <script src="js/index.js"></script>
 
     <script src="js/typeahead-data.js"></script>
+
+    <script src="js/angular/angular-index.js"></script>
+
+    <script src="js/angular/services/offers-service.js"></script>
 
     <!--Google analytics-->
     <script>

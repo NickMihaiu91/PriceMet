@@ -13,6 +13,24 @@ body {
     margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ddd;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
 header .logo {
     width: 50%;
     margin-top: -20px;
@@ -170,65 +188,130 @@ footer {
     }
 
 /* Modal */
-.modal-body .image-container img {
-    margin: 0 auto;
-    width: 70%;
+
+.modal {
+    font-family: 'Droid Serif', serif;
 }
 
-.modal-body .dismiss-modal-message {
-    text-decoration: underline;
-    cursor: pointer;
+.modal .modal-dialog {
+    height: 90%;
+}
+
+    .modal .modal-dialog .modal-content {
+        height: 100%;
+    }
+
+.modal .modal-body {
+    height: calc(100% - 160px);
+    overflow-y: auto;
+}
+
+.modal-header .modal-title {
     text-align: center;
-    margin-top: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
 }
 
-.modal-body .get-offer-container {
+.modal-body img {
+    max-height: 150px;
+}
+
+.modal-body .price-container {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.modal-body .price {
+    color: #27AF27;
+    font-size: 16px;
+}
+
+.modal-body .price-strikethrough {
+    text-decoration: line-through;
+    color: rgba(115, 105, 105, 0.68);
+}
+
+.modal-body .fa-map-marker {
+    margin-right: 5px;
+}
+
+.modal-body .offer-container {
+    margin-bottom: 10px;
+}
+
+    .modal-body .offer-container.first-column {
+        clear: both;
+    }
+
+.modal-body .more-offers-section {
     text-align: center;
     margin-top: 20px;
 }
 
-    .modal-body .get-offer-container .btn {
-        font-size: 20px;
+    .modal-body .more-offers-section .datepicker.datepicker-inline {
+        margin: 0 auto;
     }
 
-.modal-body .text-container {
-    font-size: 17px;
+    .modal-body .more-offers-section .date-until {
+        margin: 10px auto;
+    }
+
+        .modal-body .more-offers-section .date-until span {
+            color: rgba(26, 98, 131, 0.78);
+        }
+
+.modal-body .email-view input {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
 }
 
-.modal-body .input-container {
+.modal-body .email-view button {
+    display: block;
+    margin: 10px auto;
+}
+
+.modal-body .success-view button {
+    margin-top: 20px;
+}
+
+.modal-footer .bid-looking {
     text-align: center;
 }
-    .modal-body .input-container input { 
-        text-align: center;
-        font-size: 18px;
-    }
 
-    .modal-body .input-container button { 
+    .modal-footer .bid-looking span {
+        color: rgba(26, 98, 131, 0.78);
         font-size: 17px;
-        margin: 10px auto 20px auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
     }
 
-    .modal-body .input-container .alert {
-        display: none;
-    }
+        .modal-footer .bid-looking span b {
+            font-size: 19px;
+        }
 
-.modal-body .yes-no-buttons {
-    margin-bottom: 15px;
+.fade-in.ng-enter,
+.fade-in.ng-leave {
+    -webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    -ms-text-overflow: clip;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: nowrap;
+} 
+
+.fade-in.ng-leave.fade-in.ng-leave-active,
+.fade-in.ng-enter {
+	opacity: 0;
 }
-    .modal-body .yes-no-buttons button {
-        width: 45%;
-        white-space: normal;
-        margin-left: 15px;
-    }
 
-.modal-body .get-email-view {
-    display: none;
-}
-
-.modal-body .closing-modal-view {
-    display: none;
+.fade-in.ng-enter.ng-enter-active, 
+.fade-in.ng-leave {
+	opacity: 1;
 }
 
 /* Buttons */
@@ -394,6 +477,119 @@ footer {
     content: "\e00d";
 }
 
+/*Spinner*/
+.spinner {
+    margin: 0 auto 10px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    font-family: initial!important;
+}
+
+    .spinner > div {
+        background-color: rgba(26, 98, 131, 0.63);
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        -moz-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        -o-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+        -webkit-animation-delay: -1.1s;
+        -moz-animation-delay: -1.1s;
+        -o-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+    }
+
+    .spinner .rect3 {
+        -webkit-animation-delay: -1.0s;
+        -moz-animation-delay: -1.0s;
+        -o-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    .spinner .rect4 {
+        -webkit-animation-delay: -0.9s;
+        -moz-animation-delay: -0.9s;
+        -o-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+    }
+
+    .spinner .rect5 {
+        -webkit-animation-delay: -0.8s;
+        -moz-animation-delay: -0.8s;
+        -o-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+    }
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4);
+    }
+
+    20% {
+        -webkit-transform: scaleY(1.0);
+    }
+}
+
+@-moz-keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4);
+        -moz-transform: scaleY(0.4);
+        -ms-transform: scaleY(0.4);
+        -o-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+
+    20% {
+        -webkit-transform: scaleY(1.0);
+        -moz-transform: scaleY(1.0);
+        -ms-transform: scaleY(1.0);
+        -o-transform: scaleY(1.0);
+        transform: scaleY(1.0);
+    }
+}
+
+@-ms-keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        -moz-transform: scaleY(0.4);
+        -ms-transform: scaleY(0.4);
+        -o-transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+
+    20% {
+        -webkit-transform: scaleY(1.0);
+        -moz-transform: scaleY(1.0);
+        -ms-transform: scaleY(1.0);
+        -o-transform: scaleY(1.0);
+        transform: scaleY(1.0);
+    }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        -moz-transform: scaleY(0.4);
+        -ms-transform: scaleY(0.4);
+        -o-transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+        transform: scaleY(0.4);
+    }
+
+    20% {
+        -webkit-transform: scaleY(1.0);
+        -moz-transform: scaleY(1.0);
+        -ms-transform: scaleY(1.0);
+        -o-transform: scaleY(1.0);
+        transform: scaleY(1.0);
+    }
+}
+
 /*Specific category classes*/
 section.first-section.default::after {
     background-image: url("../images/vancouver_skyline_281.jpg");
@@ -522,9 +718,9 @@ section.auto-repair::after {
         margin-left: 5px;
     }
 
-        .modal-body .yes-no-buttons .btn-yes {
-            font-size: 17px;
-        }
+    .modal-body .yes-no-buttons .btn-yes {
+        font-size: 17px;
+    }
 
     /*Specific category classes*/
     section.restaurant::after {
@@ -566,7 +762,7 @@ section.auto-repair::after {
 
     section.second-section h1 {
         font-size: 20px;
-        margin-top:20px;
+        margin-top: 20px;
     }
 
     section.second-section .btn-n {
@@ -580,12 +776,13 @@ section.auto-repair::after {
     }
 
     section.third-section h2 {
-        font-size: 18px;;
+        font-size: 18px;
+        ;
     }
 
     section.third-section .btn-n {
         font-size: 12px;
-        padding:10px 50px;
+        padding: 10px 50px;
     }
 
     .modal-body .initial-view .text-container {

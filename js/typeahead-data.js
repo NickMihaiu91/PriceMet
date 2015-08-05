@@ -2,8 +2,12 @@
 
     var canadaCitiesList = ["Vancouver", "Burnaby", "Coquitlam", "Delta", "Langley", "Lions Bay", "Maple Ridge", "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody", "Richmond", "Surrey", "West Vancouver", "White Rock"];
 
-    $(document).ready(function () { 
-        $("#inputLocation").typeahead({ source: canadaCitiesList });
+    $(document).ready(function () {
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById('inputLocation')),
+         {
+            types: ['geocode'],
+            componentRestrictions: { country: 'ca' }
+         });
 
         addLocationOptionsToMobileDropdown();
     });
