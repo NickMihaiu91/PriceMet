@@ -16,7 +16,7 @@
             }, 2000);
 
             $('#datepicker').datepicker({ startDate: new Date(), todayHighlight: true }).on('changeDate', function (e) {
-                $rootScope.dateUntil = e.format('d/MM/yyyy');
+                $rootScope.dateUntil = e.format('MM d, yyyy');
             });
         };
     });
