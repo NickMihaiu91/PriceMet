@@ -271,12 +271,16 @@
                             <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" ng-repeat="offer in offerList">
                                 <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
                                 <h4>{{ offer.bidOfferTitle }}</h4>
-                                <button class="btn btn-primary">Accept offer</button>
+                                
                                 <div class="price-container">
-                                    <span class="price">{{offer.offerPrice}}C$</span>
+                                    <!--<span class="price">{{offer.offerPrice}}C$</span>-->
+                                    <span class="tags">
+                                        <span class="price-tag"><a href="javascript:void()">{{offer.offerPrice}}C$</a></span>
+                                    </span>
                                     <span class="price-strikethrough">{{offer.originalPrice}}C$</span>
+                                    <button class="btn btn-primary outline">Accept offer</button>
                                 </div>
-                                <p><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
+                                <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                             </div>
                         </div>
                         <div ng-show="showForm" class="more-offers-section">
@@ -286,18 +290,18 @@
                                 <div id="datepicker"></div>
                                 <div ng-show="showError"><p class="text-danger">Please select a date from the calendar above.</p></div>
                                 <div class="date-until">You will receive offers until: <span>{{dateUntil}}</span></div>
-                                <button class="btn btn-primary" ng-click="setDate()">Set date!</button>
+                                <button class="btn btn-primary raised" ng-click="setDate()">Set date!</button>
                             </div>
                             <div class="email-view" ng-show="formStep === 2">
                                 <div>Please enter your email address where you will receive the offers for your request</div>
                                 <input type="email" placeholder="Email address" ng-model="email"/>
                                 <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
-                                <button class="btn btn-primary" ng-click="setEmail()">COOL!</button>
+                                <button class="btn btn-primary raised" ng-click="setEmail()">COOL!</button>
                             </div>
                             <div class="success-view" ng-show="formStep === 3">
                                 <h2>Awesome!</h2>
                                 <h5>More restaurants will send their best offers soon. Don't forget to check your inbox!</h5>
-                                <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
+                                <button class="btn btn-primary raised" ng-click="goBackToOffers()">Go back to current offers</button>
                             </div>
                         </div>
                        
