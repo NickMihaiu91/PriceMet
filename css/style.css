@@ -249,6 +249,11 @@ footer {
     margin-right: 5px;
 }
 
+.modal-body .get-more-offers {
+    display: block;
+    margin: 15px auto;
+}
+
 .modal-body .offer-container {
     margin-bottom: 25px;
     -moz-box-shadow: 0 1px 4px rgba(73, 88, 95, 0.29);
@@ -268,6 +273,10 @@ footer {
         position: absolute;
         right: 0;
         top: -5px;
+    }
+
+    .modal-body .offer-container .offer-title {
+        font-size: 15px;
     }
 
 .modal-body .more-offers-section {

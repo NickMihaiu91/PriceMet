@@ -286,19 +286,25 @@
                             </label>
                         </div>
                         <div class="row" ng-hide="showForm">
-                            <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" ng-repeat="offer in offerList">
-                                <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
-                                <h4>{{ offer.bidOfferTitle }}</h4>
+                            <div ng-repeat="offer in offerList">
+                                <!--<div ng-show="($index % 6 === 0) && ($index !== 0)">
+                                    <button class="btn btn-primary get-more-offers">I want to get more restaurant offers</button>
+                                </div>-->
+                                <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''">
+                                    <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
+                                    <h5 class="offer-title">{{ offer.bidOfferTitle }}</h5>
 
-                                <div class="price-container">
-                                    <span class="tags">
-                                        <span class="price-tag"><a href="javascript:void()">{{offer.offerPrice}}C$</a></span>
-                                    </span>
-                                    <span class="price-strikethrough">{{offer.originalPrice}}C$</span>
-                                    <button class="btn btn-primary outline">Accept offer</button>
+                                    <div class="price-container">
+                                        <span class="tags">
+                                            <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
+                                        </span>
+                                        <span class="price-strikethrough">C${{offer.originalPrice}}</span>
+                                        <button class="btn btn-primary outline">Accept offer</button>
+                                    </div>
+                                    <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                                 </div>
-                                <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                             </div>
+                            
                         </div>
                         <div ng-show="showForm" class="more-offers-section">
                             <div class="date-view" ng-show="formStep === 1">
@@ -328,7 +334,7 @@
                         <div class="loader-inner line-scale-party">
                             <div></div><div></div><div></div><div></div>
                         </div>
-                        <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking at your bid</span>
+                        <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking now at your bid request</span>
                     </div>
                 </div>
             </div>
