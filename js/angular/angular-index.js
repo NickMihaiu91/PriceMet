@@ -25,6 +25,7 @@
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
+        $scope.noOfPersonsTextRepresentation = 'one';
 
         $('#offerModal').on('show.bs.modal', function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
@@ -33,6 +34,8 @@
             offersService.getOffers(budget, noOfPersons, function (offers) {
                 $scope.offerList = offers;
             });
+
+            $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
         });
 
         var MAX_NUMBER_OF_RESTAURANTS_WATCHING = 5;
@@ -120,4 +123,8 @@
         return re.test(email);
     }
 
+    function formatNoOfPersonsToTextRepresentation(noOfPersons) {
+        var textValues = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+        return textValues[noOfPersons];
+    }
 })();
