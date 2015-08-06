@@ -27,8 +27,10 @@
         $scope.showError = false;
 
         $('#offerModal').on('show.bs.modal', function () {
-            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text();
-            offersService.getOffers(budget, function (offers) {
+            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
+                noOfPersons = $('#selectNoOfPersons option:selected').text();
+
+            offersService.getOffers(budget, noOfPersons, function (offers) {
                 $scope.offerList = offers;
             });
         });

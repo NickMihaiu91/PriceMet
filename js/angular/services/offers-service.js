@@ -6,7 +6,9 @@
 
             var offers = [];
 
-            var getOffers = function (budget, callback) {
+            var getOffers = function (budget, noOfPersons, callback) {
+                budget = budget / noOfPersons;
+
                 var lowerQuery = new Parse.Query('Offer');
                 lowerQuery.equalTo("bidRequest", Math.floor(budget / 5) * 5);
 
@@ -18,7 +20,7 @@
                 mainQuery.find({
                     success: function (results) {
                         // results is an array of Parse.Object.
-                        offers = formatOffers(results);
+                        offers = formatOffers(results, noOfPersons);
                         callback(offers);
                     },
 
@@ -43,22 +45,31 @@
         });
 
 
-    function formatOffers(parseOfferList) {
+    function formatOffers(parseOfferList, noOfPersons) {
         var offers = [],
             urlToImg = 'images/offers/',
-            imgDefaultExtension = '.jpg',
-            MAX_DISTANCE = 15;
+            imgDefaultExtension = '.jpg';
 
         angular.forEach(parseOfferList, function (value) {
             offers.push({
-                bidOfferTitle: value.attributes.bidOfferTitle,
-                offerPrice: value.attributes.offerPrice,
-                originalPrice: value.attributes.originalPrice,
+                bidOfferTitle: formatBidOfferTitle(value.attributes.bidOfferTitle, value.attributes.offerPrice, value.attributes.originalPrice, noOfPersons),
+                offerPrice: value.attributes.offerPrice * noOfPersons,
+                originalPrice: value.attributes.originalPrice * noOfPersons,
                 imgUrl: urlToImg + value.attributes.imageID + imgDefaultExtension,
-                distance: Math.floor(Math.random() * MAX_DISTANCE) + 1
+                distance: value.attributes.distance
             });
         });
-
+        
         return offers;
+    }
+
+    function formatBidOfferTitle(bidOfferTitle, offerPrice, originalPrice, noOfPersons) {
+        if(noOfPersons === 1)
+            return bidOfferTitle;
+
+        bidOfferTitle = bidOfferTitle.replace(originalPrice, originalPrice * noOfPersons);
+        bidOfferTitle = bidOfferTitle.replace(offerPrice, offerPrice * noOfPersons);
+
+        return bidOfferTitle;
     }
 })();
