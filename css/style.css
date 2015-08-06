@@ -241,7 +241,7 @@ footer {
 .modal-body .price-strikethrough {
     text-decoration: line-through;
     color: rgba(115, 105, 105, 0.68);
-    font-size: 17px;
+    font-size: 15px;
     margin-left: 5px;
 }
 
