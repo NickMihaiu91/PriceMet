@@ -2,9 +2,18 @@
 
 (function () {
     angular.module('offersServiceModule', [])
-        .factory('offersService', function ($http) {
+        .factory('offersService', function ($timeout) {
 
-            var offers = [];
+            var offers = [],
+                INITIAL_WAIT_INTERVAL = 5,
+                MAX_WAIT_INTERVAL = 20,
+                MIN_WAIT_INTERVAL = 10,
+                INCREASE_WAIT_INTERVAL_AFTER_NO_OF_OFFERS = 6,
+                maxWaitInterval,
+                minWaitInterval,
+                storedValues = {},
+                showMoreOffersTimer,
+                initialOfferTimer;
 
             var getOffers = function (budget, noOfPersons, callback) {
                 budget = budget / noOfPersons;
@@ -22,6 +31,7 @@
                         // results is an array of Parse.Object.
                         offers = formatOffers(results, noOfPersons);
                         callback(offers);
+                        initializeFlow();
                     },
 
                     error: function (error) {
@@ -36,9 +46,46 @@
                     offers.push(offer);
             };
 
+            var initializeFlow = function () {
+                var showMoreOffersAtInterval = function () {
+                    if (storedValues.limitTo >= offers.length)
+                        return;
+
+                    if (storedValues.limitTo === INCREASE_WAIT_INTERVAL_AFTER_NO_OF_OFFERS) {
+                        minWaitInterval *= 3;
+                        maxWaitInterval *= 3;
+                    }
+
+                    var waitTime = randomIntFromInterval(minWaitInterval, maxWaitInterval);
+                    showMoreOffersTimer = $timeout(function () {
+                        storedValues.limitTo++;
+                        showMoreOffersAtInterval();
+                    }, waitTime * 1000);
+                };
+
+                minWaitInterval = MIN_WAIT_INTERVAL;
+                maxWaitInterval = MAX_WAIT_INTERVAL;
+                storedValues.limitTo = 0;
+
+                if (initialOfferTimer)
+                    $timeout.cancel(initialOfferTimer);
+
+                if (showMoreOffersTimer)
+                    $timeout.cancel(showMoreOffersTimer);
+
+                initialOfferTimer = $timeout(function () {
+                    if (!offers.length)
+                        return;
+
+                    storedValues.limitTo++;
+                    showMoreOffersAtInterval();
+                }, INITIAL_WAIT_INTERVAL * 1000);
+            };
+
             var service = {
                 getOffers: getOffers,
-                addOffer: addOffer
+                addOffer: addOffer,
+                storedValues: storedValues
             };
 
             return service;
@@ -71,5 +118,9 @@
         bidOfferTitle = bidOfferTitle.replace(offerPrice, offerPrice * noOfPersons);
 
         return bidOfferTitle;
+    }
+
+    function randomIntFromInterval(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 })();

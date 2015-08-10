@@ -61,7 +61,7 @@
         </div>
     </section>
 
-    <section class="second-section" ng-controller="FormOfferCtrl">
+    <section class="second-section">
         <div class="container">
             <h1>Name your price and let vendors compete!</h1>
 
@@ -178,7 +178,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn-n btn-get-offers" ng-click="getOffers()">
+                    <button class="btn-n btn-get-offers">
                         Find the best offers for my money!
                     </button>
                 </div>
@@ -279,18 +279,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="" ng-model="showForm">
-                                I want to get more restaurant offers
-                            </label>
-                        </div>
                         <div class="row" ng-hide="showForm">
-                            <div ng-repeat="offer in offerList">
-                                <!--<div ng-show="($index % 6 === 0) && ($index !== 0)">
-                                    <button class="btn btn-primary get-more-offers">I want to get more restaurant offers</button>
-                                </div>-->
-                                <div class="fade-in col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''">
+                            <div class="bid-looking" ng-hide="noOfOffers >= 1">
+                                <div class="loader-inner line-scale-party">
+                                    <div></div><div></div><div></div><div></div>
+                                </div>
+                                <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking now at your bid request</span>
+                            </div>
+                            <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in">
+                                <div ng-show="($index % 3 === 0) && ($index !== 0)">
+                                    <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
+                                        Get more offers in your inbox
+                                    </button>
+                                </div>
+                                <div class="col-md-4 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''">
                                     <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
                                     <h5 class="offer-title">{{ offer.bidOfferTitle }}</h5>
 
@@ -299,12 +301,11 @@
                                             <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
                                         </span>
                                         <span class="price-strikethrough">C${{offer.originalPrice}}</span>
-                                        <button class="btn btn-primary outline">Accept offer</button>
+                                        <button class="btn btn-primary outline">Accept bid</button>
                                     </div>
                                     <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                                 </div>
                             </div>
-                            
                         </div>
                         <div ng-show="showForm" class="more-offers-section">
                             <div class="date-view" ng-show="formStep === 1">
@@ -330,7 +331,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="row bid-looking">
+                    <div class="row bid-looking" ng-show="noOfOffers >= 1">
                         <div class="loader-inner line-scale-party">
                             <div></div><div></div><div></div><div></div>
                         </div>
@@ -387,6 +388,8 @@
     <script src="js/angular/angular-index.js"></script>
 
     <script src="js/angular/services/offers-service.js"></script>
+
+    <script src="js/angular/services/restaurant-looking-at-request-service.js"></script>
 
     <!--Google analytics-->
     <script>

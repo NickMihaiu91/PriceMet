@@ -1,54 +1,63 @@
 (function () {
 
-    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule']);
+    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'restaurantsLookingAtRequestServiceModule']);
 
-    priceMetApp.controller('FormOfferCtrl', function ($scope, $rootScope, $timeout, offersService) {
-        $scope.getOffers = function () {
-            $timeout(function () {
-                var newOffer = {
-                    'name': 'New offer!!!',
-                    'originalPrice': 35,
-                    'bidPrice': 20,
-                    'imgUrl': 'images/' + 'sad-puppy.jpg'
-                };
-                offersService.addOffer(newOffer);
-                toastr.success('You have a new offer from a restaurant!');
-            }, 2000);
-
-            $('#datepicker').datepicker({ startDate: new Date(), todayHighlight: true }).on('changeDate', function (e) {
-                $rootScope.dateUntil = e.format('MM d, yyyy');
-            });
-        };
-    });
-
-    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, offersService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, offersService, restaurantsLookingAtRequestService) {
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
         $scope.noOfPersonsTextRepresentation = 'one';
 
-        $('#offerModal').on('show.bs.modal', function () {
+        $('#offerModal').on('shown.bs.modal', function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
                 noOfPersons = $('#selectNoOfPersons option:selected').text();
 
             offersService.getOffers(budget, noOfPersons, function (offers) {
                 $scope.offerList = offers;
+                $scope.noOfOffers = offersService.storedValues.limitTo;
             });
 
+            $scope.noOfOffers = 0;
             $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
+            $scope.noOfRestaurantsWatchingBid = restaurantsLookingAtRequestService.initialize();
+            $scope.$apply();
         });
 
-        var MAX_NUMBER_OF_RESTAURANTS_WATCHING = 5;
-        $scope.noOfRestaurantsWatchingBid = Math.floor(Math.random() * MAX_NUMBER_OF_RESTAURANTS_WATCHING) + 1;
+        $scope.$watch(function () {
+            return restaurantsLookingAtRequestService.storedValues.noOfRestaurantsWatchingBid;
+        }, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $scope.noOfRestaurantsWatchingBid = newVal;
+            }
+        });
 
-        $interval(function () {
-            $scope.noOfRestaurantsWatchingBid = Math.floor(Math.random() * MAX_NUMBER_OF_RESTAURANTS_WATCHING) + 1;
-        }, 2000);
+        $scope.$watch(function () {
+            return offersService.storedValues.limitTo;
+        }, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $scope.noOfOffers = newVal;
+                toastr.success('You have a new offer from a restaurant!');
+            }
+        });
+
+        var unregisterShowFormWatch = $scope.$watch('showForm', function () {
+            if ($scope.showForm && !$('#datepicker').data('datepicker')) {
+                $('#datepicker').datepicker({ startDate: new Date(), todayHighlight: true })
+                    .on('changeDate', function (e) {
+                    $rootScope.dateUntil = e.format('MM d, yyyy');
+                })
+                unregisterShowFormWatch();
+            }
+        });
 
         $rootScope.$watch('dateUntil', function () {
             if($rootScope.dateUntil)
                 $scope.showError = false;
         });
+
+        $scope.getMoreOffers = function () {
+            $scope.showForm = true;
+        };
 
         $scope.setDate = function () {
             if (!$rootScope.dateUntil)
