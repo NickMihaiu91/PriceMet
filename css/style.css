@@ -251,7 +251,16 @@ footer {
 
 .modal-body .get-more-offers {
     display: block;
+    font-family: Arial, sans-serif;
     margin: 15px auto;
+    white-space: normal;
+}
+
+.modal-body .extra-card {
+    font-size: 20px;
+    font-weight: 700;
+    height: 270px;
+    padding-top: 80px;
 }
 
 .modal-body .offer-container {
@@ -756,6 +765,47 @@ footer {
     content: "\e00d";
 }
 
+/*Loading dots animation*/
+.loading {
+  font-size: 30px;
+}
+
+    .loading:after {
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+        -webkit-animation: ellipsis steps(4,end) 1300ms infinite;
+        -moz-animation: ellipsis steps(4,end) 1300ms infinite;
+        -o-animation: ellipsis steps(4,end) 1300ms infinite;
+        animation: ellipsis steps(4,end) 1300ms infinite;
+        content: "\2026"; /* ascii code for the ellipsis character */
+        width: 0;
+    }
+
+@-moz-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-ms-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
 /*Specific category classes*/
 section.first-section.default::after {
     background-image: url("../images/vancouver_skyline_281.jpg");
@@ -886,6 +936,12 @@ section.auto-repair::after {
 
     .modal-body .yes-no-buttons .btn-yes {
         font-size: 17px;
+    }
+
+    .modal-body .extra-card {
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
     }
 
     .modal .modal-content.loading-offers .title h2 {
