@@ -82,9 +82,14 @@
                 }, INITIAL_WAIT_INTERVAL * 1000);
             };
 
+            var stopShowingMoreOffers = function () {
+                $timeout.cancel(showMoreOffersTimer);
+            };
+
             var service = {
                 getOffers: getOffers,
                 addOffer: addOffer,
+                stopShowingMoreOffers: stopShowingMoreOffers,
                 storedValues: storedValues
             };
 

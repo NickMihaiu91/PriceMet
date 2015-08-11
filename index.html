@@ -272,7 +272,7 @@
     <!-- Modals -->
     <div class="modal fade" id="offerModal" ng-controller="OfferListCtrl">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content offers" ng-show="offersVisible">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Restaurant offers for {{noOfPersonsTextRepresentation}}</h4>
@@ -336,6 +336,54 @@
                             <div></div><div></div><div></div><div></div>
                         </div>
                         <span><b ticker="noOfRestaurantsWatchingBid">{{noOfRestaurantsWatchingBid}}</b> restaurants are looking now at your bid request</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-content loading-offers" ng-hide="offersVisible">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10 col-xs-12">
+                            <div class="logo-container">
+                                <img class="img-responsive" src="images\Price-Met_Transp-Background.png" />
+                            </div>
+                            <div class="title">
+                                <h2>We are now sending your request to restaurants!</h2>
+                            </div>
+                            <div class="col-md-offset-1 col-md-10" ng-hide="loadingBarProgress >= 100">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="progressBarStyle">
+                                        <span class="sr-only">% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="view-offers-btn-container" ng-show="loadingBarProgress >= 100 && interactedWithEmailInputOnLoadingScreen">
+                                <button class="btn btn-primary raised" ng-click="showOffers()">
+                                    View the offers
+                                </button>
+                            </div>
+                            <div class="offer-summary">
+                                <h4>{{offerSummary}}</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="get-email hidden-xs">
+                        <div class="header">
+                            <h2>Restaurant <span>Offer Alerts</span></h2>
+                        </div>
+                        <div class="second-line">
+                            <h4>Get offers delivered right to your inbox</h4>
+                        </div>
+                        <div class="input-container" ng-hide="sentEmailAddress">
+                            <input type="text" placeholder="Your email address" ng-model="emailOnLoadingScreen" ng-focus="focusOnEmail()" />
+                            <button class="btn btn-primary" ng-click="sendEmail()">Get Me Offers</button>
+                        </div>
+                        <div class="email-error-msg-container" ng-show="showError">
+                            <p class="text-danger">Please enter a valid email address.</p>
+                        </div>
+                        <div class="alert alert-success" role="alert" ng-show="sentEmailAddress">
+                            <strong>Awesome!</strong> You'll receive the best offers in your email very soon.
+                        </div>
                     </div>
                 </div>
             </div>

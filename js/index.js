@@ -353,4 +353,13 @@
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
+
+    String.prototype.format = function () {
+        var formatted = this;
+        for (var i = 0; i < arguments.length; i++) {
+            var regexp = new RegExp('\\{' + i + '\\}', 'gi');
+            formatted = formatted.replace(regexp, arguments[i]);
+        }
+        return formatted;
+    };
 })();

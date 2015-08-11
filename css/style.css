@@ -197,7 +197,7 @@ footer {
     height: 90%;
 }
 
-    .modal .modal-dialog .modal-content {
+    .modal .modal-dialog .modal-content.offers {
         height: 100%;
     }
 
@@ -270,6 +270,7 @@ footer {
     }
 
     .modal-body .offer-container button {
+        font-family: Arial, sans-serif;
         position: absolute;
         right: 0;
         top: -5px;
@@ -327,6 +328,101 @@ footer {
     .modal .bid-looking .loader-inner > div {
         background-color: rgba(26, 98, 131, 0.78);
     }
+
+.modal .modal-content.loading-offers {
+    text-align: center;
+}
+
+    .modal .modal-content.loading-offers .logo-container img {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .modal .modal-content.loading-offers .title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+    }
+
+    .modal .modal-content.loading-offers .progress {
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+        height: 10px;
+    }
+        .modal .modal-content.loading-offers .progress .progress-bar {
+            background-color: #FBB43B;
+        }
+
+    .modal .modal-content.loading-offers .view-offers-btn-container {
+        margin-bottom: 20px;
+    }
+
+        .modal .modal-content.loading-offers .view-offers-btn-container button {
+            font-family: Arial, sans-serif;
+        }
+
+    .modal .modal-content.loading-offers .offer-summary {
+        color: rgb(243, 149, 15);
+        font-weight: 600;
+    }
+
+    .modal .modal-content.loading-offers .get-email {
+        border: 1px solid rgba(142, 135, 135, 0.61);
+        background-color: rgba(202, 214, 222, 0.27);
+        margin: 30px 15px 15px 15px;
+        padding-bottom: 20px;
+    }
+
+    .modal .modal-content.loading-offers .header h2 {
+        font-size: 40px;
+        text-transform: uppercase;
+        font-family: Arial, sans-serif;
+    }
+        
+        .modal .modal-content.loading-offers .header span {
+            color: #0099cc;
+        }
+
+    .modal .modal-content.loading-offers .second-line {
+        margin-bottom: 20px;
+    }
+
+        .modal .modal-content.loading-offers .second-line h4 {
+            font-size: 20px;
+        }
+
+    .modal .modal-content.loading-offers .input-container {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+        .modal .modal-content.loading-offers .input-container input {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .modal .modal-content.loading-offers .input-container button {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin-left: 20px;
+            text-transform: none;
+        }
+
+    .modal .modal-content.loading-offers .email-error-msg-container {
+        margin-top: 10px;
+    }
+    
 
 .fade-in.ng-enter,
 .fade-in.ng-leave {
@@ -790,6 +886,10 @@ section.auto-repair::after {
 
     .modal-body .yes-no-buttons .btn-yes {
         font-size: 17px;
+    }
+
+    .modal .modal-content.loading-offers .title h2 {
+        font-size: 25px;
     }
 
     /*Specific category classes*/

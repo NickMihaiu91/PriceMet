@@ -2,25 +2,48 @@
 
     var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'restaurantsLookingAtRequestServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, offersService, restaurantsLookingAtRequestService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, restaurantsLookingAtRequestService) {
+        var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
+        $scope.offersVisible = false;
+        $scope.interactedWithEmailInputOnLoadingScreen = false;
         $scope.noOfPersonsTextRepresentation = 'one';
+        $scope.sentEmailAddress = false;
 
         $('#offerModal').on('shown.bs.modal', function () {
-            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
-                noOfPersons = $('#selectNoOfPersons option:selected').text();
+            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text().trim(),
+               noOfPersons = $('#selectNoOfPersons option:selected').text(),
+               location = $('#inputLocation').val() || $('#selectLocation option:selected').text();
 
-            offersService.getOffers(budget, noOfPersons, function (offers) {
-                $scope.offerList = offers;
-                $scope.noOfOffers = offersService.storedValues.limitTo;
-            });
+            offersService.stopShowingMoreOffers();
 
             $scope.noOfOffers = 0;
             $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
-            $scope.noOfRestaurantsWatchingBid = restaurantsLookingAtRequestService.initialize();
+            $scope.loadingBarProgress = 20;
+            $scope.progressBarStyle = { 'width': $scope.loadingBarProgress + '%' };
+            $scope.offerSummary = 'Restaurant offers for {0}, C${1} budget, {2}'.format($scope.noOfPersonsTextRepresentation, budget, location);
             $scope.$apply();
+
+            (function increaseLoadingBar() {
+                if ($scope.loadingBarProgress < 100)
+                    $timeout(function () {
+                        $scope.loadingBarProgress += 2;
+                        $scope.progressBarStyle = { 'width': $scope.loadingBarProgress + '%' };
+                        increaseLoadingBar();
+                    }, LOADING_BAR_INTERVAL);
+                else
+                    if (!$scope.interactedWithEmailInputOnLoadingScreen)
+                        $scope.showOffers();
+            })();
+        });
+
+        $('#offerModal').on('hidden.bs.modal', function () {
+            $scope.offersVisible = false;
+            $scope.interactedWithEmailInputOnLoadingScreen = false;
+            $scope.showError = false;
+            $scope.showForm = false;
         });
 
         $scope.$watch(function () {
@@ -55,6 +78,38 @@
                 $scope.showError = false;
         });
 
+        $scope.focusOnEmail = function () {
+            $scope.interactedWithEmailInputOnLoadingScreen = true;
+        };
+
+        $scope.sendEmail = function () {
+            var validEmail = validateEmail($scope.emailOnLoadingScreen);
+
+            $scope.interactedWithEmailInputOnLoadingScreen = true;
+            $scope.showError = false;
+
+            if (!validEmail)
+                return $scope.showError = true;
+
+            $scope.sentEmailAddress = true;
+            saveEmail($scope.emailOnLoadingScreen);
+        };
+
+        $scope.showOffers = function () {
+            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
+                noOfPersons = $('#selectNoOfPersons option:selected').text(),
+                location = $('#inputLocation').val() || $('#selectLocation option:selected').text();
+
+            offersService.getOffers(budget, noOfPersons, function (offers) {
+                $scope.offerList = offers;
+                $scope.noOfOffers = offersService.storedValues.limitTo;
+            });
+
+            $scope.noOfRestaurantsWatchingBid = restaurantsLookingAtRequestService.initialize();
+
+            $scope.offersVisible = true;
+        };
+
         $scope.getMoreOffers = function () {
             $scope.showForm = true;
         };
@@ -68,8 +123,6 @@
 
         $scope.setEmail = function () {
             var validEmail = validateEmail($scope.email),
-                EmailObject = Parse.Object.extend("Email"),
-                emailObject = new EmailObject(),
                 trackObj = { 'dateUntil': $rootScope.dateUntil };
 
             if ($scope.email)
@@ -80,12 +133,7 @@
             if (!validEmail)
                 return $scope.showError = true;
 
-            emailObject.save({
-                email: $scope.email,
-                dateUntil: $rootScope.dateUntil,
-                budget: $('#inputBudget').val() || $('#selectBudget option:selected').text(),
-                location: $('#inputLocation').val() || $('#selectLocation option:selected').text()
-            }).then(function (object) { });
+            saveEmail($scope.email, $rootScope.dateUntil);
             $scope.formStep++;
         };
 
@@ -126,6 +174,18 @@
             }
         }
     });
+
+    function saveEmail(email, dateUntil) {
+        var EmailObject = Parse.Object.extend("Email"),
+            emailObject = new EmailObject();
+
+        emailObject.save({
+            email: email,
+            dateUntil: dateUntil,
+            budget: $('#inputBudget').val() || $('#selectBudget option:selected').text(),
+            location: $('#inputLocation').val() || $('#selectLocation option:selected').text()
+        });
+    }
 
     function validateEmail(email) {
         var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
