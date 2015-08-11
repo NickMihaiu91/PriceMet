@@ -59,7 +59,8 @@
         }, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 $scope.noOfOffers = newVal;
-                toastr.success('You have a new offer from a restaurant!');
+                toastr.options.timeOut = 10000;
+                toastr.info('You have a new offer from a restaurant!');
             }
         });
 

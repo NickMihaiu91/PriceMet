@@ -806,6 +806,12 @@ footer {
   }
 }
 
+/*Toast customization*/
+.toast.toast-info {
+    background-color: #51a351;
+    opacity: 0.9;
+}
+
 /*Specific category classes*/
 section.first-section.default::after {
     background-image: url("../images/vancouver_skyline_281.jpg");
