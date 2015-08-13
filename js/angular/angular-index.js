@@ -20,6 +20,7 @@
             offersService.stopShowingMoreOffers();
 
             $scope.noOfOffers = 0;
+            $scope.noOfPersons = noOfPersons;
             $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
             $scope.loadingBarProgress = 20;
             $scope.progressBarStyle = { 'width': $scope.loadingBarProgress + '%' };

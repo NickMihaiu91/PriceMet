@@ -1,0 +1,208 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ddd;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+header .logo {
+    width: 50%;
+    margin-top: -20px;
+    cursor: pointer;
+}
+
+header .navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    min-height: 70px;
+}
+
+    header .navbar ul.navbar-nav {
+        margin-top: 10px;
+    }
+
+        header .navbar ul.navbar-nav li a {
+            font-size: 16px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+            header .navbar ul.navbar-nav li a:hover, header .navbar ul.navbar-nav li a:focus {
+                background-color: rgba(96, 133, 181, 0.5);
+            }
+
+section {
+    min-height: 100%;
+    width: 100%;
+}
+
+.complete-order .container {
+    margin-top: 100px;
+}
+
+.complete-order .x-symbol-container {
+    padding-top: 5px;
+}
+
+.complete-order .panel-footer h4 {
+    margin-top: 15px;
+}
+
+.complete-order .btn {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+    .complete-order .btn:hover {
+        background-color: rgba(92, 184, 92, 0.9);
+    }
+
+.complete-order .terms-conditions-links {
+    font-size: 16px;
+}
+
+    .complete-order .terms-conditions-links a {
+        cursor: pointer;
+    }
+
+.order-faq {
+    margin-top: 40px;
+}
+
+    .order-faq h3 {
+        padding-left: 15px;
+    }
+
+    .order-faq .fa-chevron-right {
+        margin-right: 5px;
+    }
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.88);
+    color: white;
+}
+
+    footer .link-container {
+        margin-top: 30px;
+    }
+
+        footer .link-container ul {
+            list-style: none outside none;
+            padding-left: 0;
+            color: white;
+        }
+
+            footer .link-container ul a {
+                color: white;
+                cursor: pointer;
+            }
+
+    footer .social h4 {
+        font-weight: 600;
+    }
+
+    footer p {
+        text-align: center;
+        font-size: 17px;
+        margin: 10px auto;
+    }
+
+    footer .footer-divider {
+        width: 50%;
+    }
+
+
+/*Modified buttons*/
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+    .btn:focus, .btn:active:focus, .btn.active:focus {
+        outline: 0 none;
+    }
+
+
+
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+    input[type="text"], input[type="number"], input[type="email"], textarea, select {
+        font-size: 16px !important;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    header .logo {
+        width: auto;
+        height: 45px;
+        margin-top: -10px;
+    }
+
+    header .navbar {
+        min-height: 60px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+        header .navbar .navbar-collapse {
+            background-color: rgba(0, 0, 0, 0.55);
+        }
+
+        header .navbar .navbar-toggle {
+            background-color: ActiveCaption;
+            margin-top: 10px;
+        }
+
+            header .navbar .navbar-toggle .icon-bar {
+                background-color: rgb(41, 84, 126);
+            }
+
+    .complete-order .container {
+        margin-top: 60px;
+    }
+
+    .complete-order .terms-conditions-links {
+        text-align: left;
+    }
+
+    .mobile-order-view .btn {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .price-summary {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+        .price-summary .row {
+            margin-top: 10px;
+        }
+}

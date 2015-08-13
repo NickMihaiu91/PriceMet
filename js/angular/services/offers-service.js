@@ -86,9 +86,25 @@
                 $timeout.cancel(showMoreOffersTimer);
             };
 
+            var getOfferById = function (id, noOfPersons, callback) {
+                var query = new Parse.Query('Offer');
+                query.get(id, {
+                    success: function (offer) {
+                        // The object was retrieved successfully.
+                        callback(formatOffers([offer], noOfPersons)[0]);
+                    },
+                    error: function (object, error) {
+                        // The object was not retrieved successfully.
+                        // error is a Parse.Error with an error code and message.
+                        console.log('Error retrieving object', error);
+                    }
+                });
+            };
+
             var service = {
                 getOffers: getOffers,
                 addOffer: addOffer,
+                getOfferById: getOfferById,
                 stopShowingMoreOffers: stopShowingMoreOffers,
                 storedValues: storedValues
             };
@@ -104,6 +120,7 @@
 
         angular.forEach(parseOfferList, function (value) {
             offers.push({
+                id: value.id,
                 bidOfferTitle: formatBidOfferTitle(value.attributes.bidOfferTitle, value.attributes.offerPrice, value.attributes.originalPrice, noOfPersons),
                 offerPrice: value.attributes.offerPrice * noOfPersons,
                 originalPrice: value.attributes.originalPrice * noOfPersons,

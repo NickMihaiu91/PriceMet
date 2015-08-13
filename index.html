@@ -301,7 +301,9 @@
                                             <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
                                         </span>
                                         <span class="price-strikethrough">C${{offer.originalPrice}}</span>
-                                        <button class="btn btn-primary outline">Accept bid</button>
+                                        <a target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}">
+                                            <button class="btn btn-primary outline">Accept bid</button>
+                                        </a>
                                     </div>
                                     <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                                 </div>
@@ -309,7 +311,7 @@
                             <div class="col-md-4 col-md-xs-12 offer-container extra-card" ng-show="noOfOffers >= 1">
                                 <div>
                                     More offers are
-                                </div> 
+                                </div>
                                 <div class="loading">
                                     coming soon
                                 </div>
@@ -411,7 +413,7 @@
         mixpanel.init("46abe9239629fcc58fabb0b1dfccd15a");
     </script>
     <!-- end Mixpanel -->
-    <!-- Bootstrap minified JavaScript -->
+    <!-- jQuery minified JavaScript -->
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap minified JavaScript -->
