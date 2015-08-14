@@ -875,6 +875,10 @@ section.auto-repair::after {
         opacity: 1!important;
     }
 
+    .loading {
+      font-size: 28px;
+    }
+
     header .logo {
         width: auto;
         height: 45px;
@@ -939,6 +943,10 @@ section.auto-repair::after {
         bottom: 0;
     }
 
+    .modal .modal-dialog {
+        height: 97%;
+    }
+
     .modal-body .initial-view .text-container {
         font-size: 16px;
     }
@@ -961,8 +969,16 @@ section.auto-repair::after {
         box-shadow: none;
     }
 
+    .modal .bid-looking span {
+        font-size: 15px;
+    }
+
     .modal .modal-content.loading-offers .title h2 {
         font-size: 25px;
+    }
+
+    .modal-footer {
+        padding: 10px;
     }
 
     /*Specific category classes*/
