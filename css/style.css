@@ -871,6 +871,10 @@ section.auto-repair::after {
         width: 30%;
     }
 
+    .toast.toast-info {
+        opacity: 1!important;
+    }
+
     header .logo {
         width: auto;
         height: 45px;
