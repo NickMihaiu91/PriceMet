@@ -928,6 +928,13 @@ section.auto-repair::after {
         white-space: normal;
     }
 
+   .modal-open {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
     .modal-body .initial-view .text-container {
         font-size: 16px;
     }
