@@ -301,8 +301,9 @@
                                             <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
                                         </span>
                                         <span class="price-strikethrough">C${{offer.originalPrice}}</span>
-                                        <a target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}">
-                                            <button class="btn btn-primary outline">Accept bid</button>
+                                        
+                                        <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}">
+                                            Accept bid
                                         </a>
                                     </div>
                                     <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>

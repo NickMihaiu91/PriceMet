@@ -278,7 +278,7 @@ footer {
         margin-top: 15px;
     }
 
-    .modal-body .offer-container button {
+    .modal-body .offer-container .btn {
         font-family: Arial, sans-serif;
         position: absolute;
         right: 0;
