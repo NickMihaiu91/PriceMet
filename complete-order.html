@@ -17,6 +17,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/social-buttons.css" rel="stylesheet" />
     <link href="css/complete-order.css" rel="stylesheet" />
+    <link href="css/loaders.min.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 </head>
@@ -116,7 +117,7 @@
                                     <h4 class="text-right">Total <strong>C${{total}}.00</strong></h4>
                                 </div>
                                 <div class="col-xs-3">
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success" ng-click="completeOrder()">
                                         Complete order
                                     </button>
                                 </div>
@@ -175,7 +176,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success" ng-click="completeOrder()">
                                 Complete order
                             </button>
                         </div>
@@ -226,7 +227,7 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
-                                Yes, of course. You have three days to change or cancel your order. Head to the FAQ to see our refund policy.
+                                Yes, of course. You have five days to change or cancel your order. Head to the FAQ to see our refund policy.
                             </div>
                         </div>
                     </div>
@@ -290,6 +291,43 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modals -->
+    <div class="modal fade" id="completeOrderModal" ng-controller="CompleteOrderModalCtrl">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" ng-show="showErrorMsg">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row text-center" ng-hide="showErrorMsg">
+                        <div class="loader-inner line-scale-pulse-out">
+                            <div></div><div></div><div></div><div></div><div></div>
+                        </div>
+                        <h4>Processing offer & redirecting to payment</h4>
+                    </div>
+                    <div class="error-view" ng-show="showErrorMsg">
+                        <img class="img-responsive" src="images/error-round.png" />
+                        <h4>System error</h4>
+                        <div class="row text-container">
+                            <p>Unfortunately we're encountering some technical difficulties at the moment. We are very sorry.</p>
+                            <p><strong>If you would like us to notify you as soon as the problem is fixed and send you a link to redeem your offer please input your email in the form bellow.</strong></p>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="Your email address" ng-model="email">
+                            <button class="btn btn-primary" ng-click="sendEmail()">Get Notified ASAP</button>
+                        </div>
+                        <div class="email-error-msg-container" ng-show="showEmailError">
+                            <p class="text-danger">Please enter a valid email address.</p>
+                        </div>
+                        <div class="alert alert-success" role="alert" ng-show="sentEmailAddress">
+                            <strong>Great!</strong> We'll contact you ASAP.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- start Mixpanel -->
     <script type="text/javascript">

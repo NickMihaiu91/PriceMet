@@ -133,6 +133,70 @@ footer {
         width: 50%;
     }
 
+/*Modals*/
+
+.modal-header {
+    padding: 20px;
+}
+
+    .modal-header .close {
+        font-size: 30px;
+        margin-top: -10px;
+    }
+
+.modal-body .error-view img {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.modal-body .text-container {
+    margin: 20px 30px 10px 30px;
+    text-align: justify;
+}
+
+.modal-body h4 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.modal-body .input-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+    .modal-body .input-container .btn {
+        text-transform: none;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+    }
+
+    .modal-body .input-container input {
+        font-size: 20px;
+        text-align: center;
+        margin-right: 15px;
+    }
+
+.modal-body .email-error-msg-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.modal-body .alert-success {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.modal .loader-inner > div {
+    background-color: rgba(26, 98, 131, 0.78);
+}
 
 /*Modified buttons*/
 .btn {
@@ -147,8 +211,21 @@ footer {
         outline: 0 none;
     }
 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
 
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+        background: #33a6cc;
+    }
 
+    .btn-primary:active, .btn-primary.active {
+        background: #007299;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
 
 /* Mobile */
 @media screen and (max-width: 767px) {
@@ -204,5 +281,15 @@ footer {
 
         .price-summary .row {
             margin-top: 10px;
+        }
+
+    .modal-body .input-container {
+        display: block;
+        text-align: center;
+    }
+
+        .modal-body .input-container input {
+            margin-right: 0;
+            margin-bottom: 10px;
         }
 }
