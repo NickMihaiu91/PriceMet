@@ -30,6 +30,7 @@
                     success: function (results) {
                         // results is an array of Parse.Object.
                         offers = formatOffers(results, noOfPersons);
+                        //shuffle(offers);
                         callback(offers);
                         initializeFlow();
                     },
@@ -136,13 +137,36 @@
         if(noOfPersons === 1)
             return bidOfferTitle;
 
+        var offerPriceRegex = new RegExp('[$]' + offerPrice + '((?:\s)|(?:\:)|[^0-9])');
+
         bidOfferTitle = bidOfferTitle.replace(originalPrice, originalPrice * noOfPersons);
-        bidOfferTitle = bidOfferTitle.replace(offerPrice, offerPrice * noOfPersons);
+        bidOfferTitle = bidOfferTitle.replace(offerPriceRegex, '*' + offerPrice * noOfPersons + '#');
+        bidOfferTitle = bidOfferTitle.replace('*', '$');
+        bidOfferTitle = bidOfferTitle.replace('#', ' ');
 
         return bidOfferTitle;
     }
 
     function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 })();
