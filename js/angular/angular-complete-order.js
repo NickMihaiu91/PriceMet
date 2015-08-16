@@ -39,7 +39,7 @@
 
             $timeout(function () {
                 $scope.showErrorMsg = true;
-            }, 5000);
+            }, 8000);
         });
 
         $scope.sendEmail = function () {
