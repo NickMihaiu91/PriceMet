@@ -198,6 +198,16 @@ footer {
     background-color: rgba(26, 98, 131, 0.78);
 }
 
+.modal.text-modal .modal-header {
+    padding: 10px;
+}
+
+    .modal.text-modal .modal-header .close {
+        margin-top: -30px;
+        margin-right: 5px;
+    }
+
+
 /*Modified buttons*/
 .btn {
     padding: 14px 24px;
