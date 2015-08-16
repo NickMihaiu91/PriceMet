@@ -55,6 +55,28 @@
         };
     });
 
+    priceMetApp.controller('headerCtrl', function ($scope, $timeout) {
+        $scope.logIn = function () {
+            $timeout(function () {
+                swal({ title: 'Oops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
+            }, 2000);
+            $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'log in' });
+        };
+
+        $scope.getInTouch = function () {
+            $('footer').scrollintoview({ duration: 500 });
+            $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'contact us' });
+        };
+
+        $scope.needHelp = function () {
+            $('footer').scrollintoview({ duration: 500 });
+            $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'help' });
+        };
+    });
+
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),

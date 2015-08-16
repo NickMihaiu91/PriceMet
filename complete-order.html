@@ -18,11 +18,12 @@
     <link href="css/social-buttons.css" rel="stylesheet" />
     <link href="css/complete-order.css" rel="stylesheet" />
     <link href="css/loaders.min.css" rel="stylesheet" />
+    <link href="css/sweetalert2.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 </head>
 <body>
-    <header>
+    <header ng-controller="headerCtrl">
         <div class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -39,9 +40,9 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="nav-log-in">Log in</a></li>
-                        <li><a class="nav-contact-us">Get in touch</a></li>
-                        <li><a class="nav-help">Need help?</a></li>
+                        <li><a class="nav-log-in" ng-click="logIn()">Log in</a></li>
+                        <li><a class="nav-contact-us" ng-click="getInTouch()">Get in touch</a></li>
+                        <li><a class="nav-help" ng-click="needHelp()">Need help?</a></li>
                     </ul>
                 </div>
             </div>
@@ -993,6 +994,10 @@
     <script src="js/angular/angular-complete-order.js"></script>
 
     <script src="js/angular/services/offers-service.js"></script>
+
+    <script src="js/jquery.scrollintoview.min.js"></script>
+
+    <script src="js/sweetalert2.min.js"></script>
 
     <!--Google analytics-->
     <script>
