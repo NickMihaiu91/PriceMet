@@ -2,7 +2,7 @@
 
     var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'restaurantsLookingAtRequestServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, restaurantsLookingAtRequestService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $interval, $timeout, offersService, restaurantsLookingAtRequestService) {
         var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
@@ -69,14 +69,15 @@
             if ($scope.showForm && !$('#datepicker').data('datepicker')) {
                 $('#datepicker').datepicker({ startDate: new Date(), todayHighlight: true })
                     .on('changeDate', function (e) {
-                    $rootScope.dateUntil = e.format('MM d, yyyy');
+                        $scope.dateUntil = e.format('MM d, yyyy');
+                        $scope.$apply();
                 })
                 unregisterShowFormWatch();
             }
         });
 
-        $rootScope.$watch('dateUntil', function () {
-            if($rootScope.dateUntil)
+        $scope.$watch('dateUntil', function () {
+            if ($scope.dateUntil)
                 $scope.showError = false;
         });
 
@@ -117,7 +118,7 @@
         };
 
         $scope.setDate = function () {
-            if (!$rootScope.dateUntil)
+            if (!$scope.dateUntil)
                  return $scope.showError = true;
 
             $scope.formStep++;
@@ -125,7 +126,7 @@
 
         $scope.setEmail = function () {
             var validEmail = validateEmail($scope.email),
-                trackObj = { 'dateUntil': $rootScope.dateUntil };
+                trackObj = { 'dateUntil': $scope.dateUntil };
 
             if ($scope.email)
                 trackObj['send email'] = $scope.email;
@@ -135,7 +136,7 @@
             if (!validEmail)
                 return $scope.showError = true;
 
-            saveEmail($scope.email, $rootScope.dateUntil);
+            saveEmail($scope.email, $scope.dateUntil);
             $scope.formStep++;
         };
 
