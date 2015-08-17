@@ -15,21 +15,23 @@
                 showMoreOffersTimer,
                 initialOfferTimer;
 
-            var getOffers = function (budget, noOfPersons, callback) {
+            var getOffers = function (budget, noOfPersons, offerType, callback) {
                 budget = budget / noOfPersons;
 
                 var lowerQuery = new Parse.Query('Offer');
                 lowerQuery.equalTo("bidRequest", Math.floor(budget / 5) * 5);
+                lowerQuery.equalTo("offerType", offerType);
 
                 var higherQuery = new Parse.Query('Offer');
                 higherQuery.equalTo("bidRequest", Math.floor(budget / 5 + 1) * 5);
+                higherQuery.equalTo("offerType", offerType);
 
                 var mainQuery = Parse.Query.or(lowerQuery, higherQuery);
 
                 mainQuery.find({
                     success: function (results) {
                         // results is an array of Parse.Object.
-                        offers = formatOffers(results, noOfPersons);
+                        offers = formatOffers(results, noOfPersons, offerType);
                         //shuffle(offers);
                         callback(offers);
                         initializeFlow();
@@ -114,10 +116,15 @@
         });
 
 
-    function formatOffers(parseOfferList, noOfPersons) {
+    function formatOffers(parseOfferList, noOfPersons, offerType) {
         var offers = [],
-            urlToImg = 'images/offers/',
-            imgDefaultExtension = '.jpg';
+            baseUrlToImg = 'images/offers/',
+            imgDefaultExtension = '.jpg',
+            RESTAURANT_IMAGE_ID = 'R',
+            RESTAURANT_PATH = 'restaurant/',
+            BEAUTY_PATH = 'beauty/',
+            BEAUTY_IMAGE_ID = 'B',
+            urlToImg = offerType === 'r' ? baseUrlToImg + RESTAURANT_PATH + RESTAURANT_IMAGE_ID : baseUrlToImg + BEAUTY_PATH + BEAUTY_IMAGE_ID;
 
         angular.forEach(parseOfferList, function (value) {
             offers.push({

@@ -376,12 +376,13 @@ footer {
     .modal .modal-content.loading-offers .offer-summary {
         color: rgb(243, 149, 15);
         font-weight: 600;
+        white-space: pre-line;
     }
 
     .modal .modal-content.loading-offers .get-email {
         border: 1px solid rgba(142, 135, 135, 0.61);
         background-color: rgba(202, 214, 222, 0.27);
-        margin: 30px 15px 15px 15px;
+        margin: 10px 15px 15px 15px;
         padding-bottom: 20px;
     }
 

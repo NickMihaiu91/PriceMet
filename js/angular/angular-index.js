@@ -1,8 +1,8 @@
 (function () {
 
-    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'restaurantsLookingAtRequestServiceModule']);
+    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'merchantsLookingAtRequestServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $interval, $timeout, offersService, restaurantsLookingAtRequestService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $interval, $timeout, offersService, merchantsLookingAtRequestService) {
         var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
@@ -15,7 +15,8 @@
         $('#offerModal').on('shown.bs.modal', function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text().trim(),
                noOfPersons = $('#selectNoOfPersons option:selected').text(),
-               location = $('#inputLocation').val() || $('#selectLocation option:selected').text();
+               location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
+               offerTypeText = $('#selectOfferType option:selected').text().trim();
 
             offersService.stopShowingMoreOffers();
 
@@ -24,7 +25,9 @@
             $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
             $scope.loadingBarProgress = 20;
             $scope.progressBarStyle = { 'width': $scope.loadingBarProgress + '%' };
-            $scope.offerSummary = 'Restaurant offers for {0}, C${1} budget, {2}'.format($scope.noOfPersonsTextRepresentation, budget, location);
+            $scope.offerSummary = '{0} offers for {1}, C${2} budget, {3}'.format(offerTypeText, $scope.noOfPersonsTextRepresentation, budget, location);
+            $scope.merchantType = offerTypeText === 'Restaurant' ? offerTypeText.toLowerCase() + 's' : 'salons';
+            $scope.offerTypeText = offerTypeText;
             $scope.$apply();
 
             (function increaseLoadingBar() {
@@ -48,10 +51,10 @@
         });
 
         $scope.$watch(function () {
-            return restaurantsLookingAtRequestService.storedValues.noOfRestaurantsWatchingBid;
+            return merchantsLookingAtRequestService.storedValues.noOfMerchantsWatchingBid;
         }, function (newVal, oldVal) {
             if (newVal !== oldVal) {
-                $scope.noOfRestaurantsWatchingBid = newVal;
+                $scope.noOfMerchantsWatchingBid = newVal;
             }
         });
 
@@ -61,7 +64,7 @@
             if (newVal !== oldVal) {
                 $scope.noOfOffers = newVal;
                 toastr.options.timeOut = 10000;
-                toastr.info('You have a new offer from a restaurant!');
+                toastr.info('You have a new offer from a ' + $scope.merchantType.slice(0, -1) + '!');
             }
         });
 
@@ -101,14 +104,15 @@
         $scope.showOffers = function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
                 noOfPersons = $('#selectNoOfPersons option:selected').text(),
-                location = $('#inputLocation').val() || $('#selectLocation option:selected').text();
+                location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
+                offerType = $('#selectOfferType option:selected').val();
 
-            offersService.getOffers(budget, noOfPersons, function (offers) {
+            offersService.getOffers(budget, noOfPersons, offerType, function (offers) {
                 $scope.offerList = offers;
                 $scope.noOfOffers = offersService.storedValues.limitTo;
             });
 
-            $scope.noOfRestaurantsWatchingBid = restaurantsLookingAtRequestService.initialize();
+            $scope.noOfMerchantsWatchingBid = merchantsLookingAtRequestService.initialize();
 
             $scope.offersVisible = true;
         };
