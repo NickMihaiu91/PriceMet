@@ -319,6 +319,7 @@ footer {
 
 .modal-body .success-view button {
     margin-top: 20px;
+    white-space: normal;
 }
 
 .modal .bid-looking {
@@ -469,6 +470,7 @@ footer {
 .btn-primary {
     background: #0099cc;
     color: #ffffff;
+    font-family: Arial,sans-serif;
 }
  
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
@@ -516,21 +518,6 @@ footer {
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-    }
-
-.btn-primary.raised {
-    -moz-box-shadow: 0 3px 0 0 #007299;
-    -webkit-box-shadow: 0 3px 0 0 #007299;
-    box-shadow: 0 3px 0 0 #007299;
-}
-
-    .btn-primary.raised:active, .btn-primary.raised.active {
-        background: #33a6cc;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        margin-bottom: -3px;
-        margin-top: 3px;
     }
 
 /* Price tags */

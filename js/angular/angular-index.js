@@ -127,6 +127,7 @@
             $scope.noOfMerchantsWatchingBid = merchantsLookingAtRequestService.initialize();
 
             $scope.offersVisible = true;
+            $rootScope.safeApply();
         };
 
         $scope.getMoreOffers = function () {

@@ -93,7 +93,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3" for="inputBudget">My budget is:</label>
+                    <label class="control-label col-sm-3" for="selectNoOfPersons">We are a party of:</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="selectNoOfPersons">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="inputBudget">And our total budget is:</label>
                     <div class="col-sm-9">
                         <div class="input-group hidden-xs">
                             <span class="input-group-addon">CAD</span>
@@ -136,23 +153,24 @@
                             <option>
                                 200
                             </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-3" for="selectNoOfPersons">Party of:</label>
-                    <div class="col-sm-9">
-                        <select class="form-control" id="selectNoOfPersons">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option>
+                                250
+                            </option>
+                            <option>
+                                300
+                            </option>
+                            <option>
+                                350
+                            </option>
+                            <option>
+                                400
+                            </option>
+                            <option>
+                                450
+                            </option>
+                            <option>
+                                500
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -265,7 +283,7 @@
                                 </div>
                                 <span><b ticker="noOfMerchantsWatchingBid">{{noOfMerchantsWatchingBid}}</b> {{merchantType}} are looking now at your bid request</span>
                             </div>
-                            <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in">
+                            <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in offer-repeat">
                                 <div ng-show="($index % 3 === 0) && ($index !== 0)">
                                     <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
                                         Get more offers in your inbox
@@ -304,18 +322,18 @@
                                 <div id="datepicker"></div>
                                 <div ng-show="showError"><p class="text-danger">Please select a date from the calendar above.</p></div>
                                 <div class="date-until">You will receive offers until: <span>{{dateUntil}}</span></div>
-                                <button class="btn btn-primary raised" ng-click="setDate()">Set date!</button>
+                                <button class="btn btn-primary" ng-click="setDate()">Set date!</button>
                             </div>
                             <div class="email-view" ng-show="formStep === 2">
                                 <div>Please enter your email address where you will receive the offers for your request</div>
                                 <input type="email" placeholder="Email address" ng-model="email" />
                                 <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
-                                <button class="btn btn-primary raised" ng-click="setEmail()">COOL!</button>
+                                <button class="btn btn-primary" ng-click="setEmail()">COOL!</button>
                             </div>
                             <div class="success-view" ng-show="formStep === 3">
                                 <h2>Awesome!</h2>
                                 <h5>More merchants will send their best offers soon. Don't forget to check your inbox!</h5>
-                                <button class="btn btn-primary raised" ng-click="goBackToOffers()">Go back to current offers</button>
+                                <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
                             </div>
                         </div>
                     </div>
@@ -347,7 +365,7 @@
                                 </div>
                             </div>
                             <div class="view-offers-btn-container" ng-show="loadingBarProgress >= 100 && interactedWithEmailInputOnLoadingScreen">
-                                <button class="btn btn-primary raised" ng-click="showOffers()">
+                                <button class="btn btn-primary" ng-click="showOffers()">
                                     View the offers
                                 </button>
                             </div>
