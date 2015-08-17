@@ -2,7 +2,7 @@
 
     var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'merchantsLookingAtRequestServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $interval, $timeout, offersService, merchantsLookingAtRequestService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, merchantsLookingAtRequestService) {
         var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
@@ -11,6 +11,17 @@
         $scope.interactedWithEmailInputOnLoadingScreen = false;
         $scope.noOfPersonsTextRepresentation = 'one';
         $scope.sentEmailAddress = false;
+
+        $rootScope.safeApply = function (fn) {
+            var phase = this.$root.$$phase;
+            if (phase == '$apply' || phase == '$digest') {
+                if (fn && (typeof (fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
+            }
+        };
 
         $('#offerModal').on('shown.bs.modal', function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text().trim(),
@@ -28,7 +39,7 @@
             $scope.offerSummary = '{0} offers for {1}, C${2} budget, {3}'.format(offerTypeText, $scope.noOfPersonsTextRepresentation, budget, location);
             $scope.merchantType = offerTypeText === 'Restaurant' ? offerTypeText.toLowerCase() + 's' : 'salons';
             $scope.offerTypeText = offerTypeText;
-            $scope.$apply();
+            $rootScope.safeApply();
 
             (function increaseLoadingBar() {
                 if ($scope.loadingBarProgress < 100)
@@ -73,7 +84,7 @@
                 $('#datepicker').datepicker({ startDate: new Date(), todayHighlight: true })
                     .on('changeDate', function (e) {
                         $scope.dateUntil = e.format('MM d, yyyy');
-                        $scope.$apply();
+                        $rootScope.safeApply();
                 })
                 unregisterShowFormWatch();
             }
@@ -98,6 +109,7 @@
                 return $scope.showError = true;
 
             $scope.sentEmailAddress = true;
+            $rootScope.safeApply();
             saveEmail($scope.emailOnLoadingScreen);
         };
 
@@ -119,6 +131,7 @@
 
         $scope.getMoreOffers = function () {
             $scope.showForm = true;
+            $rootScope.safeApply();
         };
 
         $scope.setDate = function () {
@@ -126,6 +139,7 @@
                  return $scope.showError = true;
 
             $scope.formStep++;
+            $rootScope.safeApply();
         };
 
         $scope.setEmail = function () {
@@ -142,10 +156,12 @@
 
             saveEmail($scope.email, $scope.dateUntil);
             $scope.formStep++;
+            $rootScope.safeApply();
         };
 
         $scope.goBackToOffers = function () {
             $scope.showForm = false;
+            $rootScope.safeApply();
         };
     });
 
