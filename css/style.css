@@ -863,7 +863,7 @@ section.auto-repair::after {
 
 /* Mobile */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 787px) {
     input[type="text"], input[type="number"], input[type="email"], textarea, select {
         font-size: 16px !important;
     }
@@ -968,6 +968,13 @@ section.auto-repair::after {
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
+    }
+
+    .modal-body .offer-repeat {
+        float: left;
+        width: 100%;
+        position: relative;
+        z-index: 9999;
     }
 
     .modal .bid-looking span {
