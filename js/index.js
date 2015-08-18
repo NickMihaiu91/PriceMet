@@ -15,12 +15,12 @@
     function bindEvents() {
         var askedForLocationAccess = false;
 
-        $('.btn-header').on('click', function () {
+        $('.btn-header').on('click touchstart', function () {
             $('.second-section').scrollintoview({ duration: 500 });
             mixpanel.track("Header button push");
         });
 
-        $('.btn-get-offers').on('click', function () {
+        $('.btn-get-offers').on('click touchstart', function () {
             var validInput = true,
                 elementsToValidate = [$('#inputLocation'), $('#inputBudget')],
                 trackObj = { "Category": $('#selectOfferType option:selected').text() };
