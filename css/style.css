@@ -249,10 +249,13 @@ footer {
     margin-right: 5px;
 }
 
+.modal-body .get-more-offers-btn-container {
+    text-align: center;
+}
+
 .modal-body .get-more-offers {
-    display: block;
     font-family: Arial, sans-serif;
-    margin: 15px auto;
+    margin: 5px auto 30px auto;
     white-space: normal;
 }
 

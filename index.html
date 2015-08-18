@@ -284,7 +284,7 @@
                                 <span><b ticker="noOfMerchantsWatchingBid">{{noOfMerchantsWatchingBid}}</b> {{merchantType}} are looking now at your bid request</span>
                             </div>
                             <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in offer-repeat">
-                                <div ng-show="($index % 3 === 0) && ($index !== 0)">
+                                <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
                                     <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
                                         Get more offers in your inbox
                                     </button>
