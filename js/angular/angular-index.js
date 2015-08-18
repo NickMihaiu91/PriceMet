@@ -1,8 +1,8 @@
 (function () {
 
-    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'merchantsLookingAtRequestServiceModule']);
+    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'merchantsLookingAtRequestServiceModule', 'toastrServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, merchantsLookingAtRequestService) {
+    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, merchantsLookingAtRequestService, toastrService) {
         var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
@@ -74,8 +74,10 @@
         }, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 $scope.noOfOffers = newVal;
-                toastr.options.timeOut = 10000;
-                toastr.info('You have a new offer from a ' + $scope.merchantType.slice(0, -1) + '!');
+                var toastContent = 'You have a new offer from a ' + $scope.merchantType.slice(0, -1) + '!';
+                toastrService.showToastr('info', toastContent, 9000, null, function () {
+                    $('#offer' + ($scope.noOfOffers - 1)).scrollintoview({ duration: 500 });
+                });
             }
         });
 
