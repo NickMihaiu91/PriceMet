@@ -9,6 +9,7 @@
                 MAX_WAIT_INTERVAL = 20,
                 MIN_WAIT_INTERVAL = 10,
                 INCREASE_WAIT_INTERVAL_AFTER_NO_OF_OFFERS = 6,
+                MAX_OFFER_VALUE = 50,
                 maxWaitInterval,
                 minWaitInterval,
                 storedValues = {},
@@ -27,6 +28,12 @@
                 higherQuery.equalTo("offerType", offerType);
 
                 var mainQuery = Parse.Query.or(lowerQuery, higherQuery);
+
+                if (budget > MAX_OFFER_VALUE) {
+                    mainQuery = new Parse.Query('Offer');
+                    mainQuery.equalTo("bidRequest", MAX_OFFER_VALUE);
+                    mainQuery.equalTo("offerType", offerType);
+                }
 
                 mainQuery.find({
                     success: function (results) {
