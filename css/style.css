@@ -291,8 +291,29 @@ footer {
 
 .modal-body .more-offers-section {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
 }
+
+    .modal-body .more-offers-section .back-btn {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .modal-body .more-offers-section .back-btn span {
+        font-size: 18px;
+        cursor: pointer;
+        color: rgba(26, 98, 131, 0.78);
+        font-family: Arial, sans-serif;
+    }
+
+        .modal-body .more-offers-section .back-btn span:hover{
+            color: rgba(26, 98, 131, 0.65);
+        }
+
+        .modal-body .more-offers-section .back-btn span i {
+            margin-right: 5px;
+            font-size: 15px;
+        }
 
     .modal-body .more-offers-section .datepicker.datepicker-inline {
         margin: 0 auto;
