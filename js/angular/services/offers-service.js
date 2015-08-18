@@ -94,7 +94,7 @@
                 query.get(id, {
                     success: function (offer) {
                         // The object was retrieved successfully.
-                        callback(formatOffers([offer], noOfPersons)[0]);
+                        callback(formatOffers([offer], noOfPersons, offer.attributes.offerType)[0]);
                     },
                     error: function (object, error) {
                         // The object was not retrieved successfully.
