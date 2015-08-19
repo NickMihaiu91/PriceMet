@@ -59,6 +59,8 @@
             $scope.interactedWithEmailInputOnLoadingScreen = false;
             $scope.showError = false;
             $scope.showForm = false;
+
+            mixpanel.track("Closed modal");
         });
 
         $scope.$watch(function () {
@@ -77,7 +79,10 @@
                 var toastContent = 'You have a new offer from a ' + $scope.merchantType.slice(0, -1) + '!';
                 toastrService.showToastr('info', toastContent, 9000, null, function () {
                     $('#offer' + ($scope.noOfOffers - 1)).scrollintoview({ duration: 500 });
+                    mixpanel.track('Toastr clicked', { offerNo: $scope.noOfOffers });
                 });
+
+                mixpanel.track($scope.noOfOffers + " offer viewed");
             }
         });
 
@@ -87,6 +92,7 @@
                     .on('changeDate', function (e) {
                         $scope.dateUntil = e.format('MM d, yyyy');
                         $rootScope.safeApply();
+                        mixpanel.track("Picked date", { date: $scope.dateUntil });
                 })
                 unregisterShowFormWatch();
             }
@@ -99,6 +105,7 @@
 
         $scope.focusOnEmail = function () {
             $scope.interactedWithEmailInputOnLoadingScreen = true;
+            mixpanel.track("Email focus - Offer Alerts Modal");
         };
 
         $scope.sendEmail = function () {
@@ -106,6 +113,7 @@
 
             $scope.interactedWithEmailInputOnLoadingScreen = true;
             $scope.showError = false;
+            mixpanel.track("Send email - Offer Alerts Modal", { email: $scope.emailOnLoadingScreen });
 
             if (!validEmail)
                 return $scope.showError = true;
@@ -130,14 +138,20 @@
 
             $scope.offersVisible = true;
             $rootScope.safeApply();
+
+            mixpanel.track("Blank offers list");
         };
 
         $scope.getMoreOffers = function () {
             $scope.showForm = true;
             $rootScope.safeApply();
+
+            mixpanel.track('Get more offers in your inbox - clicked button');
         };
 
         $scope.setDate = function () {
+            mixpanel.track('Set date - button clicked', { date: $scope.dateUntil });
+
             if (!$scope.dateUntil)
                  return $scope.showError = true;
 
@@ -152,7 +166,7 @@
             if ($scope.email)
                 trackObj['send email'] = $scope.email;
 
-            mixpanel.track("Modal", trackObj);
+            mixpanel.track("Get more offers - send email", trackObj);
 
             if (!validEmail)
                 return $scope.showError = true;
@@ -165,6 +179,8 @@
         $scope.goBackToOffers = function () {
             $scope.showForm = false;
             $rootScope.safeApply();
+
+            mixpanel.track("Back to offers -  clicked button");
         };
     });
 

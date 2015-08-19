@@ -23,7 +23,10 @@
         $('.btn-get-offers').on('click touchstart', function () {
             var validInput = true,
                 elementsToValidate = [$('#inputLocation'), $('#inputBudget')],
-                trackObj = { "Category": $('#selectOfferType option:selected').text() };
+                trackObj = {
+                    "Category": $('#selectOfferType option:selected').text(),
+                    "No of persons": $('#selectNoOfPersons option:selected').text()
+                };
 
             if ($(window).width() < 768) {
                 elementsToValidate = [];
@@ -145,20 +148,20 @@
             mixpanel.track("Budget changed", trackObj);
         });
 
-        $("select").change(function () {
+        $("#selectOfferType").change(function () {
             var trackObj = { "Category": $('#selectOfferType option:selected').text() };
 
             mixpanel.track("Category changed", trackObj);
         });
 
-        $('#offerEmail').focusout(function () {
-            var trackObj = {},
-                email = $('#offerEmail').val();
+        $("#selectNoOfPersons").change(function () {
+            var trackObj = { "No of persons": $('#selectNoOfPersons option:selected').text() };
 
-            if (email)
-                trackObj['email changed'] = email;
+            mixpanel.track("No of persons changed", trackObj);
+        });
 
-            mixpanel.track("Modal", trackObj);
+        $('.offer-container .accept-bid').on('click', function () {
+            mixpanel.track("Accept bid");
         });
 
         $(".logo").on('click', function () {
@@ -189,20 +192,12 @@
             mixpanel.track("Footer", { 'social button clicked': 'instagram' });
         });
 
-        $(".initial-view .closing-modal").on('click', function () {
-            mixpanel.track("Modal", {'initial view': 'no'});
-        });
-
-        $(".get-email-view .closing-modal").on('click', function () {
-            mixpanel.track("Modal", { 'email view': 'no' });
-        });
-
         $(window).bind('beforeunload', function () {
             var trackObj = {
                 "Category": $('#selectOfferType option:selected').text(),
                 "Location": $('#inputLocation').val(),
                 "Budget": $('#inputBudget').val(),
-                "Email": $('#offerEmail').val(),
+                "No of persons": $('#selectNoOfPersons option:selected').text(),
                 "Feedback": $('.feedback-section textarea').val(),
                 "Feedback email": $('.feedback-section #inputContactEmail').val()
             };
