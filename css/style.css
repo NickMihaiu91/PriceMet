@@ -202,8 +202,9 @@ footer {
     }
 
 .modal .modal-body {
+    height: 70%;
     height: calc(100% - 160px);
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .modal-header .modal-title {
