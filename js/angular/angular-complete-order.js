@@ -17,16 +17,46 @@
                 $scope.total = offer.offerPrice * $scope.quantity;
                 $scope.$apply();
             });
+
+            mixpanel.track("Complete order Page Viewed", { 'offerId': offerId, 'noOfPersons': noOfPersons });
         }, 300);
 
         $scope.completeOrder = function () {
             $('#completeOrderModal').modal({ backdrop: 'static' });
+            mixpanel.track("Complete order button clicked");
         };
 
         $scope.$watch('quantity', function () {
             if ($scope.offer)
                 $scope.total = $scope.offer.offerPrice * $scope.quantity;
+
+            if ($scope.quantity > 1)
+                mixpanel.track("Quantity changed", { 'quantity': $scope.quantity });
         });
+
+        $scope.termsAndConditionsClicked = function () {
+            mixpanel.track("Terms and conditions clicked");
+        };
+
+        $scope.privacyStatementClicked = function () {
+            mixpanel.track("Privacy statement clicked");
+        };
+
+        $scope.orderFaqFirstSectionClicked = function () {
+            mixpanel.track("Payment FAQ - What happens after I click 'Complete order'");
+        };
+
+        $scope.orderFaqSecondSectionClicked = function () {
+            mixpanel.track("Payment FAQ - What happens after I buy?");
+        };
+
+        $scope.orderFaqThirdSectionClicked = function () {
+            mixpanel.track("Payment FAQ - Can I change or cancel my purchase?");
+        };
+
+        $scope.orderFaqFourthSectionClicked = function () {
+            mixpanel.track("Payment FAQ - Is this safe?");
+        };
     });
 
     priceMetApp.controller('CompleteOrderModalCtrl', function ($scope, $timeout) {
@@ -46,6 +76,8 @@
             var validEmail = validateEmail($scope.email);
 
             $scope.showEmailError = false;
+
+            mixpanel.track("Complete order Send Email", { 'email': $scope.email });
 
             if (!validEmail)
                 return $scope.showEmailError = true;
