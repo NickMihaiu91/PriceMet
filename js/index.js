@@ -160,10 +160,6 @@
             mixpanel.track("No of persons changed", trackObj);
         });
 
-        $('.offer-container .accept-bid').on('click', function () {
-            mixpanel.track("Accept bid");
-        });
-
         $(".logo").on('click', function () {
             mixpanel.track("Logo clicked");
         });

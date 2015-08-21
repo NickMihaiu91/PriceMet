@@ -149,6 +149,10 @@
             mixpanel.track('Get more offers in your inbox - clicked button');
         };
 
+        $scope.acceptBid = function (offerId) {
+            mixpanel.track("Accept bid", { offerId: offerId, noOfOffersDisplayed: $scope.noOfOffers });
+        };
+
         $scope.setDate = function () {
             mixpanel.track('Set date - button clicked', { date: $scope.dateUntil });
 

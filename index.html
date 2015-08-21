@@ -299,7 +299,7 @@
                                         </span>
                                         <span class="price-strikethrough">C${{offer.originalPrice}}</span>
 
-                                        <a class="btn btn-primary outline accept-bid" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}">
+                                        <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
                                             Accept bid
                                         </a>
                                     </div>
