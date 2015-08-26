@@ -148,21 +148,27 @@
     }
 
     function formatBidOfferTitle(bidOfferTitle, offerPrice, originalPrice, noOfPersons) {
-        if(noOfPersons === 1)
+        if(noOfPersons == 1)
             return bidOfferTitle;
 
-        var offerPriceRegex = new RegExp('[$]' + offerPrice + '((?:\s)|(?:\:)|[^0-9])');
+        var offerPriceRegex = new RegExp('[$]' + offerPrice + '((?:\s)|(?:\:)|[^0-9])'),
+            offerTitleEnding = ' - for ';
 
         bidOfferTitle = bidOfferTitle.replace(originalPrice, originalPrice * noOfPersons);
         bidOfferTitle = bidOfferTitle.replace(offerPriceRegex, '*' + offerPrice * noOfPersons + '#');
         bidOfferTitle = bidOfferTitle.replace('*', '$');
         bidOfferTitle = bidOfferTitle.replace('#', ' ');
 
-        return bidOfferTitle;
+        return bidOfferTitle + offerTitleEnding + formatNoOfPersonsToTextRepresentation(noOfPersons);
     }
 
     function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function formatNoOfPersonsToTextRepresentation(noOfPersons) {
+        var textValues = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+        return textValues[noOfPersons];
     }
 
     function shuffle(array) {
