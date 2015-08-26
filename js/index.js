@@ -10,21 +10,52 @@
 
         displayContentBasedOnQueryParameter();
         bindEvents();
+
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+            (function () {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function () {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+            // in case the input is already filled..
+            if (inputEl.value.trim() !== '') {
+                classie.add(inputEl.parentNode, 'input--filled');
+            }
+
+            // events:
+            inputEl.addEventListener('focus', onInputFocus);
+            inputEl.addEventListener('blur', onInputBlur);
+        });
+
+        function onInputFocus(ev) {
+            classie.add(ev.target.parentNode, 'input--filled');
+        }
+
+        function onInputBlur(ev) {
+            if (ev.target.value.trim() === '') {
+                classie.remove(ev.target.parentNode, 'input--filled');
+            }
+        }
     });
 
     function bindEvents() {
         var askedForLocationAccess = false;
 
-        $('.btn-header').on('click touchstart', function () {
-            $('.second-section').scrollintoview({ duration: 500 });
-            mixpanel.track("Header button push");
-        });
-
         $('.btn-get-offers').on('click touchstart', function () {
             var validInput = true,
                 elementsToValidate = [$('#inputLocation'), $('#inputBudget')],
                 trackObj = {
-                    "Category": $('#selectOfferType option:selected').text(),
+                    "Category": getOfferCategoryName(),
                     "No of persons": $('#selectNoOfPersons option:selected').text()
                 };
 
@@ -107,12 +138,24 @@
             }
         });
 
+        $('.cs-options ul').on('click touchstart', function () {
+            $('.cs-placeholder').addClass('changed');
+        });
+
         $('.navbar-nav .nav-log-in').on('click', function () {
             setTimeout(function () {
                 swal({ title: 'Oops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
             }, 2000);
             $('.navbar-collapse').collapse('hide');
             mixpanel.track("Navbar", {'option': 'log in'});
+        });
+
+        $('.navbar-nav .nav-sign-up').on('click', function () {
+            setTimeout(function () {
+                swal({ title: 'Oops', text: 'There seems to be a problem. Please try again later, we are very sorry.', type: 'error' });
+            }, 2000);
+            $('.navbar-collapse').collapse('hide');
+            mixpanel.track("Navbar", { 'option': 'sign up' });
         });
 
         $('.navbar-nav .nav-contact-us').on('click', function () {
@@ -146,12 +189,6 @@
                 trackObj.Budget = inputBudgetValue;
 
             mixpanel.track("Budget changed", trackObj);
-        });
-
-        $("#selectOfferType").change(function () {
-            var trackObj = { "Category": $('#selectOfferType option:selected').text() };
-
-            mixpanel.track("Category changed", trackObj);
         });
 
         $("#selectNoOfPersons").change(function () {
@@ -190,7 +227,7 @@
 
         $(window).bind('beforeunload', function () {
             var trackObj = {
-                "Category": $('#selectOfferType option:selected').text(),
+                "Category": getOfferCategoryName(),
                 "Location": $('#inputLocation').val(),
                 "Budget": $('#inputBudget').val(),
                 "No of persons": $('#selectNoOfPersons option:selected').text(),
@@ -242,6 +279,7 @@
                 },
                 'r': {
                     firstSectionH1: 'Amazing restaurants that meet your price',
+                    firstSectionH2: 'Where would you like to eat?',
                     firstSectionH3: 'Set your budget and let local restaurants compete with their offers',
                     secondSectionH1: 'Pick your own price and let restaurants show their offers!'
                 },
@@ -252,6 +290,7 @@
                 },
                 'b': {
                     firstSectionH1: 'Local health and beauty salons that meet your price',
+                    firstSectionH2: 'Where would you like to relax?',
                     firstSectionH3: 'Set your budget and let salons compete with their offers',
                     secondSectionH1: 'Pick your own price and let salons show their offers!'
                 },
@@ -273,11 +312,11 @@
             };
 
         if (category && messages[category]) {
-            $('.first-section h1').text(messages[category].firstSectionH1);
-            $('.first-section h3').text(messages[category].firstSectionH3);
-            $('.second-section h1').text(messages[category].secondSectionH1);
+            //$('.first-section h1').text(messages[category].firstSectionH1);
+            //$('.first-section h3').text(messages[category].firstSectionH3);
+            //$('.second-section h1').text(messages[category].secondSectionH1);
 
-            $("#selectOfferType").val(category);
+            $('.first-section h2').text(messages[category].firstSectionH2);
 
             switch (category) {
                 case 'r': {
@@ -310,9 +349,9 @@
             }
         }
         else {
-            $('.first-section h1').text(messages['default'].firstSectionH1);
-            $('.first-section h3').text(messages['default'].firstSectionH3);
-            $('.second-section h1').text(messages['default'].secondSectionH1);
+            //$('.first-section h1').text(messages['default'].firstSectionH1);
+            //$('.first-section h3').text(messages['default'].firstSectionH3);
+            //$('.second-section h1').text(messages['default'].secondSectionH1);
 
             $('section.first-section').addClass('default');
         }
@@ -344,6 +383,29 @@
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
+
+    function getOfferCategoryName() {
+        var categoryId = getParameterByName('id'),
+            categoryName = 'Restaurant'; // default
+
+        if (categoryId) {
+            switch (categoryId) {
+                case 'r': {
+                    categoryName = 'Restaurant';
+                    break;
+                }
+                case 'b': {
+                    categoryName = 'Beauty & SPA';
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+
+        return categoryName;
+    };
 
     String.prototype.format = function () {
         var formatted = this;

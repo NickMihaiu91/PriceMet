@@ -25,9 +25,9 @@
 
         $('#offerModal').on('shown.bs.modal', function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text().trim(),
-               noOfPersons = $('#selectNoOfPersons option:selected').text(),
+               noOfPersons = $('#selectNoOfPersons option:selected').val(),
                location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
-               offerTypeText = $('#selectOfferType option:selected').text().trim();
+               offerTypeText = getOfferCategoryName();
 
             offersService.stopShowingMoreOffers();
 
@@ -125,9 +125,9 @@
 
         $scope.showOffers = function () {
             var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
-                noOfPersons = $('#selectNoOfPersons option:selected').text(),
+                noOfPersons = $('#selectNoOfPersons option:selected').val(),
                 location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
-                offerType = $('#selectOfferType option:selected').val();
+                offerType = getOfferCategoryId();
 
             offersService.getOffers(budget, noOfPersons, offerType, function (offers) {
                 $scope.offerList = offers;
@@ -241,5 +241,41 @@
     function formatNoOfPersonsToTextRepresentation(noOfPersons) {
         var textValues = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
         return textValues[noOfPersons];
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function getOfferCategoryName() {
+        var categoryId = getParameterByName('id'),
+            categoryName = 'Restaurant'; // default
+
+        if (categoryId) {
+            switch (categoryId) {
+                case 'r': {
+                    categoryName = 'Restaurant';
+                    break;
+                }
+                case 'b': {
+                    categoryName = 'Beauty & SPA';
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
+
+        return categoryName;
+    }
+
+    function getOfferCategoryId() {
+        var categoryId = getParameterByName('id');
+
+        return categoryId = categoryId || 'r';
     }
 })();

@@ -1,0 +1,136 @@
+﻿/*Reference http://tympanus.net/codrops/2015/01/08/inspiration-text-input-effects/*/
+
+.input-span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 350px;
+    vertical-align: top;
+    font-size: 150%;
+}
+
+.input__field {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 0.8em;
+    width: 60%;
+    border: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #aaa;
+    font-weight: 700;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-appearance: none;
+}
+
+    .input__field:focus {
+        outline: none;
+    }
+
+.input__field--yoshiko {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #92161A;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid;
+    border-color: #E86252;
+    font-family: Gotham;
+    -webkit-transition: background-color 0.25s, border-color 0.25s;
+    -moz-transition: background-color 0.25s, border-color 0.25s;
+    -o-transition: background-color 0.25s, border-color 0.25s;
+    transition: background-color 0.25s, border-color 0.25s;
+    -moz-box-shadow: -1px 3px 14px 0px rgba(138, 96, 35, 0.75);
+    -webkit-box-shadow: -1px 3px 14px 0px rgba(138, 96, 35, 0.75);
+    box-shadow: -1px 3px 14px 0px rgba(138, 96, 35, 0.75);
+}
+
+    .input__field--yoshiko:focus + .input__label--yoshiko, .input--filled .input__label--yoshiko {
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+.input__label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 40%;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.input__label--yoshiko {
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    bottom: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    padding: 0 1.25em;
+    -webkit-transform: translate3d(0, 3em, 0);
+    -moz-transform: translate3d(0, 3em, 0);
+    -ms-transform: translate3d(0, 3em, 0);
+    -o-transform: translate3d(0, 3em, 0);
+    transform: translate3d(0, 3em, 0);
+    -webkit-transition: -webkit-transform 0.25s;
+    -moz-transition: transform 0.25s;
+    -o-transition: transform 0.25s;
+    transition: transform 0.25s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    text-transform: uppercase;
+}
+
+.input__label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+
+.input__label-content--yoshiko {
+    color: #E86252;
+    font-family: Gotham;
+    padding: 0.25em 0;
+    -webkit-transition: -webkit-transform 0.25s;
+    -moz-transition: transform 0.25s;
+    -o-transition: transform 0.25s;
+    transition: transform 0.25s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+
+    .input__label-content--yoshiko::after {
+        content: attr(data-content);
+        position: absolute;
+        font-weight: 800;
+        bottom: 100%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        color: #a3d39c;
+        padding: 0.25em 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.85em;
+    }
