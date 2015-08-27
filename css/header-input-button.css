@@ -39,7 +39,7 @@
     background-color: transparent;
     border: 1px solid;
     border-color: #E86252;
-    font-family: Gotham;
+    font-family: gotham;
     -webkit-transition: background-color 0.25s, border-color 0.25s;
     -moz-transition: background-color 0.25s, border-color 0.25s;
     -o-transition: background-color 0.25s, border-color 0.25s;
@@ -108,7 +108,7 @@
 
 .input__label-content--yoshiko {
     color: #E86252;
-    font-family: Gotham;
+    font-family: gotham;
     padding: 0.25em 0;
     -webkit-transition: -webkit-transform 0.25s;
     -moz-transition: transform 0.25s;

@@ -7,7 +7,7 @@
 }
 
 @font-face {
-    font-family: 'Gotham';
+    font-family: 'gotham';
     src: url('../fonts/gotham/GothamLight.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -114,7 +114,7 @@ section {
             margin-bottom: 60px;
             color: #2F2E2D;
             font-size: 38px;
-            font-family: Gotham;
+            font-family: gotham;
         }
 
         section.first-section .container {
