@@ -8,7 +8,8 @@
 
 @font-face {
     font-family: 'gotham';
-    src: url('../fonts/gotham/GothamLight.ttf') format('truetype');
+    src: url('../fonts/gotham/GothamLight.eot');
+    src: url('../fonts/gotham/GothamLight.eot?#iefix') format('embedded-opentype'), url('../fonts/gotham/GothamLight.woff') format('woff'), url('../fonts/gotham/GothamLight.ttf') format('truetype'), url('../fonts/gotham/GothamLight.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
