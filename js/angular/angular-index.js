@@ -239,7 +239,7 @@
         }
     });
 
-    priceMetApp.directive('selectModal', function () {
+    priceMetApp.directive('selectModal', function ($timeout) {
         return {
             restrict: 'E',
             scope: {
@@ -250,9 +250,19 @@
             },
             templateUrl: "/templates/select-modal-template.tpl",
             link: function (scope, element) {
-                scope.selectOption = function (option) {
+                scope.selectOption = function (option, $event) {
                     scope.value = option;
-                    $('#' + scope.modalid).modal('hide');
+                    var $icon = $($event.target).find('i');
+                    $icon.removeClass('fa-square-o');
+                    $icon.addClass('fa-check-square-o');
+
+                    $timeout(function () {
+                        $('#' + scope.modalid).modal('hide');
+                        $timeout(function () {
+                            $icon.removeClass('fa-check-square-o');
+                            $icon.addClass('fa-square-o');
+                        }, 300);
+                    }, 300);
                 }
             }
         };
