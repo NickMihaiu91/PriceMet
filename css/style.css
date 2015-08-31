@@ -826,6 +826,7 @@ section.first-section.restaurant .img.third {
     }
 
     section.first-section .title h2 {
+        font-size: 30px;
         margin-bottom: 30px;
     }
 
@@ -924,6 +925,15 @@ section.first-section.restaurant .img.third {
         margin: 0;
     }
 
+    .select-type-modal .modal-header .close {
+        font-size: 36px;
+        margin-top: 2px;
+    }
+
+    .select-type-modal .modal-header h4 {
+        font-weight: bold;
+    }
+
     .select-type-modal .modal-body {
         overflow-y: auto;
         height: auto;
@@ -933,6 +943,7 @@ section.first-section.restaurant .img.third {
             padding: 20px 10px;
             border-right: none;
             border-left: none;
+            font-size: 18px;
         }
 
             .select-type-modal .modal-body .list-group-item:first-child {
@@ -941,14 +952,11 @@ section.first-section.restaurant .img.third {
 
             .select-type-modal .modal-body .list-group-item .fa {
                 padding-right: 10px;
+                color: #65AF68;
             }
 }
 
 @media screen and (max-height: 600px) {
-    section.first-section .title h2 {
-        font-size: 30px;
-    }
-
     section.third-section h1 {
         font-size: 24px;
     }
