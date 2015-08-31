@@ -53,7 +53,7 @@
             $('#offerModal').modal({ backdrop: 'static' });
         });
 
-        $('.feedback-section .btn').on('click', function () {
+        $('.feedback-section .send-feedback').on('click', function () {
             var feedbackText = $('.feedback-section textarea').val(),
                 email = $('.feedback-section #inputContactEmail').val(),
                 FeedbackObject = Parse.Object.extend("Feedback"),
