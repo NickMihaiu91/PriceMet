@@ -60,7 +60,7 @@
             <div class="row title">
                 <h2>Where would you like to eat?</h2>
             </div>
-            <div class="row">
+            <div class="row hidden-xs">
                 <div class="col-md-4">
                     <span class="input-span">
                         <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead" autocomplete="off" placeholder="">
@@ -92,6 +92,26 @@
                         </label>
                     </span>
                 </div>
+            </div>
+            <div class="visible-xs mobile-input-container" ng-controller="MobileInputCtrl">
+                <div class="row">
+                    <span class="input-span input-span-location" data-title="Location" ng-click="openModal('locationModalId')">
+                        <input class="input__field input__field--yoshiko" type="text" id="selectLocation" ng-model="selectedCity" readonly>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="input-span" data-title="No of persons" ng-click="openModal('noOfPersonsModalId')">
+                        <input class="input__field input__field--yoshiko" type="text" id="selectNoOfPersons" ng-model="selectedNoOfPersons" readonly>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="input-span" data-title="Total budget" ng-click="openModal('budgetModalId')">
+                        <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
+                    </span>
+                </div>
+                <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal"></select-modal>
+                <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal"></select-modal>
+                <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal"></select-modal>
             </div>
             <div class="row">
                 <button class="btn btn-primary btn-get-offers">
@@ -332,6 +352,26 @@
             </div>
         </div>
     </div>
+
+    <script type="text/ng-template" id="/templates/select-modal-template.tpl">
+        <div class="modal fade select-type-modal" ng-attr-id="{{ modalid }}">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>Choose desired location</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="option in list" ng-click="selectOption(option, $index)">
+                                <i class="fa fa-lg fa-square-o"></i>{{ option | applyFilter: 'currency':"C$":0 }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
 
     <!-- start Mixpanel -->
     <script type="text/javascript">

@@ -24,9 +24,9 @@
         };
 
         $('#offerModal').on('shown.bs.modal', function () {
-            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text().trim(),
-               noOfPersons = $('#selectNoOfPersons option:selected').val(),
-               location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
+            var budget = $('#inputBudget').val() || $('.mobile-input-container #selectBudget').val().match(/\d+/g)[0],
+               noOfPersons = $('#selectNoOfPersons option:selected').val() || $('.mobile-input-container #selectNoOfPersons').val().match(/\d+/g)[0],
+               location = $('#inputLocation').val() || $('.mobile-input-container #selectLocation').val(),
                offerTypeText = getOfferCategoryName();
 
             offersService.stopShowingMoreOffers();
@@ -93,7 +93,7 @@
                         $scope.dateUntil = e.format('MM d, yyyy');
                         $rootScope.safeApply();
                         mixpanel.track("Picked date", { date: $scope.dateUntil });
-                })
+                    })
                 unregisterShowFormWatch();
             }
         });
@@ -124,9 +124,9 @@
         };
 
         $scope.showOffers = function () {
-            var budget = $('#inputBudget').val() || $('#selectBudget option:selected').text(),
-                noOfPersons = $('#selectNoOfPersons option:selected').val(),
-                location = $('#inputLocation').val() || $('#selectLocation option:selected').text(),
+            var budget = $('#inputBudget').val() || $('.mobile-input-container #selectBudget').val().match(/\d+/g)[0],
+                noOfPersons = $('#selectNoOfPersons option:selected').val() || $('.mobile-input-container #selectNoOfPersons').val().match(/\d+/g)[0],
+                location = $('#inputLocation').val() || $('.mobile-input-container #selectLocation').val(),
                 offerType = getOfferCategoryId();
 
             offersService.getOffers(budget, noOfPersons, offerType, function (offers) {
@@ -157,7 +157,7 @@
             mixpanel.track('Set date - button clicked', { date: $scope.dateUntil });
 
             if (!$scope.dateUntil)
-                 return $scope.showError = true;
+                return $scope.showError = true;
 
             $scope.formStep++;
             $rootScope.safeApply();
@@ -185,6 +185,24 @@
             $rootScope.safeApply();
 
             mixpanel.track("Back to offers -  clicked button");
+        };
+    });
+
+    priceMetApp.controller('MobileInputCtrl', function ($scope) {
+        $scope.canadaCitiesList = ["Vancouver", "Burnaby", "Coquitlam", "Delta", "Langley", "Lions Bay", "Maple Ridge", "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody", "Richmond", "Surrey", "West Vancouver", "White Rock"];
+        $scope.selectedCity = 'Vancouver';
+        $scope.locationModalId = 'locationModal';
+
+        $scope.noOfPersonList = ["It's just me - 1", "A couple - 2", "Lucky number - 3", "A pack - 4", "Give me five! - 5", "Six pack - 6", "Seven sins - 7", "Even number - 8", "Almost round - 9", "A crowd - 10"];
+        $scope.selectedNoOfPersons = "It's just me - 1";
+        $scope.noOfPersonsModalId = 'noOfPersonsModal';
+
+        $scope.budgetList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 150, 200];
+        $scope.selectedBudget = 10;
+        $scope.budgetModalId = 'budgetModal';
+
+        $scope.openModal = function (modalId) {
+            $('#' + $scope[modalId]).modal({ backdrop: 'static' });
         };
     });
 
@@ -221,6 +239,48 @@
         }
     });
 
+    priceMetApp.directive('selectModal', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                list: '=',
+                value: '=',
+                modalid: '@modalid'
+            },
+            templateUrl: "/templates/select-modal-template.tpl",
+            link: function (scope, element) {
+                scope.selectOption = function (option, index) {
+                    scope.value = option;
+                    $('#' + scope.modalid).modal('hide');
+                }
+            }
+        };
+    });
+
+    priceMetApp.directive('addcurrency', function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+
+                //format text going to user (model to view)
+                ngModel.$formatters.push(function (value) {
+                    return 'C$' + value;
+                });
+            }
+        }
+    });
+
+    priceMetApp.filter('applyFilter', function ($filter) {
+        return function () {
+            var filterName = [].splice.call(arguments, 1, 1)[0];
+            if (isNaN(arguments[0]))
+                return arguments[0];
+
+            return $filter(filterName).apply(null, arguments);
+        };
+    });
+
     function saveEmail(email, dateUntil) {
         var EmailObject = Parse.Object.extend("Email"),
             emailObject = new EmailObject();
@@ -228,8 +288,8 @@
         emailObject.save({
             email: email,
             dateUntil: dateUntil,
-            budget: $('#inputBudget').val() || $('#selectBudget option:selected').text(),
-            location: $('#inputLocation').val() || $('#selectLocation option:selected').text()
+            budget: $('#inputBudget').val() || $('.mobile-input-container #selectBudget').val().match(/\d+/g)[0],
+            location: $('#inputLocation').val() || $('.mobile-input-container #selectLocation').val()
         });
     }
 

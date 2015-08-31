@@ -39,6 +39,10 @@ body {
     border-radius: 20px;
 }
 
+.pac-container::after {
+    content: none;
+}
+
 header .logo {
     width: 50%;
     margin-top: -20px;
@@ -817,6 +821,51 @@ section.first-section.restaurant .img.third {
                 background-color: rgb(41, 84, 126);
             }
 
+    section.first-section .container {
+        padding-top: 70px;
+    }
+
+    section.first-section .title h2 {
+        margin-bottom: 30px;
+    }
+
+    section.first-section .btn {
+        margin-top: 15px;
+    }
+
+    section.first-section .mobile-input-container .row {
+        margin-bottom: 25px;
+    }
+
+    section.first-section .mobile-input-container .input-span {
+        width: 80%;
+    }
+
+        section.first-section .mobile-input-container .input-span:after {
+            font-family: FontAwesome;
+            content: "\f107";
+            font-size: 28px;
+            position: absolute;
+            right: 20px;
+            top: 20%;
+            color: #E86252;
+        }
+
+        section.first-section .mobile-input-container .input-span:before {
+            content: attr(data-title);
+            position: absolute;
+            left: 15px;
+            top: 14px;
+            font-size: 12px;
+            color: #9A9898;
+        }
+
+        section.first-section .mobile-input-container .input-span input {
+            padding-top: 30px;
+            padding-bottom: 8px;
+            padding-left: 15px;
+        }
+
     .modal-open {
         top: 0;
         left: 0;
@@ -868,9 +917,38 @@ section.first-section.restaurant .img.third {
     .modal-footer {
         padding: 10px;
     }
+
+    .select-type-modal .modal-dialog {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .select-type-modal .modal-body {
+        overflow-y: auto;
+        height: auto;
+    }
+
+        .select-type-modal .modal-body .list-group-item {
+            padding: 20px 10px;
+            border-right: none;
+            border-left: none;
+        }
+
+            .select-type-modal .modal-body .list-group-item:first-child {
+                border-top: none;
+            }
+
+            .select-type-modal .modal-body .list-group-item .fa {
+                padding-right: 10px;
+            }
 }
 
 @media screen and (max-height: 600px) {
+    section.first-section .title h2 {
+        font-size: 30px;
+    }
+
     section.third-section h1 {
         font-size: 24px;
     }
