@@ -11,6 +11,7 @@
         displayContentBasedOnQueryParameter();
         initializeCustomSelect();
         handleCustomInput();
+        addGoogleLocationAutocomplete();
         bindEvents();
     });
 
@@ -361,6 +362,14 @@
                 classie.remove(ev.target.parentNode, 'input--filled');
             }
         }
+    }
+
+    function addGoogleLocationAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById('inputLocation')),
+         {
+            types: ['geocode'],
+            componentRestrictions: { country: 'ca' }
+         });
     }
 
     // auxiliar functions
