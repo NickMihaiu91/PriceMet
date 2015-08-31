@@ -12,6 +12,7 @@
         initializeCustomSelect();
         handleCustomInput();
         addGoogleLocationAutocomplete();
+        handleOlderBrowsers();
         bindEvents();
     });
 
@@ -372,6 +373,15 @@
          });
     }
 
+    function handleOlderBrowsers() {
+        androidVersion = parseFloat(getAndroidVersion());
+
+        if (androidVersion < 4.4) {
+            $('.mobile-input-container .input-span').addClass('legacy-input');
+            alert('Android ' + androidVersion);
+        }
+    }
+
     // auxiliar functions
     function validateSingleElement($element) {
         if (!$element)
@@ -420,6 +430,12 @@
         }
 
         return categoryName;
+    };
+
+    function getAndroidVersion(ua) {
+        ua = (ua || navigator.userAgent).toLowerCase();
+        var match = ua.match(/android\s([0-9\.]*)/);
+        return match ? match[1] : false;
     };
 
     String.prototype.format = function () {

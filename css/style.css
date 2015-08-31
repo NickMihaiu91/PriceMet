@@ -867,6 +867,10 @@ section.first-section.restaurant .img.third {
             padding-left: 15px;
         }
 
+    section.first-section .mobile-input-container .input-span.legacy-input:before {
+        top: 4px;
+    }
+
     .modal-open {
         top: 0;
         left: 0;
