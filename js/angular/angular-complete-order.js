@@ -13,7 +13,6 @@
 
             offersService.getOfferById(offerId, noOfPersons, function (offer) {
                 $scope.offer = offer;
-                $scope.offer.bidOfferTitle += ' for ' + formatNoOfPersonsToTextRepresentation(noOfPersons);
                 $scope.total = offer.offerPrice * $scope.quantity;
                 $scope.$apply();
             });
@@ -114,11 +113,6 @@
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    function formatNoOfPersonsToTextRepresentation(noOfPersons) {
-        var textValues = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-        return textValues[noOfPersons];
     }
 
     function validateEmail(email) {
