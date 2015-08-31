@@ -245,11 +245,12 @@
             scope: {
                 list: '=',
                 value: '=',
-                modalid: '@modalid'
+                modalid: '@modalid',
+                modaltitle: '@modaltitle'
             },
             templateUrl: "/templates/select-modal-template.tpl",
             link: function (scope, element) {
-                scope.selectOption = function (option, index) {
+                scope.selectOption = function (option) {
                     scope.value = option;
                     $('#' + scope.modalid).modal('hide');
                 }

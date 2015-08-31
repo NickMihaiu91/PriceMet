@@ -109,9 +109,9 @@
                         <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
                     </span>
                 </div>
-                <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal"></select-modal>
-                <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal"></select-modal>
-                <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal"></select-modal>
+                <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal" modaltitle="Choose desired location"></select-modal>
+                <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal" modaltitle="Choose no. of persons"></select-modal>
+                <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
             </div>
             <div class="row">
                 <button class="btn btn-primary btn-get-offers">
@@ -359,11 +359,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4>Choose desired location</h4>
+                        <h4>{{ modaltitle }}</h4>
                     </div>
                     <div class="modal-body">
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="option in list" ng-click="selectOption(option, $index)">
+                            <li class="list-group-item" ng-repeat="option in list" ng-click="selectOption(option)">
                                 <i class="fa fa-lg fa-square-o"></i>{{ option | applyFilter: 'currency':"C$":0 }}
                             </li>
                         </ul>
