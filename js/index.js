@@ -378,7 +378,6 @@
 
         if (androidVersion < 4.4) {
             $('.mobile-input-container .input-span').addClass('legacy-input');
-            alert('Android ' + androidVersion);
         }
     }
 

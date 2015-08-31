@@ -91,7 +91,7 @@ section {
     }
 
         section.first-section .btn {
-            display: block;
+            display: inline-block;
             margin: 15px auto;
             letter-spacing: 2px;
             margin-top: 40px;
@@ -125,6 +125,10 @@ section {
         section.first-section .container {
             padding-top: 150px;
             padding-bottom: 100px;
+        }
+
+        section.first-section .btn-get-offers-container {
+            text-align: center;
         }
 
         section.first-section .collage-container {
