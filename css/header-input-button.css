@@ -134,3 +134,12 @@
         letter-spacing: 1px;
         font-size: 0.85em;
     }
+
+/* Mobile */
+@media screen and (max-width: 787px) {
+    .input__field--yoshiko {
+        -moz-box-shadow: -1px 3px 4px 0px rgba(138, 96, 35, 0.75);
+        -webkit-box-shadow: -1px 3px 4px 0px rgba(138, 96, 35, 0.75);
+        box-shadow: -1px 3px 4px 0px rgba(138, 96, 35, 0.75);
+    }
+}

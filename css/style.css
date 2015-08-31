@@ -822,16 +822,16 @@ section.first-section.restaurant .img.third {
             }
 
     section.first-section .container {
-        padding-top: 70px;
+        padding-top: 60px;
     }
 
     section.first-section .title h2 {
         font-size: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     section.first-section .btn {
-        margin-top: 15px;
+        margin-top: 0;
     }
 
     section.first-section .mobile-input-container .row {
@@ -957,6 +957,10 @@ section.first-section.restaurant .img.third {
 }
 
 @media screen and (max-height: 600px) {
+    section.first-section .title h2 {
+        font-size: 24px;
+    }
+
     section.third-section h1 {
         font-size: 24px;
     }
@@ -991,4 +995,12 @@ section.first-section.restaurant .img.third {
     /*section.second-section {
         height: 130%;
     }*/
+
+    section.first-section .title h2 {
+        font-size: 20px;
+    }
+
+    section.first-section .btn {
+        padding: 18px 24px;
+    }
 }
