@@ -252,7 +252,7 @@
             link: function (scope, element) {
                 scope.selectOption = function (option, $event) {
                     scope.value = option;
-                    var $icon = $($event.target).find('i');
+                    var $icon = $($event.currentTarget).find('i');
                     $icon.removeClass('fa-square-o');
                     $icon.addClass('fa-check-square-o');
 
