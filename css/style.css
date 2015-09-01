@@ -883,6 +883,7 @@ section.first-section.restaurant .img.third {
         }
 
     .modal-open {
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
