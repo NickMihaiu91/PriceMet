@@ -34,7 +34,7 @@ header .logo {
 }
 
 header .navbar {
-    background-color: #354A61;
+    background-color: rgba(0, 0, 0, 0.8);
     min-height: 70px;
 }
 
