@@ -131,6 +131,13 @@ section {
             text-align: center;
         }
 
+        section.first-section .error {
+            color: #C71111;
+            display: block;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
         section.first-section .collage-container {
             height: 100%;
         }
@@ -817,7 +824,7 @@ section.first-section.restaurant .img.third {
         }
 
         header .navbar .navbar-toggle {
-            background-color: ActiveCaption;
+            background-color: #B3AEAE;
             margin-top: 10px;
         }
 
@@ -871,9 +878,9 @@ section.first-section.restaurant .img.third {
             padding-left: 15px;
         }
 
-    section.first-section .mobile-input-container .input-span.legacy-input:before {
-        top: 4px;
-    }
+        section.first-section .mobile-input-container .input-span.legacy-input:before {
+            top: 4px;
+        }
 
     .modal-open {
         top: 0;
