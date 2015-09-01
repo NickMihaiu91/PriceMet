@@ -790,8 +790,41 @@ section.first-section.restaurant .img.third {
     }
 }
 
+/*Tablet*/
+@media screen and (max-width: 1000px) and (min-width: 730px) {
+    section.first-section .container {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    section.first-section .title h2 {
+        margin-bottom: 50px;
+    }
+
+    section.first-section .desktop-input-container > div:not(:last-child) {
+        margin-bottom: 45px;
+    }
+
+    section.first-section .desktop-input-container .input__field {
+        width: 350px;
+    }
+
+    section.first-section .desktop-input-container div.cs-select {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    header .logo {
+        width: auto;
+        height: 45px;
+        margin-top: -10px;
+    }
+}
+
+
 /* Mobile */
-@media screen and (max-width: 787px) {
+@media screen and (max-width: 720px) {
     input[type="text"], input[type="number"], input[type="email"], textarea, select {
         font-size: 16px !important;
     }
@@ -806,12 +839,6 @@ section.first-section.restaurant .img.third {
 
     .loading {
         font-size: 28px;
-    }
-
-    header .logo {
-        width: auto;
-        height: 45px;
-        margin-top: -10px;
     }
 
     header .navbar {

@@ -217,7 +217,7 @@
 
             trackGetOfferEvent();
 
-            var mobileScreen = $(window).width() < 768;
+            var mobileScreen = $(window).width() < 720;
 
             if (!mobileScreen && ($scope.locationError || $scope.noOfPersonsError || $scope.budgetError))
                 return false;
@@ -395,7 +395,7 @@
             "No of persons": $('#selectNoOfPersons option:selected').text()
         };
 
-        if ($(window).width() < 768) {
+        if ($(window).width() < 720) {
             trackObj.Location = $('.mobile-input-container #selectLocation').val();
             trackObj.Budget = $('.mobile-input-container #selectBudget').val().match(/\d+/g)[0];
             trackObj["No of persons"] = $('.mobile-input-container #selectNoOfPersons').val().match(/\d+/g)[0];
