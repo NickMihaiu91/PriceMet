@@ -11,47 +11,12 @@
         displayContentBasedOnQueryParameter();
         initializeCustomSelect();
         handleCustomInput();
-        addGoogleLocationAutocomplete();
         handleOlderBrowsers();
         bindEvents();
     });
 
     function bindEvents() {
         var askedForLocationAccess = false;
-
-        $('.btn-get-offers').on('click touchstart', function () {
-            var validInput = true,
-                elementsToValidate = [$('#inputLocation'), $('#inputBudget')],
-                trackObj = {
-                    "Category": getOfferCategoryName(),
-                    "No of persons": $('#selectNoOfPersons option:selected').text()
-                };
-
-            if ($(window).width() < 768) {
-                elementsToValidate = [];
-                trackObj.Location = $('#selectLocation option:selected').text();
-                trackObj.Budget = $('#selectBudget option:selected').text();
-            }
-
-            if ($('#inputLocation').val())
-                trackObj.Location = $('#inputLocation').val();
-
-            if ($('#inputBudget').val())
-                trackObj.Budget = $('#inputBudget').val();
-
-            mixpanel.track("Get offer", trackObj);
-
-            clearErrorMessages();
-
-            $.each(elementsToValidate, function (index, element) {
-                validInput = validateSingleElement(element) && validInput;
-            });
-
-            if (!validInput)
-                return false;
-
-            $('#offerModal').modal({ backdrop: 'static' });
-        });
 
         $('.feedback-section .send-feedback').on('click', function () {
             var feedbackText = $('.feedback-section textarea').val(),
@@ -99,6 +64,7 @@
                     }, function (results, status) {
                         if (status == google.maps.GeocoderStatus.OK)
                             $('#inputLocation').val(results[0].formatted_address);
+                            $('#inputLocation').trigger('input');
                     });
 
                     askedForLocationAccess = true;
@@ -363,14 +329,6 @@
                 classie.remove(ev.target.parentNode, 'input--filled');
             }
         }
-    }
-
-    function addGoogleLocationAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete((document.getElementById('inputLocation')),
-         {
-            types: ['geocode'],
-            componentRestrictions: { country: 'ca' }
-         });
     }
 
     function handleOlderBrowsers() {

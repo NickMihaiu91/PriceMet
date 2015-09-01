@@ -55,41 +55,53 @@
         </div>
     </header>
 
-    <section class="first-section">
+    <section class="first-section" ng-controller="InputCtrl">
         <div class="container">
             <div class="row title">
                 <h2>Where would you like to eat?</h2>
             </div>
             <div class="row hidden-xs">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <span class="input-span">
-                        <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead" autocomplete="off" placeholder="">
+                        <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead"
+                               autocomplete="off" placeholder="" ng-model="location" googleplace>
                         <label class="input__label input__label--yoshiko" for="inputLocation">
                             <span class="input__label-content input__label-content--yoshiko" data-content="Your location">Your location</span>
                         </label>
                     </span>
+                    <span class="error" ng-show="getOffersButtonPushed && locationError">
+                        Please enter your desired location
+                    </span>
                 </div>
-                <div class="col-md-4">
-                    <select class="cs-select cs-skin-border" id="selectNoOfPersons">
-                        <option value="" disabled selected>Number of persons</option>
-                        <option value="1">It's just me - 1</option>
-                        <option value="2">A couple - 2</option>
-                        <option value="3">Lucky number - 3</option>
-                        <option value="4">A pack - 4</option>
-                        <option value="5">Give me five! - 5</option>
-                        <option value="6">Six pack - 6</option>
-                        <option value="7">Seven sins - 7</option>
-                        <option value="8">Even number - 8</option>
-                        <option value="9">Almost round - 9</option>
-                        <option value="10">A crowd - 10</option>
-                    </select>
+                <div class="col-md-4 col-xs-4">
+                    <div>
+                        <select class="cs-select cs-skin-border" id="selectNoOfPersons">
+                            <option value="" disabled selected>Number of persons</option>
+                            <option value="1">It's just me - 1</option>
+                            <option value="2">A couple - 2</option>
+                            <option value="3">Lucky number - 3</option>
+                            <option value="4">A pack - 4</option>
+                            <option value="5">Give me five! - 5</option>
+                            <option value="6">Six pack - 6</option>
+                            <option value="7">Seven sins - 7</option>
+                            <option value="8">Even number - 8</option>
+                            <option value="9">Almost round - 9</option>
+                            <option value="10">A crowd - 10</option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="getOffersButtonPushed && noOfPersonsError">
+                        Please select the no. of persons
+                    </span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <span class="input-span">
-                        <input class="input__field input__field--yoshiko" type="number" min="1" id="inputBudget">
+                        <input class="input__field input__field--yoshiko" type="number" min="1" id="inputBudget" ng-model="budget">
                         <label class="input__label input__label--yoshiko" for="inputBudget">
                             <span class="input__label-content input__label-content--yoshiko" data-content="Total budget">Total budget</span>
                         </label>
+                    </span>
+                    <span class="error" ng-show="getOffersButtonPushed && budgetError">
+                        Please enter your budget
                     </span>
                 </div>
             </div>
@@ -114,19 +126,19 @@
                 <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
             </div>
             <div class="row btn-get-offers-container">
-                <button class="btn btn-primary btn-get-offers">
+                <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
                     Get offers now!
                 </button>
             </div>
         </div>
         <div class="collage-container hidden-xs">
-            <div class="col-md-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="img first"></div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="img second"></div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="img third"></div>
             </div>
         </div>

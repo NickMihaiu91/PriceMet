@@ -206,6 +206,26 @@
         };
     });
 
+    priceMetApp.controller('InputCtrl', function ($scope) {  
+        $scope.getOffersButtonPushed = false;
+
+        $scope.getOffersBtnClicked = function () {
+            $scope.locationError = !$scope.location;
+            $scope.noOfPersonsError = !$('.cs-select .cs-placeholder.changed').length;
+            $scope.budgetError = !$scope.budget;
+            $scope.getOffersButtonPushed = true;
+
+            trackGetOfferEvent();
+
+            var mobileScreen = $(window).width() < 768;
+
+            if (!mobileScreen && ($scope.locationError || $scope.noOfPersonsError || $scope.budgetError))
+                return false;
+
+            $('#offerModal').modal({ backdrop: 'static' });
+        };
+    });
+
     priceMetApp.directive('ticker', function () {
         return {
             link: function (scope, element, attrs) {
@@ -282,6 +302,25 @@
         }
     });
 
+    priceMetApp.directive('googleplace', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attrs, model) {
+                var options = {
+                    types: ['geocode'],
+                    componentRestrictions: { country: 'ca' }
+                };
+                scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+
+                google.maps.event.addListener(scope.gPlace, 'place_changed', function () {
+                    scope.$apply(function () {
+                        model.$setViewValue(element.val());
+                    });
+                });
+            }
+        };
+    });
+
     priceMetApp.filter('applyFilter', function ($filter) {
         return function () {
             var filterName = [].splice.call(arguments, 1, 1)[0];
@@ -348,5 +387,26 @@
         var categoryId = getParameterByName('id');
 
         return categoryId = categoryId || 'r';
+    }
+
+    function trackGetOfferEvent() {
+        var trackObj = {
+            "Category": getOfferCategoryName(),
+            "No of persons": $('#selectNoOfPersons option:selected').text()
+        };
+
+        if ($(window).width() < 768) {
+            trackObj.Location = $('.mobile-input-container #selectLocation').val();
+            trackObj.Budget = $('.mobile-input-container #selectBudget').val().match(/\d+/g)[0];
+            trackObj["No of persons"] = $('.mobile-input-container #selectNoOfPersons').val().match(/\d+/g)[0];
+        }
+
+        if ($('#inputLocation').val())
+            trackObj.Location = $('#inputLocation').val();
+
+        if ($('#inputBudget').val())
+            trackObj.Budget = $('#inputBudget').val();
+
+        mixpanel.track("Get offer", trackObj);
     }
 })();
