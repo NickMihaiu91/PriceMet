@@ -36,6 +36,7 @@ header .logo {
 header .navbar {
     background-color: rgba(0, 0, 0, 0.8);
     min-height: 70px;
+    font-family: gotham;
 }
 
     header .navbar ul.navbar-nav {

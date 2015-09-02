@@ -64,7 +64,7 @@
                 <div class="col-md-4 col-sm-12">
                     <span class="input-span">
                         <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead"
-                               autocomplete="off" placeholder="" ng-model="location" googleplace>
+                               autocomplete="off" placeholder="" ng-model="location" ng-attr-title="{{location}}" googleplace>
                         <label class="input__label input__label--yoshiko" for="inputLocation">
                             <span class="input__label-content input__label-content--yoshiko" data-content="Your location">Your location</span>
                         </label>
@@ -144,7 +144,91 @@
         </div>
     </section>
 
-    <section class="third-section feedback-section">
+    <section class="why-pricemet divider">
+        <div class="container">
+            <div class="row">
+                <h1 class="section-title">
+                    Why Pricemet?
+                </h1>
+            </div>
+            <div class="row content">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <img class="img-responsive" src="images/apple-devices.png" />
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 text-container">
+                    <p>
+                        Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.
+                    </p>
+                    <p>
+                        When YOU name your own price, you save up to 80% below the regular restaurant prices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works divider gray-background">
+        <div class="container">
+            <div class="row">
+                <h1 class="section-title">
+                    How it works
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 box">
+                    <div class="icon">
+                        <img class="img-responsive" src="images/PriceMet_How-it-works-1.png" />
+                    </div>
+                    <div class="title">
+                        <h3>You choose the price</h3>
+                    </div>
+                    <div class="description">
+                        <p>Choose where, how many people and how much you would like to spend.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 box">
+                    <div class="icon">
+                        <img class="img-responsive" src="images/PriceMet_How-it-works-2.png" />
+                    </div>
+                    <div class="title">
+                        <h3>We notify local restaurants</h3>
+                    </div>
+                    <div class="description">
+                        <p>Your request is automatically sent to our network of restaurants.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 box">
+                    <div class="icon">
+                        <img class="img-responsive" src="images/PriceMet_How-it-works-3.png" />
+                    </div>
+                    <div class="title">
+                        <h3>You save time and money</h3>
+                    </div>
+                    <div class="description">
+                        <p>Receive offers that best match your budget. Accept and purchase the vouchers right from your device.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<section class="divider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="img-responsive" src="images/iphone.png" />
+                </div>
+                <div class="col-md-6">
+                    <h1>The power is in your hands</h1>
+                    <p>
+                        You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet’s proprietary auction system restaurants will compete for your money so that you get more bang for your buck!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <section class="third-section feedback-section full-height">
         <div class="container">
             <h1 class="bold">Contact us at:</h1>
             <a class="email-adress" href="mailto:office@pricemet.ca"><h2>office@pricemet.ca</h2></a>
