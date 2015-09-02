@@ -197,7 +197,7 @@
         $scope.selectedNoOfPersons = "It's just me - 1";
         $scope.noOfPersonsModalId = 'noOfPersonsModal';
 
-        $scope.budgetList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 150, 200];
+        $scope.budgetList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300, 350, 400, 450, 500];
         $scope.selectedBudget = 10;
         $scope.budgetModalId = 'budgetModal';
 
