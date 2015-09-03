@@ -224,9 +224,37 @@ section {
         }
 
         section.how-it-works .box .icon > img {
-            max-height: 150px; 
-            margin:0 auto;
+            max-height: 150px;
+            margin: 0 auto;
         }
+
+    /*Benefit sections*/
+    section.benefit-1 > .container > .row {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -moz-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    section.benefit-1 .img-container img {
+        float: right;
+        max-height: 500px;
+    }
+
+    section.benefit-1 .text-container h1 {
+        color: #298DBA;
+    }
+
+    section.benefit-1 .text-container p {
+        font-size: 18px;
+        text-align: justify;
+    }
 
     section.third-section {
         background-color: #195D7C;
@@ -313,10 +341,6 @@ footer {
     font-weight: bold;
 }
 
-.modal-body img {
-    max-height: 150px;
-}
-
 .modal-body .price-container {
     position: relative;
     margin-top: 15px;
@@ -353,11 +377,22 @@ footer {
     text-align: center;
 }
 
-.modal-body .get-more-offers {
-    font-family: Arial, sans-serif;
-    margin: 5px auto 30px auto;
-    white-space: normal;
+.modal-body .get-more-offers-btn-container p {
+    font-weight: bold;
+    font-size: 16px;
 }
+
+.modal-body button.get-more-offers {
+    font-family: Arial, sans-serif;
+    margin: 0 auto 45px auto;
+    white-space: normal;
+    background: rgba(248, 162, 29, 0.75);
+}
+
+.modal-body button.get-more-offers:hover, .modal-body button.get-more-offers:active, .modal-body button.get-more-offers:active:hover {
+    background: rgba(248, 162, 29, 0.9);
+}
+
 
 .modal-body .extra-card {
     font-size: 20px;
@@ -367,7 +402,7 @@ footer {
 }
 
 .modal-body .offer-container {
-    margin-bottom: 25px;
+    margin-bottom: 45px;
     -moz-box-shadow: 0 1px 4px rgba(73, 88, 95, 0.29);
     -webkit-box-shadow: 0 1px 4px rgba(73, 88, 95, 0.29);
     box-shadow: 0 1px 4px rgba(73, 88, 95, 0.29);
@@ -390,6 +425,16 @@ footer {
 
     .modal-body .offer-container .offer-title {
         font-size: 15px;
+    }
+
+    .modal-body .offer-container img {
+        max-height: 150px;
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
 .modal-body .more-offers-section {
@@ -451,7 +496,7 @@ footer {
 }
 
     .modal .bid-looking span {
-        color: rgba(26, 98, 131, 0.78);
+        color: #E86252;
         font-size: 17px;
     }
 
@@ -460,7 +505,7 @@ footer {
         }
 
     .modal .bid-looking .loader-inner > div {
-        background-color: rgba(26, 98, 131, 0.78);
+        background-color: #E86252;
     }
 
 .modal .modal-content.loading-offers {
@@ -488,7 +533,7 @@ footer {
     }
 
         .modal .modal-content.loading-offers .progress .progress-bar {
-            background-color: #FBB43B;
+            background-color: #F8A21D;
         }
 
     .modal .modal-content.loading-offers .view-offers-btn-container {
@@ -500,7 +545,7 @@ footer {
         }
 
     .modal .modal-content.loading-offers .offer-summary {
-        color: rgb(243, 149, 15);
+        color: #F8A21D;
         font-weight: 600;
         white-space: pre-line;
     }
@@ -519,7 +564,7 @@ footer {
     }
 
     .modal .modal-content.loading-offers .header span {
-        color: #0099cc;
+        color: #298DBA;
     }
 
     .modal .modal-content.loading-offers .second-line {
@@ -593,7 +638,7 @@ footer {
     }
 
 .btn-primary {
-    background: #0099cc;
+    background: #298DBA;
     color: #ffffff;
     font-family: Arial,sans-serif;
 }
@@ -628,19 +673,19 @@ footer {
 }
 
 .btn-primary.outline {
-    border: 1px solid #0099cc;
-    color: #0099cc;
+    border: 1px solid #65AF68;
+    color: #65AF68;
 }
 
     .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
         color: #fff;
-        border-color: #33a6cc;
-        background-color: #33a6cc;
+        border-color: #65AF68;
+        background-color: #65AF68;
     }
 
     .btn-primary.outline:active, .btn-primary.outline.active {
-        border-color: #007299;
-        color: #007299;
+        border-color: #65AF68;
+        color: #65AF68;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
@@ -655,7 +700,7 @@ footer {
     margin-left: 20px;
     padding: 0 12px;
     line-height: 30px;
-    background: rgba(31, 141, 214, 0.75);
+    background: rgba(101, 175, 104, 0.8);
     color: #fff;
     font-size: 16px;
     font-weight: 600;
@@ -682,13 +727,13 @@ footer {
         -webkit-border-radius: 2px;
         border-radius: 2px;
         background: #fff;
-        -moz-box-shadow: -1px -1px 2px #004977;
-        -webkit-box-shadow: -1px -1px 2px #004977;
-        box-shadow: -1px -1px 2px #004977;
+        -moz-box-shadow: -1px -1px 2px rgba(101, 175, 104, 0.8);
+        -webkit-box-shadow: -1px -1px 2px rgba(101, 175, 104, 0.8);
+        box-shadow: -1px -1px 2px rgba(101, 175, 104, 0.8);
     }
 
     .tags a:hover {
-        background: #1d85ca;
+        background: #65AF68;
     }
 
 /* Add rounded corners to right end of the anchor tag */
@@ -704,7 +749,7 @@ footer {
     /* Position and show only right border of triangle  */
     .price-tag a:before {
         left: -15px;
-        border-color: transparent rgba(31, 141, 214, 0.75) transparent transparent;
+        border-color: transparent rgba(101, 175, 104, 0.8) transparent transparent;
         border-width: 15px 15px 15px 0;
     }
 
@@ -714,7 +759,7 @@ footer {
     }
 
     .price-tag a:hover:before {
-        border-color: transparent #1d85ca transparent transparent;
+        border-color: transparent #65AF68 transparent transparent;
     }
 
 /* Buttons */

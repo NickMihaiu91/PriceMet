@@ -60,7 +60,7 @@
             <div class="row title">
                 <h2>Where would you like to eat?</h2>
             </div>
-            <div class="row hidden-xs desktop-input-container">
+            <div class="row hidden-xs desktop-input-container" ng-cloak>
                 <div class="col-md-4 col-sm-12">
                     <span class="input-span">
                         <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead"
@@ -212,13 +212,13 @@
         </div>
     </section>
 
-    <!--<section class="divider">
+    <!--<section class="benefit-1 divider">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5 col-sm-6 img-container">
                     <img class="img-responsive" src="images/iphone.png" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-5 text-container">
                     <h1>The power is in your hands</h1>
                     <p>
                         You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet’s proprietary auction system restaurants will compete for your money so that you get more bang for your buck!
@@ -330,12 +330,16 @@
                             </div>
                             <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in offer-repeat">
                                 <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
+                                    <p>If you are flexible on your timeline, restaurants may offer you deeper discounts</p>
                                     <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
-                                        How long would you wait for deeper discounts?
+                                        I want deeper discounts
                                     </button>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" id="{{'offer' + $index}}">
-                                    <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
+                                    <div>
+                                        <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
+                                    </div>
+                                    
                                     <h5 class="offer-title">{{ offer.bidOfferTitle }}</h5>
 
                                     <div class="price-container">
@@ -351,6 +355,7 @@
                                     <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
                                 </div>
                             </div>
+                            
                             <div class="col-md-4 col-sm-6 col-md-xs-12 offer-container extra-card" ng-show="noOfOffers >= 1">
                                 <div>
                                     More offers are
