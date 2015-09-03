@@ -215,18 +215,26 @@
                     firstSectionH1: 'Amazing restaurants that meet your price',
                     firstSectionH2: 'Where would you like to eat?',
                     firstSectionH3: 'Set your budget and let local restaurants compete with their offers',
-                    secondSectionH1: 'Pick your own price and let restaurants show their offers!'
-                },
-                'cb': {
-                    firstSectionH1: 'Great fun at your own price',
-                    firstSectionH3: 'Set your budget and let clubs and bars compete with their offers',
-                    secondSectionH1: 'Pick your own price and let clubs and bars show their offers!'
+                    secondSectionH1: 'Pick your own price and let restaurants show their offers!',
+                    whyPricemetText1: 'Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.',
+                    whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular restaurant prices.',
+                    howItWorksStep2Title: 'We notify local restaurants',
+                    howItWorksStep2Text: 'Your request is automatically sent to our network of restaurants'
                 },
                 'b': {
                     firstSectionH1: 'Local health and beauty salons that meet your price',
                     firstSectionH2: 'Where would you like to relax?',
                     firstSectionH3: 'Set your budget and let salons compete with their offers',
-                    secondSectionH1: 'Pick your own price and let salons show their offers!'
+                    secondSectionH1: 'Pick your own price and let salons show their offers!',
+                    whyPricemetText1: 'Because we help you find the best spas and salons the city has to offer at the price, YOU choose, not the price someone else chooses for you.',
+                    whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular prices.',
+                    howItWorksStep2Title: 'We notify local health & beauty salons',
+                    howItWorksStep2Text: 'Your request is automatically sent to our network of health & beauty salons'
+                },
+                'cb': {
+                    firstSectionH1: 'Great fun at your own price',
+                    firstSectionH3: 'Set your budget and let clubs and bars compete with their offers',
+                    secondSectionH1: 'Pick your own price and let clubs and bars show their offers!'
                 },
                 'p': {
                     firstSectionH1: 'Local plumbers ready to meet your price',
@@ -251,6 +259,10 @@
             //$('.second-section h1').text(messages[category].secondSectionH1);
 
             $('.first-section h2').text(messages[category].firstSectionH2);
+            $('.why-pricemet .text-container p:nth-of-type(1)').text(messages[category].whyPricemetText1);
+            $('.why-pricemet .text-container p:nth-of-type(2)').text(messages[category].whyPricemetText2);
+            $('.how-it-works .box:nth-of-type(2) .title > h3').text(messages[category].howItWorksStep2Title);
+            $('.how-it-works .box:nth-of-type(2) .description > p').text(messages[category].howItWorksStep2Text);
 
             switch (category) {
                 case 'r': {
