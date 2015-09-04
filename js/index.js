@@ -220,6 +220,7 @@
                     whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular restaurant prices.',
                     howItWorksStep2Title: 'We notify local restaurants',
                     howItWorksStep2Text: 'Your request is automatically sent to our network of restaurants',
+                    howItWorksImgUrl: 'images/Why-PriceMet_Restaurants.png',
                     benefitsSection: {
                         title1: 'The power is in your hands',
                         text1: "You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet's proprietary auction system restaurants will compete for your money so that you get more bang for your buck!",
@@ -238,6 +239,7 @@
                     whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular prices.',
                     howItWorksStep2Title: 'We notify local health & beauty salons',
                     howItWorksStep2Text: 'Your request is automatically sent to our network of health & beauty salons',
+                    howItWorksImgUrl: 'images/Why-PriceMet_Health-and-Beauty.png',
                     benefitsSection: {
                         title1: 'You set the price',
                         text1: "Say how much are you willing to pay for your health or beauty service. You are now in control! Not the spas or salons! Using PriceMet's proprietary auction system, salons and spas will compete for your money so that you get more bang for your buck!",
@@ -274,6 +276,8 @@
             $('.first-section h2').text(messages[category].firstSectionH2);
             $('.why-pricemet .text-container p:nth-of-type(1)').text(messages[category].whyPricemetText1);
             $('.why-pricemet .text-container p:nth-of-type(2)').text(messages[category].whyPricemetText2);
+            $('.why-pricemet img').attr('src', (messages[category].howItWorksImgUrl));
+
             $('.how-it-works .box:nth-of-type(2) .title > h3').text(messages[category].howItWorksStep2Title);
             $('.how-it-works .box:nth-of-type(2) .description > p').text(messages[category].howItWorksStep2Text);
 
@@ -313,10 +317,6 @@
             }
         }
         else {
-            //$('.first-section h1').text(messages['default'].firstSectionH1);
-            //$('.first-section h3').text(messages['default'].firstSectionH3);
-            //$('.second-section h1').text(messages['default'].secondSectionH1);
-
             $('section.first-section').addClass('default');
         }
     }
