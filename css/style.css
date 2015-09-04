@@ -229,47 +229,57 @@ section {
         }
 
     /*Benefit sections*/
-    section.benefit-1 > .container > .row {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-align: center;
-        -moz-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
+    section.benefits > .container .margin-top {
+        margin-top: 70px
     }
 
-    section.benefit-1 .img-container img {
+    section.benefits .img-container img {
         float: right;
         max-height: 500px;
     }
 
-    section.benefit-1 .text-container h1 {
+    section.benefits .text-container h1 {
         color: #298DBA;
     }
 
-    section.benefit-1 .text-container p {
+    section.benefits .text-container p {
         font-size: 18px;
         text-align: justify;
     }
 
-    section.third-section {
-        background-color: #195D7C;
-        color: white;
+    section.benefits .payment-methods-container {
+        margin-top: 10px;
     }
 
-        section.third-section form {
-            margin-top: 20px;
-        }
+    section.feedback-section .section-title {
+        margin-bottom: 20px;
+    }
 
-        section.third-section .email-adress {
-            color: white;
-            text-decoration: underline;
-        }
+    section.feedback-section form {
+        margin-top: 20px;
+    }
 
+    section.feedback-section .email-address {
+        color: #298DBA;
+        text-decoration: underline;
+    }
+
+    section.feedback-section input, section.feedback-section textarea {
+        font-size: 16px;
+        border-color: #9D8B8B;
+    }
+
+    section.feedback-section .email-address-input {
+        min-height: 50px;
+    }
+
+    section.feedback-section .btn {
+        background-color: #65AF68;
+    }
+
+        section.feedback-section .btn:hover {
+            background: rgba(101, 175, 104, 0.9);
+        }
 
 .bold {
     font-weight: bold;
@@ -282,7 +292,7 @@ section {
 
 /* Footer */
 footer {
-    background-color: #124257;
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
@@ -377,10 +387,10 @@ footer {
     text-align: center;
 }
 
-.modal-body .get-more-offers-btn-container p {
-    font-weight: bold;
-    font-size: 16px;
-}
+    .modal-body .get-more-offers-btn-container p {
+        font-weight: bold;
+        font-size: 16px;
+    }
 
 .modal-body button.get-more-offers {
     font-family: Arial, sans-serif;
@@ -389,9 +399,9 @@ footer {
     background: rgba(248, 162, 29, 0.75);
 }
 
-.modal-body button.get-more-offers:hover, .modal-body button.get-more-offers:active, .modal-body button.get-more-offers:active:hover {
-    background: rgba(248, 162, 29, 0.9);
-}
+    .modal-body button.get-more-offers:hover, .modal-body button.get-more-offers:active, .modal-body button.get-more-offers:active:hover {
+        background: rgba(248, 162, 29, 0.9);
+    }
 
 
 .modal-body .extra-card {
@@ -762,59 +772,6 @@ footer {
         border-color: transparent #65AF68 transparent transparent;
     }
 
-/* Buttons */
-.btn-n {
-    border: 3px solid #FBB43B;
-    color: #FBB43B;
-    font-family: inherit;
-    font-size: inherit;
-    background: none;
-    cursor: pointer;
-    padding: 15px 60px;
-    display: inline-block;
-    margin: 15px 30px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    outline: none;
-    position: relative;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    z-index: 11;
-}
-
-    .btn-n:after {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        -webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-        width: 0;
-        height: 103%;
-        top: 50%;
-        left: 50%;
-        background: #FBB43B;
-        opacity: 0;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        -o-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-    }
-
-    .btn-n:hover, .btn-n:focus {
-        color: white;
-    }
-
-        .btn-n:hover:after, .btn-n:active:after {
-            width: 90%;
-            opacity: 1;
-        }
-
 /*Loading dots animation*/
 .loading {
     font-size: 30px;
@@ -855,6 +812,60 @@ footer {
         width: 1.25em;
     }
 }
+
+.heart-text {
+    position: absolute;
+    z-index: 3;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    left: 49%;
+    top: 20px;
+}
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+    .heart:before, .heart:after {
+        position: absolute;
+        content: "";
+        left: 50px;
+        top: 0;
+        width: 50px;
+        height: 80px;
+        background: #E86252;
+        -moz-border-radius: 50px 50px 0 0;
+        -webkit-border-radius: 50px 50px 0 0;
+        border-radius: 50px 50px 0 0;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 0 100%;
+        -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+        -o-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+    }
+
+    .heart:after {
+        left: 0;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
 
 /*Toast customization*/
 .toast.toast-info {
@@ -959,6 +970,10 @@ section.first-section.restaurant .img.third {
         font-size: 28px;
     }
 
+    .heart-text {
+        left: 48%;
+    }
+
     header .navbar {
         min-height: 60px;
         background-color: rgba(0, 0, 0, 0.8);
@@ -1034,6 +1049,10 @@ section.first-section.restaurant .img.third {
         section.why-pricemet .content > div {
             margin-top: 10px;
         }
+
+    section.benefits .heart-text.first {
+        left: 49%;
+    }
 
     .modal-open {
         position: fixed;
@@ -1130,19 +1149,6 @@ section.first-section.restaurant .img.third {
         font-size: 24px;
     }
 
-    section.third-section h1 {
-        font-size: 24px;
-    }
-
-    section.third-section h2 {
-        font-size: 18px;
-    }
-
-    section.third-section .btn-n {
-        font-size: 12px;
-        padding: 10px 50px;
-    }
-
     .modal-body .initial-view .text-container {
         font-size: 14px;
     }
@@ -1161,10 +1167,6 @@ section.first-section.restaurant .img.third {
 }
 
 @media screen and (max-height: 500px) {
-    /*section.second-section {
-        height: 130%;
-    }*/
-
     section.first-section .title h2 {
         font-size: 20px;
     }

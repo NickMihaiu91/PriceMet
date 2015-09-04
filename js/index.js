@@ -93,7 +93,7 @@
         });
 
         $('.navbar-nav .nav-contact-us').on('click', function () {
-            $('.third-section').scrollintoview({ duration: 500 });
+            $('.feedback-section').scrollintoview({ duration: 500 });
             $('.navbar-collapse').collapse('hide');
             mixpanel.track("Navbar", { 'option': 'contact us' });
         });
@@ -219,7 +219,15 @@
                     whyPricemetText1: 'Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.',
                     whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular restaurant prices.',
                     howItWorksStep2Title: 'We notify local restaurants',
-                    howItWorksStep2Text: 'Your request is automatically sent to our network of restaurants'
+                    howItWorksStep2Text: 'Your request is automatically sent to our network of restaurants',
+                    benefitsSection: {
+                        title1: 'The power is in your hands',
+                        text1: "You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet's proprietary auction system restaurants will compete for your money so that you get more bang for your buck!",
+                        title2: 'Make your friends jealous',
+                        text2: "Find local popular restaurants as well as area's hidden gems without lifting a finger. Get to know top eating places that your friends and family might not know about.",
+                        title3: 'Experience more',
+                        text3: "A great variety of restaurants putting their best offers to your request. You'll discover cuisines that will make you fall to your knees...Rest assured, you'll always find something on your taste!"
+                    }
                 },
                 'b': {
                     firstSectionH1: 'Local health and beauty salons that meet your price',
@@ -229,7 +237,15 @@
                     whyPricemetText1: 'Because we help you find the best spas and salons the city has to offer at the price, YOU choose, not the price someone else chooses for you.',
                     whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular prices.',
                     howItWorksStep2Title: 'We notify local health & beauty salons',
-                    howItWorksStep2Text: 'Your request is automatically sent to our network of health & beauty salons'
+                    howItWorksStep2Text: 'Your request is automatically sent to our network of health & beauty salons',
+                    benefitsSection: {
+                        title1: 'You set the price',
+                        text1: "Say how much are you willing to pay for your health or beauty service. You are now in control! Not the spas or salons! Using PriceMet's proprietary auction system, salons and spas will compete for your money so that you get more bang for your buck!",
+                        title2: 'Discover great local services',
+                        text2: "Find local names-you-know spas and salons as well as area's hidden gems in your neighborhood and get pampered. Get to experience an amazing massage, that perfect blowout or just a gorgeous place to relax and chill out in your corner of the city.",
+                        title3: 'Experience more',
+                        text3: "With our large network of salons you will discover a wide variety of health and beauty services and products to suit your needs and soothe your soul...Rest assured, you'll always find something on your taste!"
+                    }
                 },
                 'cb': {
                     firstSectionH1: 'Great fun at your own price',
@@ -254,15 +270,17 @@
             };
 
         if (category && messages[category]) {
-            //$('.first-section h1').text(messages[category].firstSectionH1);
-            //$('.first-section h3').text(messages[category].firstSectionH3);
-            //$('.second-section h1').text(messages[category].secondSectionH1);
 
             $('.first-section h2').text(messages[category].firstSectionH2);
             $('.why-pricemet .text-container p:nth-of-type(1)').text(messages[category].whyPricemetText1);
             $('.why-pricemet .text-container p:nth-of-type(2)').text(messages[category].whyPricemetText2);
             $('.how-it-works .box:nth-of-type(2) .title > h3').text(messages[category].howItWorksStep2Title);
             $('.how-it-works .box:nth-of-type(2) .description > p').text(messages[category].howItWorksStep2Text);
+
+            for (var i = 0; i <= 2; i++) {
+                $('.benefits  .text-container:eq(' + i + ') h1').text(messages[category].benefitsSection['title' + (i + 1)]);
+                $('.benefits  .text-container:eq(' + i + ') p').text(messages[category].benefitsSection['text' + (i + 1)]);
+            }
 
             switch (category) {
                 case 'r': {
