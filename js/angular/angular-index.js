@@ -204,6 +204,30 @@
         $scope.openModal = function (modalId) {
             $('#' + $scope[modalId]).modal({ backdrop: 'static' });
         };
+
+        $scope.$watch(function () {
+            return $scope.selectedCity;
+        }, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                mixpanel.track("Location changed", { Location: newVal });
+            }
+        });
+
+        $scope.$watch(function () {
+            return $scope.selectedNoOfPersons;
+        }, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                mixpanel.track("No of persons changed", { "No of persons": newVal });
+            }
+        });
+
+        $scope.$watch(function () {
+            return $scope.selectedBudget;
+        }, function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                mixpanel.track("Budget changed", { Budget: newVal });
+            }
+        });
     });
 
     priceMetApp.controller('InputCtrl', function ($scope) {  

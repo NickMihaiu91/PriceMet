@@ -173,22 +173,40 @@
         });
 
         // track where on the page they get too
-        var offerSectionViewed = false,
+        var whyPricemetSectionViewed = false,
+            howItWorksSectionViewed = false,
+            benefitsSectionViewed = false,
             contactUsSectionViewed = false,
             footerViewed = false;
 
-        $('.second-section h1').appear();
-        $('.third-section h1').appear();
+        $('.why-pricemet h1').appear();
+        $('.how-it-works h1').appear();
+        $('.feedback-section h1').appear();
+        $('.benefits h1:first').appear();
         $('footer').appear();
 
-        $('.second-section h1').on('appear', function () {
-            if (!offerSectionViewed)
-                mixpanel.track("Viewed Offer section");
+        $('.why-pricemet h1').on('appear', function () {
+            if (!whyPricemetSectionViewed)
+                mixpanel.track("Viewed Why Pricemet section");
 
-            offerSectionViewed = true;
+            whyPricemetSectionViewed = true;
         });
 
-        $('.third-section h1').on('appear', function () {
+        $('.how-it-works h1').on('appear', function () {
+            if (!howItWorksSectionViewed)
+                mixpanel.track("Viewed How it works section");
+
+            howItWorksSectionViewed = true;
+        });
+
+        $('.benefits h1:first').on('appear', function () {
+            if (!benefitsSectionViewed)
+                mixpanel.track("Viewed Benefits section");
+
+            benefitsSectionViewed = true;
+        });
+
+        $('.feedback-section h1').on('appear', function () {
             if (!contactUsSectionViewed)
                 mixpanel.track("Viewed Contact us section");
 
