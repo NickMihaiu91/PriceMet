@@ -935,6 +935,14 @@ section.first-section.restaurant .img.third {
     section.first-section .desktop-input-container div.cs-select {
         width: 350px;
     }
+
+    section.why-pricemet .text-container {
+        text-align: left;
+    }
+
+    section.how-it-works .box .description {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 1000px) {
