@@ -189,16 +189,18 @@
     });
 
     priceMetApp.controller('MobileInputCtrl', function ($scope) {
+        var categoryId = getOfferCategoryId();
+
         $scope.canadaCitiesList = ["Vancouver", "Burnaby", "Coquitlam", "Delta", "Langley", "Lions Bay", "Maple Ridge", "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody", "Richmond", "Surrey", "West Vancouver", "White Rock"];
         $scope.selectedCity = 'Vancouver';
         $scope.locationModalId = 'locationModal';
 
         $scope.noOfPersonList = ["It's just me - 1", "A couple - 2", "Lucky number - 3", "A pack - 4", "Give me five! - 5", "Six pack - 6", "Seven sins - 7", "Even number - 8", "Almost round - 9", "A crowd - 10"];
-        $scope.selectedNoOfPersons = "It's just me - 1";
+        $scope.selectedNoOfPersons = categoryId === 'b' ? "It's just me - 1" : "A couple - 2";
         $scope.noOfPersonsModalId = 'noOfPersonsModal';
 
         $scope.budgetList = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300, 350, 400, 450, 500];
-        $scope.selectedBudget = 10;
+        $scope.selectedBudget = categoryId === 'b' ? 30 : 50;
         $scope.budgetModalId = 'budgetModal';
 
         $scope.openModal = function (modalId) {
