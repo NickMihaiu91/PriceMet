@@ -334,7 +334,7 @@
             link: function (scope, element, attrs, model) {
                 var options = {
                     types: ['geocode'],
-                    componentRestrictions: { country: 'ca' }
+                    componentRestrictions: { country: 'us' }
                 };
                 scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
 
