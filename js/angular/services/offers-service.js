@@ -152,12 +152,14 @@
             return bidOfferTitle;
 
         var offerPriceRegex = new RegExp('[$]' + offerPrice + '((?:\s)|(?:\:)|[^0-9])'),
+            matchCanadianCurrency = new RegExp('C\\$', 'g'),
             offerTitleEnding = ' - for ';
 
         bidOfferTitle = bidOfferTitle.replace(originalPrice, originalPrice * noOfPersons);
         bidOfferTitle = bidOfferTitle.replace(offerPriceRegex, '*' + offerPrice * noOfPersons + '#');
         bidOfferTitle = bidOfferTitle.replace('*', '$');
         bidOfferTitle = bidOfferTitle.replace('#', ' ');
+        bidOfferTitle = bidOfferTitle.replace(matchCanadianCurrency, '$');
 
         return bidOfferTitle + offerTitleEnding + formatNoOfPersonsToTextRepresentation(noOfPersons);
     }

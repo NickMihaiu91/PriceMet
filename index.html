@@ -291,8 +291,8 @@
         <div class="container">
             <div class="row">
                 <h1 class="section-title">Contact us</h1>
-                <a class="email-address" href="mailto:office@pricemet.ca">
-                    <h2 class="bold">office@pricemet.ca</h2>
+                <a class="email-address" href="mailto:office@pricemet.com">
+                    <h2 class="bold">office@pricemet.com</h2>
                 </a>
                 <h2 class="bold">OR</h2>
 
@@ -406,9 +406,9 @@
 
                                     <div class="price-container">
                                         <span class="tags">
-                                            <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
+                                            <span class="price-tag"><a href="javascript:void()">${{offer.offerPrice}}</a></span>
                                         </span>
-                                        <span class="price-strikethrough">C${{offer.originalPrice}}</span>
+                                        <span class="price-strikethrough">${{offer.originalPrice}}</span>
 
                                         <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
                                             Accept bid
@@ -527,7 +527,7 @@
                     <div class="modal-body">
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="option in list" ng-click="selectOption(option, $event)">
-                                <i class="fa fa-lg fa-square-o"></i>{{ option | applyFilter: 'currency':"C$":0 }}
+                                <i class="fa fa-lg fa-square-o"></i>{{ option | applyFilter: 'currency':"$":0 }}
                             </li>
                         </ul>
                     </div>

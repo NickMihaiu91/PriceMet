@@ -36,7 +36,7 @@
             $scope.noOfPersonsTextRepresentation = formatNoOfPersonsToTextRepresentation(noOfPersons);
             $scope.loadingBarProgress = 20;
             $scope.progressBarStyle = { 'width': $scope.loadingBarProgress + '%' };
-            $scope.offerSummary = '{0} offers for {1}, C${2} budget, {3}'.format(offerTypeText, $scope.noOfPersonsTextRepresentation, budget, location);
+            $scope.offerSummary = '{0} offers for {1}, ${2} budget, {3}'.format(offerTypeText, $scope.noOfPersonsTextRepresentation, budget, location);
             $scope.merchantType = offerTypeText === 'Restaurant' ? offerTypeText.toLowerCase() + 's' : 'salons';
             $scope.offerTypeText = offerTypeText;
             $rootScope.safeApply();
@@ -322,7 +322,7 @@
 
                 //format text going to user (model to view)
                 ngModel.$formatters.push(function (value) {
-                    return 'C$' + value;
+                    return '$' + value;
                 });
             }
         }
