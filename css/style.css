@@ -229,7 +229,7 @@ section {
 
     /*Benefit sections*/
     section.benefits > .container .margin-top {
-        margin-top: 70px
+        margin-top: 70px;
     }
 
     section.benefits .img-container img {
@@ -328,6 +328,7 @@ footer {
 
 .modal {
     font-family: 'Droid Serif', serif;
+    padding-left: 0 !important;
 }
 
     .modal .modal-dialog {
@@ -866,6 +867,41 @@ footer {
         transform-origin: 100% 100%;
     }
 
+.full-page-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1040;
+    background-color: white;
+    display: none;
+}
+
+    .full-page-modal .full-page-modal-header {
+        color: #565a5c;
+        font-size: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #dce0e0;
+        background-color: #edefed;
+    }
+
+        .full-page-modal .full-page-modal-header .modal-close {
+            float: right;
+            cursor: pointer;
+            font-size: 2em;
+            line-height: 0.7;
+            vertical-align: middle;
+            font-style: normal;
+            font-weight: normal;
+            color: #cacccd;
+            padding: 8px;
+            margin-right: 8px;
+            margin-top: -8px;
+            text-decoration: none;
+        }
+
 /*Toast customization*/
 .toast.toast-info {
     background-color: #51a351;
@@ -999,55 +1035,62 @@ section.first-section.restaurant .img.third {
                 background-color: rgb(41, 84, 126);
             }
 
-    section.first-section .container {
-        padding-top: 60px;
+
+    section.first-section {
+        height: 100%;
     }
 
-    section.first-section .title h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-
-    section.first-section .btn {
-        margin-top: 0;
-    }
-
-    section.first-section .mobile-input-container .row {
-        margin-bottom: 25px;
-    }
-
-    section.first-section .mobile-input-container .input-span {
-        width: 80%;
-    }
-
-        section.first-section .mobile-input-container .input-span:after {
-            font-family: FontAwesome;
-            content: "\f107";
-            font-size: 28px;
-            position: absolute;
-            right: 20px;
-            top: 20%;
-            color: #E86252;
+        section.first-section .container {
+            height: 100%;
+            padding-top: 60px;
+            padding-bottom: 0;
         }
 
-        section.first-section .mobile-input-container .input-span:before {
-            content: attr(data-title);
-            position: absolute;
-            left: 15px;
-            top: 14px;
-            font-size: 12px;
-            color: #9A9898;
+        section.first-section .title h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
         }
 
-        section.first-section .mobile-input-container .input-span input {
-            padding-top: 30px;
-            padding-bottom: 8px;
-            padding-left: 15px;
+        section.first-section .btn {
+            margin-top: 0;
         }
 
-        section.first-section .mobile-input-container .input-span.legacy-input:before {
-            top: 4px;
+        section.first-section .mobile-input-container .row {
+            margin-bottom: 25px;
         }
+
+        section.first-section .mobile-input-container .input-span {
+            width: 80%;
+        }
+
+            section.first-section .mobile-input-container .input-span:after {
+                font-family: FontAwesome;
+                content: "\f107";
+                font-size: 28px;
+                position: absolute;
+                right: 20px;
+                top: 20%;
+                color: #E86252;
+            }
+
+            section.first-section .mobile-input-container .input-span:before {
+                content: attr(data-title);
+                position: absolute;
+                left: 15px;
+                top: 14px;
+                font-size: 12px;
+                color: #9A9898;
+            }
+
+            section.first-section .mobile-input-container .input-span input {
+                padding-top: 30px;
+                padding-bottom: 8px;
+                padding-left: 15px;
+            }
+
+            section.first-section .mobile-input-container .input-span.legacy-input:before {
+                top: 4px;
+            }
 
     section.why-pricemet .content {
         display: block;
@@ -1151,6 +1194,84 @@ section.first-section.restaurant .img.third {
                 padding-right: 10px;
                 color: #65AF68;
             }
+
+    .first-section .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .first-section .image-explanation {
+        height: 100%;
+        position: relative;
+        font-family: gotham;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+    }
+
+        .first-section .image-explanation::after {
+            content: '';
+            background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: block;
+            width: 100%;
+            height: 100%;
+            /*-webkit-filter: brightness(80%) contrast(70%);*/
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .first-section .image-explanation > div {
+            position: relative;
+            z-index: 1;
+            padding-top: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .first-section .image-explanation h2 {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .first-section .image-explanation .input-container .row {
+            margin-top: 15px;
+        }
+
+    section.first-section .mobile-input-container .row {
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    section.first-section .mobile-input-container .input-container .input-group {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+        section.first-section .mobile-input-container .input-container .input-group .input-group-addon {
+            background-color: #65AF68;
+            border-color: #65AF68;
+            color: white;
+        }
+
+
+    section.first-section .mobile-input-container .input-container input {
+        color: #686666;
+        font-size: 13px !important;
+        font-style: italic;
+        text-align: center;
+        background-color: white;
+    }
+
+    section.first-section.restaurant .image-explanation::after {
+        background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
+    }
+
+    section.first-section.beauty-spa .image-explanation::after {
+        background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/spa-decor5_crop.jpg');
+    }
 }
 
 @media screen and (max-height: 600px) {

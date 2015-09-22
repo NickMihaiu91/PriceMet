@@ -230,6 +230,20 @@
                 mixpanel.track("Budget changed", { Budget: newVal });
             }
         });
+
+        $scope.showMobileInput = function () {
+            $('#mobileInputContainer').show();
+            $('body').addClass('modal-open');
+
+            mixpanel.track("Mobile Homepage Input Box Clicked");
+        };
+
+        $scope.hideMobileInput = function () {
+            $('#mobileInputContainer').hide();
+            $('body').removeClass('modal-open');
+
+            mixpanel.track("Mobile Homepage Input Container Closed");
+        };
     });
 
     priceMetApp.controller('InputCtrl', function ($scope) {  
