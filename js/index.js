@@ -231,10 +231,9 @@
                 },
                 'r': {
                     firstSectionH1: 'Amazing restaurants that meet your price',
-                    firstSectionH2: 'Where would you like to eat?',
                     firstSectionH3: 'Set your budget and let local restaurants compete with their offers',
                     firstSectionTitle: 'Name your own price at restaurants',
-                    firstSectionBellowTitle: 'We notify restaurants. You get the best offers for your money.',
+                    firstSectionBellowTitle: 'We notify the restaurants. You get the best offers for your money.',
                     secondSectionH1: 'Pick your own price and let restaurants show their offers!',
                     whyPricemetText1: 'Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.',
                     whyPricemetText2: 'When YOU name your own price, you save up to 80% below the regular restaurant prices.',
@@ -252,7 +251,6 @@
                 },
                 'b': {
                     firstSectionH1: 'Local health and beauty salons that meet your price',
-                    firstSectionH2: 'Where would you like to relax?',
                     firstSectionH3: 'Set your budget and let salons compete with their offers',
                     firstSectionTitle: 'Name your own price at spa & beauty salons',
                     firstSectionBellowTitle: 'We notify the merchants. You get the best offers for your money.',
@@ -294,8 +292,8 @@
             };
 
         if (category && messages[category]) {
-
-            $('.first-section .hidden-xs h2').text(messages[category].firstSectionH2);
+            $('.first-section .title h2').text(messages[category].firstSectionTitle);
+            $('.first-section .title h4').text(messages[category].firstSectionBellowTitle);
             $('.first-section .mobile-input-container h2').text(messages[category].firstSectionTitle);
             $('.first-section .mobile-input-container h4').text(messages[category].firstSectionBellowTitle);
             $('.why-pricemet .text-container p:nth-of-type(1)').text(messages[category].whyPricemetText1);
