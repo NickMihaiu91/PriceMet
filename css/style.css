@@ -129,15 +129,19 @@ section {
             }
 
         section.first-section .title h2 {
-            margin-bottom: 60px;
             color: #2F2E2D;
             font-size: 38px;
             font-family: gotham;
         }
 
+        section.first-section .title h4 {
+            margin-bottom: 50px;
+            font-family: gotham;
+        }
+
         section.first-section .container {
             padding-top: 150px;
-            padding-bottom: 100px;
+            padding-bottom: 80px;
         }
 
         section.first-section .btn-get-offers-container {
