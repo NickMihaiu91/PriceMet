@@ -447,6 +447,19 @@ footer {
         bottom: 0;
     }
 
+    .modal-body .offer-container .rating-container {
+        color: #E86252;
+        margin-bottom: 10px;
+    }
+
+        .modal-body .offer-container .rating-container i {
+            padding-right: 2px;
+        }
+
+            .modal-body .offer-container .rating-container i.fa-heart-o.first {
+                margin-left: -2px;
+            }
+
 .modal-body .more-offers-section {
     text-align: center;
     margin-top: 10px;
@@ -1211,6 +1224,7 @@ section.first-section.restaurant .img.third {
 
         .first-section .image-explanation::after {
             content: '';
+            background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
             background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
             background-size: cover;
             background-repeat: no-repeat;
@@ -1266,10 +1280,12 @@ section.first-section.restaurant .img.third {
     }
 
     section.first-section.restaurant .image-explanation::after {
+        background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
         background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/People-Eating-in-Restaurant-2_crop3.jpg');
     }
 
     section.first-section.beauty-spa .image-explanation::after {
+        background-image: -webkit-linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/spa-decor5_crop.jpg');
         background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('../images/header/spa-decor5_crop.jpg');
     }
 }

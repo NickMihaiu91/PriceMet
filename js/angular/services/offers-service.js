@@ -131,7 +131,11 @@
             RESTAURANT_PATH = 'restaurant/',
             BEAUTY_PATH = 'beauty/',
             BEAUTY_IMAGE_ID = 'B',
-            urlToImg = offerType === 'r' ? baseUrlToImg + RESTAURANT_PATH + RESTAURANT_IMAGE_ID : baseUrlToImg + BEAUTY_PATH + BEAUTY_IMAGE_ID;
+            urlToImg = offerType === 'r' ? baseUrlToImg + RESTAURANT_PATH + RESTAURANT_IMAGE_ID : baseUrlToImg + BEAUTY_PATH + BEAUTY_IMAGE_ID,
+            RATING_MIN = 3,
+            RATING_MAX = 5,
+            VOTES_MIN = 50,
+            VOTES_MAX = 200;
 
         angular.forEach(parseOfferList, function (value) {
             offers.push({
@@ -140,7 +144,9 @@
                 offerPrice: value.attributes.offerPrice * noOfPersons,
                 originalPrice: value.attributes.originalPrice * noOfPersons,
                 imgUrl: urlToImg + value.attributes.imageID + imgDefaultExtension,
-                distance: value.attributes.distance
+                distance: value.attributes.distance,
+                rating: randomIntFromInterval(RATING_MIN, RATING_MAX),
+                votes: randomIntFromInterval(VOTES_MIN, VOTES_MAX)
             });
         });
         

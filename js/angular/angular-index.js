@@ -186,6 +186,10 @@
 
             mixpanel.track("Back to offers -  clicked button");
         };
+
+        $scope.getNumber = function (num) {
+            return new Array(num);
+        }
     });
 
     priceMetApp.controller('MobileInputCtrl', function ($scope) {
