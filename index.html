@@ -57,7 +57,7 @@
 
     <section class="first-section" ng-controller="InputCtrl">
         <div class="container" ng-cloak>
-            <div class="row title">
+            <div class="row title hidden-xs">
                 <h2>Where would you like to eat?</h2>
             </div>
             <div class="row hidden-xs desktop-input-container">
@@ -105,27 +105,58 @@
                     </span>
                 </div>
             </div>
-            <div class="visible-xs mobile-input-container" ng-controller="MobileInputCtrl">
-                <div class="row">
-                    <span class="input-span input-span-location" data-title="Location" ng-click="openModal('locationModalId')">
-                        <input class="input__field input__field--yoshiko" type="text" id="selectLocation" ng-model="selectedCity" readonly>
-                    </span>
+            <div class="visible-xs mobile-input-container full-height" ng-controller="MobileInputCtrl">
+                <div class="image-explanation">
+                    <div>
+                        <h2>Name your own price at restaurants</h2>
+                    </div>
+                    <div>
+                        <h4>We notify restaurants. You get the best offers for your money.</h4>
+                    </div>
+                    <div class="input-container">
+                        <div class="row">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" value="How much do you want to pay?" readonly ng-click="showMobileInput()" />
+                                <span class="input-group-addon">C$</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <span class="input-span" data-title="No of persons" ng-click="openModal('noOfPersonsModalId')">
-                        <input class="input__field input__field--yoshiko" type="text" id="selectNoOfPersons" ng-model="selectedNoOfPersons" readonly>
-                    </span>
+
+                <div class="full-page-modal" id="mobileInputContainer">
+                    <div class="full-page-modal-header">
+                        Receive offers
+                        <a href="#" class="modal-close" ng-click="hideMobileInput()">
+                            <span class="aria-hidden">×</span>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <span class="input-span input-span-location" data-title="Location" ng-click="openModal('locationModalId')">
+                            <input class="input__field input__field--yoshiko" type="text" id="selectLocation" ng-model="selectedCity" readonly>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="input-span" data-title="No of persons" ng-click="openModal('noOfPersonsModalId')">
+                            <input class="input__field input__field--yoshiko" type="text" id="selectNoOfPersons" ng-model="selectedNoOfPersons" readonly>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="input-span" data-title="Total budget" ng-click="openModal('budgetModalId')">
+                            <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
+                        </span>
+                    </div>
+                    <div class="row btn-get-offers-container">
+                        <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
+                            Get offers now!
+                        </button>
+                    </div>
                 </div>
-                <div class="row">
-                    <span class="input-span" data-title="Total budget" ng-click="openModal('budgetModalId')">
-                        <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
-                    </span>
-                </div>
+
                 <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal" modaltitle="Choose desired location"></select-modal>
                 <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal" modaltitle="Choose no. of persons"></select-modal>
                 <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
             </div>
-            <div class="row btn-get-offers-container">
+            <div class="row btn-get-offers-container hidden-xs">
                 <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
                     Get offers now!
                 </button>
@@ -415,6 +446,11 @@
                                         </a>
                                     </div>
                                     <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
+                                    <div class="rating-container">
+                                        <i ng-repeat="i in getNumber(offer.rating) track by $index" class="fa fa-heart fa-lg"></i>
+                                        <i ng-repeat="i in getNumber(5 - offer.rating) track by $index" class="fa fa-heart-o fa-lg" ng-class="$index === 0 ? 'first' : ''"></i>
+                                        <span>({{ offer.votes }} votes)</span>
+                                    </div>
                                 </div>
                             </div>
                             
