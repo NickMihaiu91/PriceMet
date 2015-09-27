@@ -1328,6 +1328,12 @@ section.first-section.restaurant .img.third {
     }
 }
 
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
+    section.first-section .mobile-input-container .input-container input {
+        font-size: 12px!important;
+    }
+}
+
 @media screen and (max-height: 500px) {
     section.first-section .title h2 {
         font-size: 20px;
