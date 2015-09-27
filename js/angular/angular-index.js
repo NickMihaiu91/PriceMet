@@ -250,8 +250,9 @@
         };
     });
 
-    priceMetApp.controller('InputCtrl', function ($scope) {  
+    priceMetApp.controller('InputCtrl', function ($scope, $timeout) {
         $scope.getOffersButtonPushed = false;
+        $scope.isBudgetFocused = false;
 
         $scope.getOffersBtnClicked = function () {
             $scope.locationError = !$scope.location;
@@ -267,6 +268,16 @@
                 return false;
 
             $('#offerModal').modal({ backdrop: 'static' });
+        };
+
+        $scope.budgetFocused = function () {
+            $timeout(function () {
+                $scope.isBudgetFocused = true;
+            }, 150)
+        };
+
+        $scope.budgetBlured = function () {
+            $scope.isBudgetFocused = false;
         };
     });
 

@@ -246,7 +246,7 @@
                         title2: 'Make your friends jealous',
                         text2: "Find local popular restaurants as well as area's hidden gems without lifting a finger. Get to know top eating places that your friends and family might not know about.",
                         title3: 'Experience more',
-                        text3: "A great variety of restaurants putting their best offers to your request. You'll discover cuisines that will make you fall to your knees...Rest assured, you'll always find something on your taste!"
+                        text3: "A great variety of restaurants putting their best offers to your request. You'll discover cuisines that will make you fall to your knees... Rest assured, you'll always find something on your taste!"
                     }
                 },
                 'b': {
@@ -266,7 +266,7 @@
                         title2: 'Discover great local services',
                         text2: "Find local names-you-know spas and salons as well as area's hidden gems in your neighborhood and get pampered. Get to experience an amazing massage, that perfect blowout or just a gorgeous place to relax and chill out in your corner of the city.",
                         title3: 'Experience more',
-                        text3: "With our large network of salons you will discover a wide variety of health and beauty services and products to suit your needs and soothe your soul...Rest assured, you'll always find something on your taste!"
+                        text3: "With our large network of salons you will discover a wide variety of health and beauty services and products to suit your needs and soothe your soul... Rest assured, you'll always find something on your taste!"
                     }
                 },
                 'cb': {

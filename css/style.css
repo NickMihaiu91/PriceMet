@@ -155,6 +155,18 @@ section {
             margin-top: 8px;
         }
 
+        section.first-section .currency {
+            position: absolute;
+            top: 19px;
+            left: 10px;
+            color: #614D4E;
+        }
+
+        section.first-section #inputBudget {
+            padding-left: 40px;
+            padding-right: 0;
+        }
+
         section.first-section .collage-container {
             height: 100%;
         }
@@ -207,7 +219,8 @@ section {
 
     section.why-pricemet .text-container {
         font-size: 18px;
-        text-align: justify;
+        text-align: left;
+        word-spacing: 2px;
     }
 
     section.how-it-works .box {
@@ -223,7 +236,7 @@ section {
         section.how-it-works .box .description {
             color: rgb(130, 119, 119);
             font-size: 16px;
-            text-align: justify;
+            text-align: left;
         }
 
         section.how-it-works .box .icon > img {
@@ -247,7 +260,8 @@ section {
 
     section.benefits .text-container p {
         font-size: 18px;
-        text-align: justify;
+        text-align: left;
+        word-spacing: 1px;
     }
 
     section.benefits .payment-methods-container {
@@ -970,10 +984,6 @@ section.first-section.restaurant .img.third {
     section.first-section .container {
         padding-top: 100px;
         padding-bottom: 100px;
-    }
-
-    section.first-section .title h2 {
-        margin-bottom: 50px;
     }
 
     section.first-section .desktop-input-container > div:not(:last-child) {
