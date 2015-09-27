@@ -39,6 +39,10 @@ body {
     border-radius: 20px;
 }
 
+.img-responsive {
+    width: auto;
+}
+
 .pac-container::after {
     content: none;
 }
