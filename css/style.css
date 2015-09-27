@@ -155,6 +155,18 @@ section {
             margin-top: 8px;
         }
 
+        section.first-section .currency {
+            position: absolute;
+            top: 19px;
+            left: 10px;
+            color: #614D4E;
+        }
+
+        section.first-section #inputBudget {
+            padding-left: 40px;
+            padding-right: 0;
+        }
+
         section.first-section .collage-container {
             height: 100%;
         }
