@@ -156,8 +156,10 @@ section {
         }
 
         section.first-section .currency {
+            font-family: gotham;
+            font-weight: bold;
             position: absolute;
-            top: 19px;
+            top: 18px;
             left: 10px;
             color: #614D4E;
         }
