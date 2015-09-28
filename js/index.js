@@ -92,10 +92,10 @@
             mixpanel.track("Navbar", { 'option': 'sign up' });
         });
 
-        $('.navbar-nav .nav-contact-us').on('click', function () {
-            $('.feedback-section').scrollintoview({ duration: 500 });
+        $('.navbar-nav .nav-how-it-works').on('click', function () {
+            $('.how-it-works').scrollintoview({ duration: 500 });
             $('.navbar-collapse').collapse('hide');
-            mixpanel.track("Navbar", { 'option': 'contact us' });
+            mixpanel.track("Navbar", { 'option': 'how it works' });
         });
 
         $('.navbar-nav .nav-help').on('click', function () {
