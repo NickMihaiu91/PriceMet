@@ -47,7 +47,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="nav-log-in">Log in</a></li>
                         <li><a class="nav-sign-up">Sign up</a></li>
-                        <li><a class="nav-contact-us">Get in touch</a></li>
+                        <li><a class="nav-how-it-works">How it works</a></li>
                         <li><a class="nav-help">Need help?</a></li>
                     </ul>
                 </div>
@@ -425,9 +425,9 @@
                             </div>
                             <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in offer-repeat">
                                 <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
-                                    <p>If you are flexible on your timeline, restaurants may offer you deeper discounts</p>
+                                    <p>Set a date until you would like to get deeper discounts!</p>
                                     <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
-                                        I want deeper discounts
+                                        Get deeper discounts
                                     </button>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" id="{{'offer' + $index}}">
