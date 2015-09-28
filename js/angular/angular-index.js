@@ -196,7 +196,9 @@
         var categoryId = getOfferCategoryId();
 
         $scope.canadaCitiesList = ["Vancouver", "Burnaby", "Coquitlam", "Delta", "Langley", "Lions Bay", "Maple Ridge", "New Westminster", "North Vancouver", "Pitt Meadows", "Port Coquitlam", "Port Moody", "Richmond", "Surrey", "West Vancouver", "White Rock"];
-        $scope.selectedCity = 'Vancouver';
+        $scope.seatleCitiesList = ["Seattle", "Bellevue", "Bothell", "Clyde Hill", "Edmonds", "Federal Way", "Issaquah", "Kenmore", "Kent", "Kirkland", "Lake Forest Park", "Lakewood", "Lynnwood", "Medina", "Mercer Island", "Mukilteo", "Newcastle", "Puyallup", "Redmond", "Renton", "Sammamish", "SeaTac", "Shoreline", "Silverdale", "Tacoma", "Tukwila", "Woodinville"];
+
+        $scope.selectedCity = 'Seattle';
         $scope.locationModalId = 'locationModal';
 
         $scope.noOfPersonList = ["It's just me - 1", "A couple - 2", "Lucky number - 3", "A pack - 4", "Give me five! - 5", "Six pack - 6", "Seven sins - 7", "Even number - 8", "Almost round - 9", "A crowd - 10"];
