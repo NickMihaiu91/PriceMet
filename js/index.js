@@ -346,6 +346,7 @@
     function initializeCustomSelect() {
         [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
             new SelectFx(el);
+            window.loading_screen.finish();
         });
     }
 

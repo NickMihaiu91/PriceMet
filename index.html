@@ -11,6 +11,8 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <link href="css/please-wait.css" rel="stylesheet" />
+    <link href="css/loaders.min.css" rel="stylesheet" />
     <!-- Bootstrap minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!--Font awesome-->
@@ -27,511 +29,514 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img class="logo img-responsive" src="images/Price-Met_Transp-Background.png" />
-                    </a>
-                </div>
+    <div class="inner" ng-view>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="nav-log-in">Log in</a></li>
-                        <li><a class="nav-sign-up">Sign up</a></li>
-                        <li><a class="nav-how-it-works">How it works</a></li>
-                        <li><a class="nav-help">Need help?</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="first-section" ng-controller="InputCtrl">
-        <div class="container" ng-cloak>
-            <div class="row title hidden-xs">
-                <h2>Name your own price at restaurants</h2>
-                <h4>We notify the restaurants. You get the best offers for your money.</h4>
-            </div>
-            <div class="row hidden-xs desktop-input-container">
-                <div class="col-md-4 col-sm-12">
-                    <span class="input-span">
-                        <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead"
-                               autocomplete="off" placeholder="" ng-model="location" ng-attr-title="{{location}}" googleplace>
-                        <label class="input__label input__label--yoshiko" for="inputLocation">
-                            <span class="input__label-content input__label-content--yoshiko" data-content="Your location">Your location</span>
-                        </label>
-                    </span>
-                    <span class="error" ng-show="getOffersButtonPushed && locationError">
-                        Please enter your desired location
-                    </span>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div>
-                        <select class="cs-select cs-skin-border" id="selectNoOfPersons">
-                            <option value="" disabled selected>Number of persons</option>
-                            <option value="1">It's just me - 1</option>
-                            <option value="2">A couple - 2</option>
-                            <option value="3">Lucky number - 3</option>
-                            <option value="4">A pack - 4</option>
-                            <option value="5">Give me five! - 5</option>
-                            <option value="6">Six pack - 6</option>
-                            <option value="7">Seven sins - 7</option>
-                            <option value="8">Even number - 8</option>
-                            <option value="9">Almost round - 9</option>
-                            <option value="10">A crowd - 10</option>
-                        </select>
-                    </div>
-                    <span class="error" ng-show="getOffersButtonPushed && noOfPersonsError">
-                        Please select the no. of persons
-                    </span>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <span class="input-span">
-                        <input class="input__field input__field--yoshiko" type="number" id="inputBudget" ng-model="budget" ng-focus="budgetFocused()" ng-blur="budgetBlured()">
-                        <span class="currency" ng-show="isBudgetFocused || budget">C$</span>
-                        <label class="input__label input__label--yoshiko" for="inputBudget">
-                            <span class="input__label-content input__label-content--yoshiko" data-content="Total budget">Total budget</span>
-                        </label>
-                    </span>
-                    <span class="error" ng-show="getOffersButtonPushed && budgetError">
-                        Please enter your budget
-                    </span>
-                </div>
-            </div>
-            <div class="visible-xs mobile-input-container full-height" ng-controller="MobileInputCtrl">
-                <div class="image-explanation">
-                    <div>
-                        <h2>Name your own price at restaurants</h2>
-                    </div>
-                    <div>
-                        <h4>We notify the restaurants. You get the best offers for your money.</h4>
-                    </div>
-                    <div class="input-container">
-                        <div class="row">
-                            <div class="input-group">
-                                <input type="text" class="form-control input-lg" value="How much do you want to pay?" readonly ng-click="showMobileInput()" />
-                                <span class="input-group-addon">C$</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="full-page-modal" id="mobileInputContainer">
-                    <div class="full-page-modal-header">
-                        Receive offers
-                        <a href="#" class="modal-close" ng-click="hideMobileInput()">
-                            <span class="aria-hidden">×</span>
+        <header>
+            <div class="navbar navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <img class="logo img-responsive" src="images/Price-Met_Transp-Background.png" />
                         </a>
                     </div>
-                    <div class="row">
-                        <span class="input-span input-span-location" data-title="Location" ng-click="openModal('locationModalId')">
-                            <input class="input__field input__field--yoshiko" type="text" id="selectLocation" ng-model="selectedCity" readonly>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="nav-log-in">Log in</a></li>
+                            <li><a class="nav-sign-up">Sign up</a></li>
+                            <li><a class="nav-how-it-works">How it works</a></li>
+                            <li><a class="nav-help">Need help?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="first-section" ng-controller="InputCtrl">
+            <div class="container" ng-cloak>
+                <div class="row title hidden-xs">
+                    <h2>Name your own price at restaurants</h2>
+                    <h4>We notify the restaurants. You get the best offers for your money.</h4>
+                </div>
+                <div class="row hidden-xs desktop-input-container">
+                    <div class="col-md-4 col-sm-12">
+                        <span class="input-span">
+                            <input class="input__field input__field--yoshiko" type="text" id="inputLocation" aria-describedby="inputLocationStatus" data-provide="typeahead"
+                                   autocomplete="off" placeholder="" ng-model="location" ng-attr-title="{{location}}" googleplace>
+                            <label class="input__label input__label--yoshiko" for="inputLocation">
+                                <span class="input__label-content input__label-content--yoshiko" data-content="Your location">Your location</span>
+                            </label>
+                        </span>
+                        <span class="error" ng-show="getOffersButtonPushed && locationError">
+                            Please enter your desired location
                         </span>
                     </div>
-                    <div class="row">
-                        <span class="input-span" data-title="No of persons" ng-click="openModal('noOfPersonsModalId')">
-                            <input class="input__field input__field--yoshiko" type="text" id="selectNoOfPersons" ng-model="selectedNoOfPersons" readonly>
+                    <div class="col-md-4 col-sm-12">
+                        <div>
+                            <select class="cs-select cs-skin-border" id="selectNoOfPersons">
+                                <option value="" disabled selected>Number of persons</option>
+                                <option value="1">It's just me - 1</option>
+                                <option value="2">A couple - 2</option>
+                                <option value="3">Lucky number - 3</option>
+                                <option value="4">A pack - 4</option>
+                                <option value="5">Give me five! - 5</option>
+                                <option value="6">Six pack - 6</option>
+                                <option value="7">Seven sins - 7</option>
+                                <option value="8">Even number - 8</option>
+                                <option value="9">Almost round - 9</option>
+                                <option value="10">A crowd - 10</option>
+                            </select>
+                        </div>
+                        <span class="error" ng-show="getOffersButtonPushed && noOfPersonsError">
+                            Please select the no. of persons
                         </span>
                     </div>
-                    <div class="row">
-                        <span class="input-span" data-title="Total budget" ng-click="openModal('budgetModalId')">
-                            <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
+                    <div class="col-md-4 col-sm-12">
+                        <span class="input-span">
+                            <input class="input__field input__field--yoshiko" type="number" id="inputBudget" ng-model="budget" ng-focus="budgetFocused()" ng-blur="budgetBlured()">
+                            <span class="currency" ng-show="isBudgetFocused || budget">C$</span>
+                            <label class="input__label input__label--yoshiko" for="inputBudget">
+                                <span class="input__label-content input__label-content--yoshiko" data-content="Total budget">Total budget</span>
+                            </label>
+                        </span>
+                        <span class="error" ng-show="getOffersButtonPushed && budgetError">
+                            Please enter your budget
                         </span>
                     </div>
-                    <div class="row btn-get-offers-container">
-                        <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
-                            Get offers now!
-                        </button>
-                    </div>
                 </div>
-
-                <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal" modaltitle="Choose desired location"></select-modal>
-                <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal" modaltitle="Choose no. of persons"></select-modal>
-                <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
-            </div>
-            <div class="row btn-get-offers-container hidden-xs">
-                <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
-                    Get offers now!
-                </button>
-            </div>
-        </div>
-        <div class="collage-container hidden-xs">
-            <div class="col-md-4 col-xs-4">
-                <div class="img first"></div>
-            </div>
-            <div class="col-md-4 col-xs-4">
-                <div class="img second"></div>
-            </div>
-            <div class="col-md-4 col-xs-4">
-                <div class="img third"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-pricemet divider">
-        <div class="container">
-            <div class="row">
-                <h1 class="section-title">
-                    Why Pricemet?
-                </h1>
-            </div>
-            <div class="row content">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <img class="img-responsive" src="images/Why-PriceMet_Restaurants.png" />
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 text-container">
-                    <p>
-                        Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.
-                    </p>
-                    <p>
-                        When YOU name your own price, you save up to 80% below the regular restaurant prices.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works divider gray-background">
-        <div class="container">
-            <div class="row">
-                <h1 class="section-title">
-                    How it works
-                </h1>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12 box">
-                    <div class="icon">
-                        <img class="img-responsive" src="images/PriceMet_How-it-works-1.png" />
-                    </div>
-                    <div class="title">
-                        <h3>You choose the price</h3>
-                    </div>
-                    <div class="description">
-                        <p>Choose where, how many people and how much you would like to spend.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12 box">
-                    <div class="icon">
-                        <img class="img-responsive" src="images/PriceMet_How-it-works-2.png" />
-                    </div>
-                    <div class="title">
-                        <h3>We notify local restaurants</h3>
-                    </div>
-                    <div class="description">
-                        <p>Your request is automatically sent to our network of restaurants.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12 box">
-                    <div class="icon">
-                        <img class="img-responsive" src="images/PriceMet_How-it-works-3.png" />
-                    </div>
-                    <div class="title">
-                        <h3>You save time and money</h3>
-                    </div>
-                    <div class="description">
-                        <p>Receive offers that best match your budget. Accept and purchase the vouchers right from your device.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="benefits divider">
-        <div class="container">
-            <div class="row">
-                <h1 class="section-title">
-                    5 Reasons to love us
-                </h1>
-            </div>
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
-                    <div>
-                        <div class="heart-text first">1</div>
-                        <div class="heart"></div>
-                    </div>
-                    <h1>The power is in your hands</h1>
-                    <p>
-                        You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet’s proprietary auction system restaurants will compete for your money so that you get more bang for your buck!
-                    </p>
-                </div>
-            </div>
-            <div class="row margin-top">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
-                    <div>
-                        <div class="heart-text">2</div>
-                        <div class="heart"></div>
-                    </div>
-                    <h1>Make your friends jealous</h1>
-                    <p>
-                        Find local popular restaurants as well as area's hidden gems without lifting a finger. Get to know top eating places that your friends and family might not know about.
-                    </p>
-                </div>
-            </div>
-            <div class="row margin-top">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
-                    <div>
-                        <div class="heart-text">3</div>
-                        <div class="heart"></div>
-                    </div>
-                    <h1>Experience more</h1>
-                    <p>
-                        A great variety of restaurants putting their best offers to your request. You’ll discover cuisines that will make you fall to your knees... Rest assured, you’ll always find something on your taste!
-                    </p>
-                </div>
-            </div>
-            <div class="row margin-top">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
-                    <div>
-                        <div class="heart-text">4</div>
-                        <div class="heart"></div>
-                    </div>
-                    <h1>Patience brings sweet rewards </h1>
-                    <p>
-                        The secret to getting the best deal on PriceMet is to wait a little longer so that restaurants submit their best offers to you. Just set the date until you want to receive offers and get them directly to your email Inbox.
-                    </p>
-                </div>
-            </div>
-            <div class="row margin-top">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
-                    <div>
-                        <div class="heart-text">5</div>
-                        <div class="heart"></div>
-                    </div>
-                    <h1>Fast, simple and safe </h1>
-                    <p>
-                        Don’t bring your wallet to the restaurant! Simply pay with your preferred credit card or Paypal account on our website. Everything is handled safely and securely on our site.
-                    </p>
-                </div>
-            </div>
-            <div class="row payment-methods-container">
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
-                    <img class="img-responsive" src="images/PriceMet payments-methods.png" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="feedback-section divider gray-background">
-        <div class="container">
-            <div class="row">
-                <h1 class="section-title">Contact us</h1>
-                <a class="email-address" href="mailto:office@pricemet.ca">
-                    <h2 class="bold">office@pricemet.ca</h2>
-                </a>
-                <h2 class="bold">OR</h2>
-
-                <form class="form-horizontal" onsubmit="return false">
-
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-                        <div class="form-group">
-                            <div>
-                                <textarea class="form-control" rows="3"
-                                          placeholder="Send us your feedback here, we really apreciate it. Thank you!"></textarea>
-                            </div>
-                            <div class="error-message">
-                                Please type your feedback
+                <div class="visible-xs mobile-input-container full-height" ng-controller="MobileInputCtrl">
+                    <div class="image-explanation">
+                        <div>
+                            <h2>Name your own price at restaurants</h2>
+                        </div>
+                        <div>
+                            <h4>We notify the restaurants. You get the best offers for your money.</h4>
+                        </div>
+                        <div class="input-container">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-lg" value="How much do you want to pay?" readonly ng-click="showMobileInput()" />
+                                    <span class="input-group-addon">C$</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-                        <div class="form-group">
-                            <div>
-                                <input type="email" class="form-control email-address-input" id="inputContactEmail" aria-describedby="inputContactEmail"
-                                       placeholder="Your email, we'll send you just one email replying to your feedback.">
+                    <div class="full-page-modal" id="mobileInputContainer">
+                        <div class="full-page-modal-header">
+                            Receive offers
+                            <a href="#" class="modal-close" ng-click="hideMobileInput()">
+                                <span class="aria-hidden">×</span>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <span class="input-span input-span-location" data-title="Location" ng-click="openModal('locationModalId')">
+                                <input class="input__field input__field--yoshiko" type="text" id="selectLocation" ng-model="selectedCity" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="input-span" data-title="No of persons" ng-click="openModal('noOfPersonsModalId')">
+                                <input class="input__field input__field--yoshiko" type="text" id="selectNoOfPersons" ng-model="selectedNoOfPersons" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="input-span" data-title="Total budget" ng-click="openModal('budgetModalId')">
+                                <input class="input__field input__field--yoshiko" type="text" id="selectBudget" ng-model="selectedBudget" readonly addcurrency>
+                            </span>
+                        </div>
+                        <div class="row btn-get-offers-container">
+                            <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
+                                Get offers now!
+                            </button>
+                        </div>
+                    </div>
+
+                    <select-modal list="canadaCitiesList" value="selectedCity" modalid="locationModal" modaltitle="Choose desired location"></select-modal>
+                    <select-modal list="noOfPersonList" value="selectedNoOfPersons" modalid="noOfPersonsModal" modaltitle="Choose no. of persons"></select-modal>
+                    <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
+                </div>
+                <div class="row btn-get-offers-container hidden-xs">
+                    <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
+                        Get offers now!
+                    </button>
+                </div>
+            </div>
+            <div class="collage-container hidden-xs">
+                <div class="col-md-4 col-xs-4">
+                    <div class="img first"></div>
+                </div>
+                <div class="col-md-4 col-xs-4">
+                    <div class="img second"></div>
+                </div>
+                <div class="col-md-4 col-xs-4">
+                    <div class="img third"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-pricemet divider">
+            <div class="container">
+                <div class="row">
+                    <h1 class="section-title">
+                        Why Pricemet?
+                    </h1>
+                </div>
+                <div class="row content">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <img class="img-responsive" src="images/Why-PriceMet_Restaurants.png" />
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 text-container">
+                        <p>
+                            Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.
+                        </p>
+                        <p>
+                            When YOU name your own price, you save up to 80% below the regular restaurant prices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works divider gray-background">
+            <div class="container">
+                <div class="row">
+                    <h1 class="section-title">
+                        How it works
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12 box">
+                        <div class="icon">
+                            <img class="img-responsive" src="images/PriceMet_How-it-works-1.png" />
+                        </div>
+                        <div class="title">
+                            <h3>You choose the price</h3>
+                        </div>
+                        <div class="description">
+                            <p>Choose where, how many people and how much you would like to spend.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 box">
+                        <div class="icon">
+                            <img class="img-responsive" src="images/PriceMet_How-it-works-2.png" />
+                        </div>
+                        <div class="title">
+                            <h3>We notify local restaurants</h3>
+                        </div>
+                        <div class="description">
+                            <p>Your request is automatically sent to our network of restaurants.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 box">
+                        <div class="icon">
+                            <img class="img-responsive" src="images/PriceMet_How-it-works-3.png" />
+                        </div>
+                        <div class="title">
+                            <h3>You save time and money</h3>
+                        </div>
+                        <div class="description">
+                            <p>Receive offers that best match your budget. Accept and purchase the vouchers right from your device.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits divider">
+            <div class="container">
+                <div class="row">
+                    <h1 class="section-title">
+                        5 Reasons to love us
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
+                        <div>
+                            <div class="heart-text first">1</div>
+                            <div class="heart"></div>
+                        </div>
+                        <h1>The power is in your hands</h1>
+                        <p>
+                            You say how much you are willing to pay for your meal. Not the restaurants! Using PriceMet’s proprietary auction system restaurants will compete for your money so that you get more bang for your buck!
+                        </p>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
+                        <div>
+                            <div class="heart-text">2</div>
+                            <div class="heart"></div>
+                        </div>
+                        <h1>Make your friends jealous</h1>
+                        <p>
+                            Find local popular restaurants as well as area's hidden gems without lifting a finger. Get to know top eating places that your friends and family might not know about.
+                        </p>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
+                        <div>
+                            <div class="heart-text">3</div>
+                            <div class="heart"></div>
+                        </div>
+                        <h1>Experience more</h1>
+                        <p>
+                            A great variety of restaurants putting their best offers to your request. You’ll discover cuisines that will make you fall to your knees... Rest assured, you’ll always find something on your taste!
+                        </p>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
+                        <div>
+                            <div class="heart-text">4</div>
+                            <div class="heart"></div>
+                        </div>
+                        <h1>Patience brings sweet rewards </h1>
+                        <p>
+                            The secret to getting the best deal on PriceMet is to wait a little longer so that restaurants submit their best offers to you. Just set the date until you want to receive offers and get them directly to your email Inbox.
+                        </p>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 text-container">
+                        <div>
+                            <div class="heart-text">5</div>
+                            <div class="heart"></div>
+                        </div>
+                        <h1>Fast, simple and safe </h1>
+                        <p>
+                            Don’t bring your wallet to the restaurant! Simply pay with your preferred credit card or Paypal account on our website. Everything is handled safely and securely on our site.
+                        </p>
+                    </div>
+                </div>
+                <div class="row payment-methods-container">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12">
+                        <img class="img-responsive" src="images/PriceMet payments-methods.png" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feedback-section divider gray-background">
+            <div class="container">
+                <div class="row">
+                    <h1 class="section-title">Contact us</h1>
+                    <a class="email-address" href="mailto:office@pricemet.ca">
+                        <h2 class="bold">office@pricemet.ca</h2>
+                    </a>
+                    <h2 class="bold">OR</h2>
+
+                    <form class="form-horizontal" onsubmit="return false">
+
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                            <div class="form-group">
+                                <div>
+                                    <textarea class="form-control" rows="3"
+                                              placeholder="Send us your feedback here, we really apreciate it. Thank you!"></textarea>
+                                </div>
+                                <div class="error-message">
+                                    Please type your feedback
+                                </div>
                             </div>
-                            <div class="error-message">
-                                Please type your email address so that we can contact you regarding your feedback. Thank you!
+                        </div>
+
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                            <div class="form-group">
+                                <div>
+                                    <input type="email" class="form-control email-address-input" id="inputContactEmail" aria-describedby="inputContactEmail"
+                                           placeholder="Your email, we'll send you just one email replying to your feedback.">
+                                </div>
+                                <div class="error-message">
+                                    Please type your email address so that we can contact you regarding your feedback. Thank you!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                            <div class="form-group">
+                                <button class="btn btn-primary send-feedback">Send!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row link-container">
+                    <div class="col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-3 col-xs-5 col-xs-offset-1">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a>About Us</a></li>
+                            <li><a>Team</a></li>
+                            <li><a>Blog</a></li>
+                            <li><a>Terms & Privacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <h4>Useful Info</h4>
+                        <ul>
+                            <li><a>Customer Support</a></li>
+                            <li><a>Merchant Center</a></li>
+                            <li><a>FAQ</a></li>
+                            <li><a>Site Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="footer-divider" />
+
+                <div class="row">
+                    <div class="social">
+                        <h4>Join Us On</h4>
+                        <ul>
+                            <li><a href="https://www.facebook.com/pricemet.ca" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-lg fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-lg fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-lg fa-instagram"></i></a></li>
+                        </ul>
+                        <p>© PriceMet, Inc.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Modals -->
+        <div class="modal fade" id="offerModal" ng-controller="OfferListCtrl">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content offers" ng-show="offersVisible">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{{offerTypeText}} offers for {{noOfPersonsTextRepresentation}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row" ng-hide="showForm">
+                                <div ng-repeat="offer in offerList" class="fade-in offer-repeat">
+                                    <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
+                                        <p>Set a date until you would like to get deeper discounts!</p>
+                                        <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
+                                            Get deeper discounts
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" id="{{'offer' + $index}}">
+                                        <div>
+                                            <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
+                                        </div>
+
+                                        <h5 class="offer-title">{{ offer.bidOfferTitle }}</h5>
+
+                                        <div class="price-container">
+                                            <span class="tags">
+                                                <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
+                                            </span>
+                                            <span class="price-strikethrough">C${{offer.originalPrice}}</span>
+
+                                            <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
+                                                Accept bid
+                                            </a>
+                                        </div>
+                                        <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
+                                        <div class="rating-container">
+                                            <i ng-repeat="i in getNumber(offer.rating) track by $index" class="fa fa-heart fa-lg"></i>
+                                            <i ng-repeat="i in getNumber(5 - offer.rating) track by $index" class="fa fa-heart-o fa-lg" ng-class="$index === 0 ? 'first' : ''"></i>
+                                            <span>({{ offer.votes }} votes)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 col-md-xs-12 offer-container extra-card" ng-show="noOfOffers >= 1">
+                                    <div>
+                                        More offers are
+                                    </div>
+                                    <div class="loading">
+                                        coming soon
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="showForm" class="more-offers-section">
+                                <div class="date-view" ng-show="formStep === 1">
+                                    <div class="back-btn">
+                                        <span ng-click="goBackToOffers()"><i class="fa fa-chevron-left"></i>Back to offers</span>
+                                    </div>
+                                    <h4>Please select the date until you would like to receive offers</h4>
+                                    <h5>(Merchants will see your request until this date and send you offers)</h5>
+                                    <div id="datepicker"></div>
+                                    <div ng-show="showError"><p class="text-danger">Please select a date from the calendar above.</p></div>
+                                    <div class="date-until">You will receive offers until: <span>{{dateUntil}}</span></div>
+                                    <button class="btn btn-primary" ng-click="setDate()">Set date!</button>
+                                </div>
+                                <div class="email-view" ng-show="formStep === 2">
+                                    <div class="back-btn">
+                                        <span ng-click="goBackToOffers()"><i class="fa fa-chevron-left"></i>Back to offers</span>
+                                    </div>
+                                    <div>Please enter your email address where you will receive the offers for your request</div>
+                                    <input type="email" placeholder="Email address" ng-model="email" />
+                                    <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
+                                    <button class="btn btn-primary" ng-click="setEmail()">COOL!</button>
+                                </div>
+                                <div class="success-view" ng-show="formStep === 3">
+                                    <h2>Awesome!</h2>
+                                    <h5>More merchants will send their best offers soon. Don't forget to check your inbox!</h5>
+                                    <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-                        <div class="form-group">
-                            <button class="btn btn-primary send-feedback">Send!</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row link-container">
-                <div class="col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-3 col-xs-5 col-xs-offset-1">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a>About Us</a></li>
-                        <li><a>Team</a></li>
-                        <li><a>Blog</a></li>
-                        <li><a>Terms & Privacy</a></li>
-                    </ul>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-                    <h4>Useful Info</h4>
-                    <ul>
-                        <li><a>Customer Support</a></li>
-                        <li><a>Merchant Center</a></li>
-                        <li><a>FAQ</a></li>
-                        <li><a>Site Map</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="footer-divider" />
-
-            <div class="row">
-                <div class="social">
-                    <h4>Join Us On</h4>
-                    <ul>
-                        <li><a href="https://www.facebook.com/pricemet.ca" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-lg fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-lg fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-lg fa-instagram"></i></a></li>
-                    </ul>
-                    <p>© PriceMet, Inc.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modals -->
-    <div class="modal fade" id="offerModal" ng-controller="OfferListCtrl">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content offers" ng-show="offersVisible">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{offerTypeText}} offers for {{noOfPersonsTextRepresentation}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row" ng-hide="showForm">
-                            <div ng-repeat="offer in offerList" class="fade-in offer-repeat">
-                                <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
-                                    <p>Set a date until you would like to get deeper discounts!</p>
-                                    <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
-                                        Get deeper discounts
+                <div class="modal-content loading-offers" ng-hide="offersVisible">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10 col-xs-12">
+                                <div class="logo-container">
+                                    <img class="img-responsive" src="images/Price-Met_Transp-Background.png" />
+                                </div>
+                                <div class="title">
+                                    <h2>We are now sending your request to {{merchantType}}!</h2>
+                                </div>
+                                <div class="col-md-offset-1 col-md-10" ng-hide="loadingBarProgress >= 100">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="progressBarStyle">
+                                            <span class="sr-only">% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="view-offers-btn-container" ng-show="loadingBarProgress >= 100 && interactedWithEmailInputOnLoadingScreen">
+                                    <button class="btn btn-primary" ng-click="showOffers()">
+                                        View the offers
                                     </button>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" id="{{'offer' + $index}}">
-                                    <div>
-                                        <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
-                                    </div>
-                                    
-                                    <h5 class="offer-title">{{ offer.bidOfferTitle }}</h5>
+                                <div class="offer-summary">
+                                    <h4>{{offerSummary}}</h4>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <div class="price-container">
-                                        <span class="tags">
-                                            <span class="price-tag"><a href="javascript:void()">C${{offer.offerPrice}}</a></span>
-                                        </span>
-                                        <span class="price-strikethrough">C${{offer.originalPrice}}</span>
-
-                                        <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
-                                            Accept bid
-                                        </a>
-                                    </div>
-                                    <p class="distance"><i class="fa fa-map-marker fa-lg"></i>{{offer.distance}} kilometers from you</p>
-                                    <div class="rating-container">
-                                        <i ng-repeat="i in getNumber(offer.rating) track by $index" class="fa fa-heart fa-lg"></i>
-                                        <i ng-repeat="i in getNumber(5 - offer.rating) track by $index" class="fa fa-heart-o fa-lg" ng-class="$index === 0 ? 'first' : ''"></i>
-                                        <span>({{ offer.votes }} votes)</span>
-                                    </div>
-                                </div>
+                        <div class="get-email hidden-xs">
+                            <div class="header">
+                                <h2>{{offerTypeText}} <span>Offer Alerts</span></h2>
                             </div>
-                            
-                            <div class="col-md-4 col-sm-6 col-md-xs-12 offer-container extra-card" ng-show="noOfOffers >= 1">
-                                <div>
-                                    More offers are
-                                </div>
-                                <div class="loading">
-                                    coming soon
-                                </div>
+                            <div class="second-line">
+                                <h4>Get offers delivered right to your inbox</h4>
                             </div>
-                        </div>
-                        <div ng-show="showForm" class="more-offers-section">
-                            <div class="date-view" ng-show="formStep === 1">
-                                <div class="back-btn">
-                                    <span ng-click="goBackToOffers()"><i class="fa fa-chevron-left"></i>Back to offers</span>
-                                </div>
-                                <h4>Please select the date until you would like to receive offers</h4>
-                                <h5>(Merchants will see your request until this date and send you offers)</h5>
-                                <div id="datepicker"></div>
-                                <div ng-show="showError"><p class="text-danger">Please select a date from the calendar above.</p></div>
-                                <div class="date-until">You will receive offers until: <span>{{dateUntil}}</span></div>
-                                <button class="btn btn-primary" ng-click="setDate()">Set date!</button>
+                            <div class="input-container" ng-hide="sentEmailAddress">
+                                <input type="text" placeholder="Your email address" ng-model="emailOnLoadingScreen" ng-focus="focusOnEmail()" />
+                                <button class="btn btn-primary" ng-click="sendEmail()">Get Me Offers</button>
                             </div>
-                            <div class="email-view" ng-show="formStep === 2">
-                                <div class="back-btn">
-                                    <span ng-click="goBackToOffers()"><i class="fa fa-chevron-left"></i>Back to offers</span>
-                                </div>
-                                <div>Please enter your email address where you will receive the offers for your request</div>
-                                <input type="email" placeholder="Email address" ng-model="email" />
-                                <div ng-show="showError"><p class="text-danger">Please enter a valid email address.</p></div>
-                                <button class="btn btn-primary" ng-click="setEmail()">COOL!</button>
+                            <div class="email-error-msg-container" ng-show="showError">
+                                <p class="text-danger">Please enter a valid email address.</p>
                             </div>
-                            <div class="success-view" ng-show="formStep === 3">
-                                <h2>Awesome!</h2>
-                                <h5>More merchants will send their best offers soon. Don't forget to check your inbox!</h5>
-                                <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
+                            <div class="alert alert-success" role="alert" ng-show="sentEmailAddress">
+                                <strong>Awesome!</strong> You'll receive the best offers in your email very soon.
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-content loading-offers" ng-hide="offersVisible">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-offset-1 col-md-10 col-xs-12">
-                            <div class="logo-container">
-                                <img class="img-responsive" src="images/Price-Met_Transp-Background.png" />
-                            </div>
-                            <div class="title">
-                                <h2>We are now sending your request to {{merchantType}}!</h2>
-                            </div>
-                            <div class="col-md-offset-1 col-md-10" ng-hide="loadingBarProgress >= 100">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="progressBarStyle">
-                                        <span class="sr-only">% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="view-offers-btn-container" ng-show="loadingBarProgress >= 100 && interactedWithEmailInputOnLoadingScreen">
-                                <button class="btn btn-primary" ng-click="showOffers()">
-                                    View the offers
-                                </button>
-                            </div>
-                            <div class="offer-summary">
-                                <h4>{{offerSummary}}</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="get-email hidden-xs">
-                        <div class="header">
-                            <h2>{{offerTypeText}} <span>Offer Alerts</span></h2>
-                        </div>
-                        <div class="second-line">
-                            <h4>Get offers delivered right to your inbox</h4>
-                        </div>
-                        <div class="input-container" ng-hide="sentEmailAddress">
-                            <input type="text" placeholder="Your email address" ng-model="emailOnLoadingScreen" ng-focus="focusOnEmail()" />
-                            <button class="btn btn-primary" ng-click="sendEmail()">Get Me Offers</button>
-                        </div>
-                        <div class="email-error-msg-container" ng-show="showError">
-                            <p class="text-danger">Please enter a valid email address.</p>
-                        </div>
-                        <div class="alert alert-success" role="alert" ng-show="sentEmailAddress">
-                            <strong>Awesome!</strong> You'll receive the best offers in your email very soon.
                         </div>
                     </div>
                 </div>
@@ -572,6 +577,16 @@
         mixpanel.init("46abe9239629fcc58fabb0b1dfccd15a");
     </script>
     <!-- end Mixpanel -->
+
+    <script src="js/please-wait.min.js"></script>
+    <script type="text/javascript">
+        window.loading_screen = pleaseWait({
+            logo: "images/Price-Met_Transp-Background.png",
+            backgroundColor: "#1a6474",
+            loadingHtml: '<div class="loader-inner ball-spin-fade-loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>'
+        });
+    </script>
+
     <!-- jQuery minified JavaScript -->
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
