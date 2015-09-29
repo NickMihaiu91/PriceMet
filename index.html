@@ -417,13 +417,7 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row" ng-hide="showForm">
-                            <div class="bid-looking" ng-hide="noOfOffers >= 1">
-                                <div class="loader-inner line-scale-party">
-                                    <div></div><div></div><div></div><div></div>
-                                </div>
-                                <span><b ticker="noOfMerchantsWatchingBid">{{noOfMerchantsWatchingBid}}</b> {{merchantType}} are looking now at your bid request</span>
-                            </div>
-                            <div ng-repeat="offer in offerList | limitTo:noOfOffers" ng-show="noOfOffers >= 1" class="fade-in offer-repeat">
+                            <div ng-repeat="offer in offerList" class="fade-in offer-repeat">
                                 <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
                                     <p>Set a date until you would like to get deeper discounts!</p>
                                     <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
@@ -492,14 +486,6 @@
                                 <button class="btn btn-primary" ng-click="goBackToOffers()">Go back to current offers</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="row bid-looking" ng-show="noOfOffers >= 1">
-                        <div class="loader-inner line-scale-party">
-                            <div></div><div></div><div></div><div></div>
-                        </div>
-                        <span><b ticker="noOfMerchantsWatchingBid">{{noOfMerchantsWatchingBid}}</b> {{merchantType}} are looking now at your bid request</span>
                     </div>
                 </div>
             </div>
@@ -599,15 +585,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
 
-    <!--Toastr-->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 
     <script src="js/jquery.scrollintoview.min.js"></script>
-
-    <!--<script src="js/calc.min.js"></script>-->
 
     <script src="js/sweetalert2.min.js"></script>
 
@@ -620,10 +600,6 @@
     <script src="js/angular/angular-index.js"></script>
 
     <script src="js/angular/services/offers-service.js"></script>
-
-    <script src="js/angular/services/merchants-looking-at-request-service.js"></script>
-
-    <script src="js/angular/services/toastr-service.js"></script>
 
     <script src="js/select-fx.js"></script>
 

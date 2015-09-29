@@ -360,8 +360,8 @@ footer {
         }
 
     .modal .modal-body {
-        height: 70%;
-        height: calc(100% - 160px);
+        height: 90%;
+        height: calc(100% - 56px);
         overflow-y: scroll;
     }
 
@@ -533,23 +533,6 @@ footer {
     margin-top: 20px;
     white-space: normal;
 }
-
-.modal .bid-looking {
-    text-align: center;
-}
-
-    .modal .bid-looking span {
-        color: #E86252;
-        font-size: 17px;
-    }
-
-        .modal .bid-looking span b {
-            font-size: 19px;
-        }
-
-    .modal .bid-looking .loader-inner > div {
-        background-color: #E86252;
-    }
 
 .modal .modal-content.loading-offers {
     text-align: center;
