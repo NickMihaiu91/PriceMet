@@ -450,7 +450,7 @@
                                             <i ng-repeat="i in getNumber(5 - offer.rating) track by $index" class="fa fa-heart-o fa-lg" ng-class="$index === 0 ? 'first' : ''"></i>
                                             <span>({{ offer.votes }} votes)</span>
                                         </div>
-                                        <div class="make-a-counter-offer" ng-show="($index % 5 === 0) && ($index !== 0)">
+                                        <div class="make-a-counter-offer" ng-show="($index % 4 === 0)">
                                             <button class="btn btn-primary green" ng-click="showMakeCounterOffer($index)" ng-hide="offer.makeCounterOffer">
                                                 Make a counter offer
                                             </button>
