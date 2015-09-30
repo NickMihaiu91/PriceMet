@@ -183,13 +183,17 @@
         };
 
         $scope.submitCounterOffer = function (initialValue, counterOfferValue, index) {
+            var offer = $scope.offerList[index]; 
+            
+            offer.counterOfferMessage = '';
+
             if (!counterOfferValue) {
-                $scope.offerList[index].counterOfferErrorMessage = 'Please enter a valid amount.';
-                $scope.offerList[index].showCounterOfferError = true;
+                offer.counterOfferErrorMessage = 'Please enter a valid amount.';
+                offer.showCounterOfferError = true;
             } else {
                 $timeout(function () {
-                    $scope.offerList[index].counterOfferErrorMessage = 'Sorry, there seems to be a problem with our server.';
-                    $scope.offerList[index].showCounterOfferError = true;
+                    offer.counterOfferErrorMessage = 'Sorry, there seems to be a problem with our server.';
+                    offer.showCounterOfferError = true;
                 }, 1500);
             }
 
@@ -207,12 +211,12 @@
 
             if (offer.counterOfferValue >= offer.offerPrice) {
                 offer.counterOfferMessageType = 'success';
-                return offer.counterOfferMessage = 'No discount, but you are loved!';
+                return offer.counterOfferMessage = 'You will be loved!';
             }
 
             if (offer.counterOfferValue < offerPriceTenPercentDiscounted) {
                 offer.counterOfferMessageType = 'warning';
-                return offer.counterOfferMessage = 'You have no chance in getting such a big discount';
+                return offer.counterOfferMessage = 'You have almost no chance in getting such a big discount';
             }
                 
             offer.counterOfferMessageType = 'success';
