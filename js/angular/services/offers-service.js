@@ -5,7 +5,7 @@
         .factory('offersService', function ($timeout) {
 
             var offers = [],
-                INITIAL_WAIT_INTERVAL = 5,
+                INITIAL_WAIT_INTERVAL = 0,
                 MAX_WAIT_INTERVAL = 20,
                 MIN_WAIT_INTERVAL = 10,
                 INCREASE_WAIT_INTERVAL_AFTER_NO_OF_OFFERS = 6,
@@ -41,7 +41,7 @@
                         offers = formatOffers(results, noOfPersons, offerType);
                         //shuffle(offers);
                         callback(offers);
-                        initializeFlow();
+                        //initializeFlow();
                     },
 
                     error: function (error) {
@@ -75,7 +75,7 @@
 
                 minWaitInterval = MIN_WAIT_INTERVAL;
                 maxWaitInterval = MAX_WAIT_INTERVAL;
-                storedValues.limitTo = 0;
+                storedValues.limitTo = 5;
 
                 if (initialOfferTimer)
                     $timeout.cancel(initialOfferTimer);

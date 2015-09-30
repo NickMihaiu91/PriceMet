@@ -1,9 +1,9 @@
 (function () {
 
-    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule', 'merchantsLookingAtRequestServiceModule', 'toastrServiceModule']);
+    var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule']);
 
-    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService, merchantsLookingAtRequestService, toastrService) {
-        var LOADING_BAR_INTERVAL = 400; //ms
+    priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService) {
+        var LOADING_BAR_INTERVAL = 4//00; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
@@ -56,6 +56,7 @@
 
         $('#offerModal').on('hidden.bs.modal', function () {
             $scope.offersVisible = false;
+            $scope.offerList = [];
             $scope.interactedWithEmailInputOnLoadingScreen = false;
             $scope.showError = false;
             $scope.showForm = false;
@@ -64,24 +65,10 @@
         });
 
         $scope.$watch(function () {
-            return merchantsLookingAtRequestService.storedValues.noOfMerchantsWatchingBid;
-        }, function (newVal, oldVal) {
-            if (newVal !== oldVal) {
-                $scope.noOfMerchantsWatchingBid = newVal;
-            }
-        });
-
-        $scope.$watch(function () {
             return offersService.storedValues.limitTo;
         }, function (newVal, oldVal) {
             if (newVal !== oldVal) {
                 $scope.noOfOffers = newVal;
-                var toastContent = 'You have a new offer from a ' + $scope.merchantType.slice(0, -1) + '!';
-                toastrService.showToastr('info', toastContent, 9000, null, function () {
-                    $('#offer' + ($scope.noOfOffers - 1)).scrollintoview({ duration: 500 });
-                    mixpanel.track('Toastr clicked', { offerNo: $scope.noOfOffers });
-                });
-
                 mixpanel.track($scope.noOfOffers + " offer viewed");
             }
         });
@@ -132,14 +119,12 @@
             offersService.getOffers(budget, noOfPersons, offerType, function (offers) {
                 $scope.offerList = offers;
                 $scope.noOfOffers = offersService.storedValues.limitTo;
+                $rootScope.safeApply();
             });
 
-            $scope.noOfMerchantsWatchingBid = merchantsLookingAtRequestService.initialize();
-
             $scope.offersVisible = true;
-            $rootScope.safeApply();
 
-            mixpanel.track("Blank offers list");
+            mixpanel.track("Offers list shown");
         };
 
         $scope.getMoreOffers = function () {
@@ -189,7 +174,54 @@
 
         $scope.getNumber = function (num) {
             return new Array(num);
-        }
+        };
+
+        $scope.showMakeCounterOffer = function (index) {
+            $scope.offerList[index].makeCounterOffer = true;
+
+            mixpanel.track("Make a counter offer - clicked button");
+        };
+
+        $scope.submitCounterOffer = function (initialValue, counterOfferValue, index) {
+            var offer = $scope.offerList[index]; 
+            
+            offer.counterOfferMessage = '';
+
+            if (!counterOfferValue) {
+                offer.counterOfferErrorMessage = 'Please enter a valid amount.';
+                offer.showCounterOfferError = true;
+            } else {
+                $timeout(function () {
+                    offer.counterOfferErrorMessage = 'Sorry, there seems to be a problem with our server.';
+                    offer.showCounterOfferError = true;
+                }, 1500);
+            }
+
+            mixpanel.track("Submit counter offer", { initialValue: initialValue, counterOfferValue: counterOfferValue });
+        };
+
+        $scope.changedCounterOfferValue = function (index) {
+            var offer = $scope.offerList[index],
+                offerPriceTenPercentDiscounted = Math.floor(offer.offerPrice - offer.offerPrice / 10);
+
+            offer.showCounterOfferError = false;
+
+            if(!offer.counterOfferValue)
+                return offer.counterOfferMessage = '';
+
+            if (offer.counterOfferValue >= offer.offerPrice) {
+                offer.counterOfferMessageType = 'success';
+                return offer.counterOfferMessage = 'You will be loved!';
+            }
+
+            if (offer.counterOfferValue < offerPriceTenPercentDiscounted) {
+                offer.counterOfferMessageType = 'warning';
+                return offer.counterOfferMessage = 'You have almost no chance in getting such a big discount';
+            }
+                
+            offer.counterOfferMessageType = 'success';
+            return offer.counterOfferMessage = 'You might just get lucky on this one.';
+        };
     });
 
     priceMetApp.controller('MobileInputCtrl', function ($scope) {
@@ -281,39 +313,6 @@
         $scope.budgetBlured = function () {
             $scope.isBudgetFocused = false;
         };
-    });
-
-    priceMetApp.directive('ticker', function () {
-        return {
-            link: function (scope, element, attrs) {
-                var threshold;
-
-                var last, deferTimer;
-                threshold = 800;
-                scope.$watch(attrs.ticker, function (val, oldVal) {
-                    if (val === oldVal) return;
-                    var flickr = function (element) {
-                        element.fadeOut(200);
-                        element.fadeIn(200);
-                        element.fadeOut(200);
-                        element.fadeIn(200);
-                    }
-                    //Throttle excessive updates
-                    var now = +new Date(), args = arguments;
-                    if (last && now < last + threshold) {
-                        // hold on to it
-                        clearTimeout(deferTimer);
-                        deferTimer = setTimeout(function () {
-                            last = now;
-                            flickr(element)
-                        }, threshold);
-                    } else {
-                        last = now;
-                        flickr(element);
-                    }
-                });
-            }
-        }
     });
 
     priceMetApp.directive('selectModal', function ($timeout) {

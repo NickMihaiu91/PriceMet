@@ -294,8 +294,8 @@
         if (category && messages[category]) {
             $('.first-section .title h2').text(messages[category].firstSectionTitle);
             $('.first-section .title h4').text(messages[category].firstSectionBellowTitle);
-            $('.first-section .mobile-input-container h2').text(messages[category].firstSectionTitle);
-            $('.first-section .mobile-input-container h4').text(messages[category].firstSectionBellowTitle);
+            $('.first-section .mobile-input-container .image-explanation h2').text(messages[category].firstSectionTitle);
+            $('.first-section .mobile-input-container .image-explanation h4').text(messages[category].firstSectionBellowTitle);
             $('.why-pricemet .text-container p:nth-of-type(1)').text(messages[category].whyPricemetText1);
             $('.why-pricemet .text-container p:nth-of-type(2)').text(messages[category].whyPricemetText2);
             $('.why-pricemet img').attr('src', (messages[category].howItWorksImgUrl));
@@ -346,6 +346,7 @@
     function initializeCustomSelect() {
         [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
             new SelectFx(el);
+            window.loading_screen.finish();
         });
     }
 

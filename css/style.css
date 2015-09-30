@@ -21,6 +21,37 @@ body {
     margin: 0;
 }
 
+    body > .inner {
+        display: none;
+    }
+
+    body.pg-loaded > .inner {
+        display: block;
+        height: 100%;
+    }
+
+.pg-loading-screen .pg-loading-logo-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pg-loading-screen .pg-loading-html {
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -108,7 +139,6 @@ section {
             margin: 15px auto;
             letter-spacing: 2px;
             margin-top: 40px;
-            background: #65AF68;
             padding: 24px 34px;
             -moz-transition-property: background-color, color;
             -o-transition-property: background-color, color;
@@ -123,10 +153,6 @@ section {
             -webkit-transition-timing-function: ease;
             transition-timing-function: ease;
         }
-
-            section.first-section .btn:hover {
-                background: rgba(101, 175, 104, 0.9);
-            }
 
         section.first-section .title h2 {
             color: #2F2E2D;
@@ -360,8 +386,8 @@ footer {
         }
 
     .modal .modal-body {
-        height: 70%;
-        height: calc(100% - 160px);
+        height: 90%;
+        height: calc(100% - 56px);
         overflow-y: scroll;
     }
 
@@ -446,7 +472,7 @@ footer {
         margin-top: 15px;
     }
 
-    .modal-body .offer-container .btn {
+    .modal-body .offer-container .btn.accept-bid {
         font-family: Arial, sans-serif;
         position: absolute;
         right: 0;
@@ -479,6 +505,55 @@ footer {
             .modal-body .offer-container .rating-container i.fa-heart-o.first {
                 margin-left: -2px;
             }
+
+    .modal-body .offer-container .make-a-counter-offer {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+        .modal-body .offer-container .make-a-counter-offer .row {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -moz-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .modal-body .offer-container .make-a-counter-offer .input-container {
+            padding-right: 0;
+        }
+
+            .modal-body .offer-container .make-a-counter-offer .input-container input {
+                width: 100%;
+                font-size: 26px !important;
+            }
+
+        .modal-body .offer-container .make-a-counter-offer .btn.get-lucky {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .modal-body .offer-container .make-a-counter-offer .counter-message {
+            padding-top: 5px;
+        }
+
+            .modal-body .offer-container .make-a-counter-offer .counter-message.warning {
+                color: #F8A21D;
+            }
+
+            .modal-body .offer-container .make-a-counter-offer .counter-message.success {
+                color: #65AF68;
+            }
+
+        .modal-body .offer-container .make-a-counter-offer .error {
+            padding-top: 5px;
+            color: #C71111;
+        }
 
 .modal-body .more-offers-section {
     text-align: center;
@@ -533,23 +608,6 @@ footer {
     margin-top: 20px;
     white-space: normal;
 }
-
-.modal .bid-looking {
-    text-align: center;
-}
-
-    .modal .bid-looking span {
-        color: #E86252;
-        font-size: 17px;
-    }
-
-        .modal .bid-looking span b {
-            font-size: 19px;
-        }
-
-    .modal .bid-looking .loader-inner > div {
-        background-color: #E86252;
-    }
 
 .modal .modal-content.loading-offers {
     text-align: center;
@@ -732,6 +790,14 @@ footer {
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
+    }
+
+.btn.green {
+    background: #65AF68;
+}
+
+    .btn.green:hover {
+        background: rgba(101, 175, 104, 0.9);
     }
 
 /* Price tags */
@@ -1182,10 +1248,6 @@ section.first-section.restaurant .img.third {
         font-size: 25px;
     }
 
-    .modal-footer {
-        padding: 10px;
-    }
-
     .select-type-modal .modal-dialog {
         width: 100%;
         height: 100%;
@@ -1326,11 +1388,15 @@ section.first-section.restaurant .img.third {
     .modal-body .price-strikethrough {
         display: none;
     }
+
+    .modal-body .make-a-counter-offer .btn {
+        font-size: 12px;
+    }
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
     section.first-section .mobile-input-container .input-container input {
-        font-size: 12px!important;
+        font-size: 12px !important;
     }
 }
 
