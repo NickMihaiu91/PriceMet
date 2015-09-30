@@ -3,7 +3,7 @@
     var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule']);
 
     priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService) {
-        var LOADING_BAR_INTERVAL = 4//00; //ms
+        var LOADING_BAR_INTERVAL = 400; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
