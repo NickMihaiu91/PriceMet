@@ -11,6 +11,7 @@
         $scope.interactedWithEmailInputOnLoadingScreen = false;
         $scope.noOfPersonsTextRepresentation = 'one';
         $scope.sentEmailAddress = false;
+        $scope.showGetMoreOffersButtonAfterNoOfOffers = ($(window).width() < 900 && $(window).width() > 720) ? 2 : 3;
 
         $rootScope.safeApply = function (fn) {
             var phase = this.$root.$$phase;

@@ -421,13 +421,13 @@
                         <div class="container-fluid">
                             <div class="row" ng-hide="showForm">
                                 <div ng-repeat="offer in offerList" class="fade-in offer-repeat">
-                                    <div ng-show="($index % 3 === 0) && ($index !== 0)" class="get-more-offers-btn-container">
+                                    <div ng-show="($index % showGetMoreOffersButtonAfterNoOfOffers === 0) && ($index !== 0)" class="get-more-offers-btn-container">
                                         <p>Set a date until you would like to get deeper discounts!</p>
                                         <button class="btn btn-primary get-more-offers" ng-click="getMoreOffers()">
                                             Get deeper discounts
                                         </button>
                                     </div>
-                                    <div class="col-md-4 col-sm-6 col-xs-12 offer-container" ng-class="$index % 3 === 0 ? 'first-column' : ''" id="{{'offer' + $index}}">
+                                    <div class="col-md-4 col-sm-6 col-xs-12 offer-container" id="{{'offer' + $index}}">
                                         <div>
                                             <img class="img-responsive" ng-src="{{offer.imgUrl}}" />
                                         </div>
