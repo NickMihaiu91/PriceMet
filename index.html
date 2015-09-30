@@ -455,10 +455,10 @@
                                                 Make a counter offer
                                             </button>
                                             <div class="row" ng-show="offer.makeCounterOffer">
-                                                <div class="col-md-4 input-container">
+                                                <div class="col-md-4 col-xs-4 input-container">
                                                     <input type="number" min="1" placeholder="C$" ng-model="offer.counterOfferValue" ng-change="changedCounterOfferValue($index)"/>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-8 col-xs-8">
                                                     <button class="btn btn-primary green get-lucky" ng-click="submitCounterOffer(offer.offerPrice, offer.counterOfferValue, $index)">
                                                         I feel lucky!
                                                     </button>

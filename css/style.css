@@ -533,8 +533,7 @@ footer {
             }
 
         .modal-body .offer-container .make-a-counter-offer .btn.get-lucky {
-            padding-top: 12px;
-            padding-bottom: 12px;
+            padding: 12px;
         }
 
         .modal-body .offer-container .make-a-counter-offer .counter-message {
