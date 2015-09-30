@@ -3,7 +3,7 @@
     var priceMetApp = angular.module('priceMetApp', ['ngAnimate', 'offersServiceModule']);
 
     priceMetApp.controller('OfferListCtrl', function ($scope, $rootScope, $interval, $timeout, offersService) {
-        var LOADING_BAR_INTERVAL = 400; //ms
+        var LOADING_BAR_INTERVAL = 4//00; //ms
         $scope.showForm = false;
         $scope.formStep = 1;
         $scope.showError = false;
@@ -174,7 +174,50 @@
 
         $scope.getNumber = function (num) {
             return new Array(num);
-        }
+        };
+
+        $scope.showMakeCounterOffer = function (index) {
+            $scope.offerList[index].makeCounterOffer = true;
+
+            mixpanel.track("Make a counter offer - clicked button");
+        };
+
+        $scope.submitCounterOffer = function (initialValue, counterOfferValue, index) {
+            if (!counterOfferValue) {
+                $scope.offerList[index].counterOfferErrorMessage = 'Please enter a valid amount.';
+                $scope.offerList[index].showCounterOfferError = true;
+            } else {
+                $timeout(function () {
+                    $scope.offerList[index].counterOfferErrorMessage = 'Sorry, there seems to be a problem with our server.';
+                    $scope.offerList[index].showCounterOfferError = true;
+                }, 1500);
+            }
+
+            mixpanel.track("Submit counter offer", { initialValue: initialValue, counterOfferValue: counterOfferValue });
+        };
+
+        $scope.changedCounterOfferValue = function (index) {
+            var offer = $scope.offerList[index],
+                offerPriceTenPercentDiscounted = Math.floor(offer.offerPrice - offer.offerPrice / 10);
+
+            offer.showCounterOfferError = false;
+
+            if(!offer.counterOfferValue)
+                return offer.counterOfferMessage = '';
+
+            if (offer.counterOfferValue >= offer.offerPrice) {
+                offer.counterOfferMessageType = 'success';
+                return offer.counterOfferMessage = 'No discount, but you are loved!';
+            }
+
+            if (offer.counterOfferValue < offerPriceTenPercentDiscounted) {
+                offer.counterOfferMessageType = 'warning';
+                return offer.counterOfferMessage = 'You have no chance in getting such a big discount';
+            }
+                
+            offer.counterOfferMessageType = 'success';
+            return offer.counterOfferMessage = 'You might just get lucky on this one.';
+        };
     });
 
     priceMetApp.controller('MobileInputCtrl', function ($scope) {

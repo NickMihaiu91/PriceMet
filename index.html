@@ -151,7 +151,7 @@
                             </span>
                         </div>
                         <div class="row btn-get-offers-container">
-                            <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
+                            <button class="btn btn-primary green btn-get-offers" ng-click="getOffersBtnClicked()">
                                 Get offers now!
                             </button>
                         </div>
@@ -162,7 +162,7 @@
                     <select-modal list="budgetList" value="selectedBudget" modalid="budgetModal" modaltitle="Choose total budget"></select-modal>
                 </div>
                 <div class="row btn-get-offers-container hidden-xs">
-                    <button class="btn btn-primary btn-get-offers" ng-click="getOffersBtnClicked()">
+                    <button class="btn btn-primary green btn-get-offers" ng-click="getOffersBtnClicked()">
                         Get offers now!
                     </button>
                 </div>
@@ -397,13 +397,13 @@
                     <div class="social">
                         <h4>Join Us On</h4>
                         <ul>
-                            <li><a href="https://www.facebook.com/pricemet.ca" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-lg fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-lg fa-google-plus"></i></a></li>
+                            <li><a href="https://www.facebook.com/PriceMetTechnologiesInc" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/PriceMet_" target="_blank"><i class="fa fa-lg fa-twitter"></i></a></li>
+                            <li><a href="https://plus.google.com/117771359266921478817" target="_blank"><i class="fa fa-lg fa-google-plus"></i></a></li>
                             <li><a href="#"><i class="fa fa-lg fa-pinterest"></i></a></li>
                             <li><a href="#"><i class="fa fa-lg fa-instagram"></i></a></li>
                         </ul>
-                        <p>© PriceMet, Inc.</p>
+                        <p>© PriceMet Technologies, Inc.</p>
                     </div>
                 </div>
             </div>
@@ -440,7 +440,7 @@
                                             </span>
                                             <span class="price-strikethrough">C${{offer.originalPrice}}</span>
 
-                                            <a class="btn btn-primary outline" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
+                                            <a class="btn btn-primary outline accept-bid" target="_blank" ng-href="complete-order.html?id={{offer.id}}&n={{noOfPersons}}" ng-click="acceptBid(offer.id)">
                                                 Accept bid
                                             </a>
                                         </div>
@@ -449,6 +449,27 @@
                                             <i ng-repeat="i in getNumber(offer.rating) track by $index" class="fa fa-heart fa-lg"></i>
                                             <i ng-repeat="i in getNumber(5 - offer.rating) track by $index" class="fa fa-heart-o fa-lg" ng-class="$index === 0 ? 'first' : ''"></i>
                                             <span>({{ offer.votes }} votes)</span>
+                                        </div>
+                                        <div class="make-a-counter-offer" ng-show="($index % 5 === 0) && ($index !== 0)">
+                                            <button class="btn btn-primary green" ng-click="showMakeCounterOffer($index)" ng-hide="offer.makeCounterOffer">
+                                                Make a counter offer
+                                            </button>
+                                            <div class="row" ng-show="offer.makeCounterOffer">
+                                                <div class="col-md-4 input-container">
+                                                    <input type="number" min="1" placeholder="C$" ng-model="offer.counterOfferValue" ng-change="changedCounterOfferValue($index)"/>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <button class="btn btn-primary green get-lucky" ng-click="submitCounterOffer(offer.offerPrice, offer.counterOfferValue, $index)">
+                                                        I feel lucky!
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="counter-message" ng-class="offer.counterOfferMessageType">
+                                                {{ offer.counterOfferMessage }}
+                                            </div>
+                                            <div class="error" ng-show="offer.showCounterOfferError">
+                                                {{ offer.counterOfferErrorMessage }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
