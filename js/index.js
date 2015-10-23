@@ -232,7 +232,7 @@
                 'r': {
                     firstSectionH1: 'Amazing restaurants that meet your price',
                     firstSectionH3: 'Set your budget and let local restaurants compete with their offers',
-                    firstSectionTitle: 'Name your own price at restaurants',
+                    firstSectionTitle: 'Name your own price at local restaurants',
                     firstSectionBellowTitle: 'We notify the restaurants. You get the best offers for your money.',
                     secondSectionH1: 'Pick your own price and let restaurants show their offers!',
                     whyPricemetText1: 'Because we help you find great food at the price, YOU choose, not the price someone else chooses for you.',
@@ -252,7 +252,7 @@
                 'b': {
                     firstSectionH1: 'Local health and beauty salons that meet your price',
                     firstSectionH3: 'Set your budget and let salons compete with their offers',
-                    firstSectionTitle: 'Name your own price at spa & beauty salons',
+                    firstSectionTitle: 'Name your own price at local spa & beauty salons',
                     firstSectionBellowTitle: 'We notify the merchants. You get the best offers for your money.',
                     secondSectionH1: 'Pick your own price and let salons show their offers!',
                     whyPricemetText1: 'Because we help you find the best spas and salons the city has to offer at the price, YOU choose, not the price someone else chooses for you.',
