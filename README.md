@@ -1,5 +1,5 @@
 # PriceMet
-Landing page & smoke test for PriceMet
+Landing page & [smoke test](http://www.inc.com/ilya-pozin/how-to-validate-your-start-up-idea.html) for PriceMet
 
 PriceMet is a “name your own price” site for restaurants, spas and other kind of services
 
