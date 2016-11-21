@@ -3,7 +3,7 @@ Landing page & smoke test for PriceMet
 
 PriceMet is a “name your own price” site for restaurants, spas and other kind of services
 
-Here I created a landing page showcasing what Pricemet is and also we're simulating a functional site with offers.
+The landing page showcases what Pricemet is and also we're simulating a functional site with offers.
 
 Storing offers in Parse.com
 
@@ -16,7 +16,7 @@ Components:
  - Booststrap datepicker
  - jQuery Appear
  - Please wait
- - SelectFx dropdown from Codrops
+ - SelectFx dropdown from Codrops - http://tympanus.net/Development/SelectInspiration/
  - SweetAlert
  - Loaders
  - Social buttons
