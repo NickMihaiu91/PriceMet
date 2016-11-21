@@ -74,6 +74,7 @@ The landing page showcases what Pricemet is and also we're simulating a function
 **Design inspiration:**
  - LivingSocial
  - VirginAmerica
+ - AirBnb
  - Groupon
  
 
