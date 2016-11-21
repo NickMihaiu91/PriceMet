@@ -7,7 +7,7 @@ The landing page showcases what Pricemet is and also we're simulating a function
 
 Storing offers in Parse.com
 
-Libaries:
+Built with:
  - Angular
  - Bootstrap
  - jQuery
@@ -18,7 +18,7 @@ Components:
  - Please wait
  - SelectFx dropdown from Codrops - http://tympanus.net/Development/SelectInspiration/
  - SweetAlert
- - Loaders
+ - Loaders - https://github.com/lukehaas/css-loaders
  - Social buttons
 
 Fonts:
