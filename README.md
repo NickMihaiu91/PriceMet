@@ -38,13 +38,12 @@ Storing offers in Parse.com
  - jQuery
  
 **Components:**
- - Booststrap datepicker
- - jQuery Appear
- - Please wait
+ - Booststrap datepicker - https://bootstrap-datepicker.readthedocs.io/en/latest/
+ - Please wait - https://github.com/Pathgather/please-wait
  - SelectFx dropdown from Codrops - http://tympanus.net/Development/SelectInspiration/
- - SweetAlert
+ - SweetAlert - http://t4t5.github.io/sweetalert/
  - Loaders - https://github.com/lukehaas/css-loaders
- - Social buttons
+ - Social buttons - https://lipis.github.io/bootstrap-social/
 
 **Fonts:**
  - Gotham
@@ -52,12 +51,12 @@ Storing offers in Parse.com
  - Sans-serif
 
 **Icons:**
- - Font Awesome
+ - Font Awesome - http://fontawesome.io/
  - IcoMoon - https://icomoon.io/
 
-**Inspiration for UI:**
+**Design inspiration:**
  - LivingSocial
- - VirginAmerica.com
+ - VirginAmerica
  - Groupon
  
 
