@@ -32,12 +32,12 @@ The landing page showcases what Pricemet is and also we're simulating a function
 
 Storing offers in Parse.com
 
-Built with:
+*Built with:*
  - Angular
  - Bootstrap
  - jQuery
  
-Components:
+*Components:*
  - Booststrap datepicker
  - jQuery Appear
  - Please wait
@@ -46,16 +46,16 @@ Components:
  - Loaders - https://github.com/lukehaas/css-loaders
  - Social buttons
 
-Fonts:
+*Fonts:*
  - Gotham
  - Oswald
  - Sans-serif
 
-Icons:
+*Icons:*
  - Font Awesome
  - IcoMoon - https://icomoon.io/
 
-Inspiration:
+*Inspiration:*
  - LivingSocial
  - VirginAmerica.com
  - Groupon
