@@ -23,6 +23,7 @@ Components:
 
 Fonts:
  - Gotham
+ - Oswald
  - Sans-serif
 
 Icons:
