@@ -29,13 +29,30 @@ The landing page showcases what Pricemet is and also we're simulating a function
 ---
 ![Complete order](screenshots/completeorder.JPG?raw=true "Complete order")
 
+##Mobile optimized experience 
 
-Storing offers in Parse.com
+###Homepage
+---
+![Homepage](screenshots/homemobilerestaurants.JPG?raw=true "Homepage")
+
+###Offers setup
+---
+![Offers setup](screenshots/receiveoffers.JPG?raw=true "Offers setup")
+
+###Choose no. of persons
+---
+![Choose no. of persons](screenshots/choosenoofpersons.JPG?raw=true "Choose no. of persons")
+
+###Offers
+---
+![Offers](screenshots/mobileoffers.JPG?raw=true "Offers")
+
 
 **Built with:**
  - Angular
  - Bootstrap
  - jQuery
+ - Parse(for storing data)
  
 **Components:**
  - Booststrap datepicker - https://bootstrap-datepicker.readthedocs.io/en/latest/
