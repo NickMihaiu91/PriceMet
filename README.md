@@ -5,7 +5,7 @@ PriceMet is a “name your own price” site for restaurants, spas and other kin
 
 The landing page showcases what Pricemet is and also we're simulating a functional site with offers.
 
-![Homepage](screenshots/home.jpg?raw=true "Homepage")
+![Homepage](screenshots/home.JPG?raw=true "Homepage")
 
 Storing offers in Parse.com
 
