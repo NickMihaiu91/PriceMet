@@ -5,23 +5,28 @@ PriceMet is a “name your own price” site for restaurants, spas and other kin
 
 The landing page showcases what Pricemet is and also we're simulating a functional site with offers.
 
-Homepage
+###Homepage
+---
 ![Homepage](screenshots/home.JPG?raw=true "Homepage")
 
 
-How it works
+###How it works
+---
 ![How it works](screenshots/howitworks.JPG?raw=true "How it works")
 
 
-Request offers
+###Request offers
+---
 ![Request offers](screenshots/requestoffers.JPG?raw=true "Request offers")
 
 
-Offers
+###Offers
+---
 ![Offers](screenshots/offers.JPG?raw=true "Offers")
 
 
-Complete order
+###Complete order
+---
 ![Complete order](screenshots/completeorder.JPG?raw=true "Complete order")
 
 
