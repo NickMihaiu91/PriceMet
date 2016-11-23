@@ -55,7 +55,7 @@ The landing page showcases what Pricemet is and also we're simulating a function
  - Parse(for storing data)
  
 **Components:**
- - Booststrap datepicker - https://bootstrap-datepicker.readthedocs.io/en/latest/
+ - Bootstrap datepicker - https://bootstrap-datepicker.readthedocs.io/en/latest/
  - Please wait - https://github.com/Pathgather/please-wait
  - SelectFx dropdown from Codrops - http://tympanus.net/Development/SelectInspiration/
  - SweetAlert - http://t4t5.github.io/sweetalert/
